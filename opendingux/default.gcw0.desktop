@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=SaveSync
+Comment=Save data sync utility
+Exec=main.sh
+Icon=icon
+Terminal=true
+Type=Application
+StartupNotify=true
+Categories=applications;
