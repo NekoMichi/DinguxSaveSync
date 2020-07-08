@@ -22,7 +22,7 @@ From the main menu, there are three options:
 
 **Data backed up**
 
-SaveSync wil only access data from specific apps and emulators, they are:
+SaveSync will only access data from specific apps and emulators, they are:
 - GMenu2x settings (backup only, will not be overwritten during syncing)
 - Screenshots (backup only, will not be overwritten during syncing)
 - Custom ScriptRunner scripts (backup only, will not be overwritten during syncing)
