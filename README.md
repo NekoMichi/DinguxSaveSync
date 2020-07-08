@@ -9,7 +9,7 @@ Download the latest version of savesync.opk and copy it to either the apps folde
 
 **Prerequisites**
 
-SaveSync will transfer save data between the internal storage and the secondary SD card, make sure there is one inserted before running the app. **This utility will not work on devices with a faulty slot-2 reader.**
+SaveSync will transfer save data between the internal storage and the secondary SD card, make sure there is one inserted before running the app. **This utility will not work on devices with a faulty slot-2 reader.** SaveSync also needs all associated devices to have the correct time and date set, as it compares timestamps when deciding whether or not to overwrite files.
 
 **Features**
 
@@ -36,3 +36,4 @@ SaveSync will only access data from specific apps and emulators, they are:
 **Known issues/quirks**
 - The first time this app is run, it may take longer than usual as it needs to generate the initial backup folder structure and files. Subsequent runs will be much faster as it only accesses files that have changed since the last backup.
 - After running backup/restore/sync for the first time, some emulators might take a little longer than usual to start up. This only happens once.
+- SaveSync will only check timestamps when deciding whether or not to overwrite save data. This means if you backup your saves and then start a fresh save on one of the games and replace the backed up file with the fresh save, it will replace the save on the internal partition on the next sync.
