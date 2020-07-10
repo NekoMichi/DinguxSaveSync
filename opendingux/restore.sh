@@ -12,7 +12,7 @@ if [ ! -d $EXTPATH ]; then
 	echo "Could not detect secondary micro SD card."
 	echo "Please make sure you have a secondary SD card inserted."
 	echo ""
-	read -p "Press START to exit"
+	read -p "Press START to exit."
 	exit
 fi
 
@@ -21,7 +21,7 @@ if [ ! -d $EXTPATH/backup/ ]; then
 	echo "Backup folder not found on card-2."
 	echo "Please make sure card-2 has backup data stored."
 	echo ""
-	read -p "Press START to exit"
+	read -p "Press START to exit."
 	exit
 fi
 
