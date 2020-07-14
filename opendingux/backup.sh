@@ -119,5 +119,5 @@ if [ -d $INTPATH/.pocketsnes/ ]; then
 	rsync --update -rt $INTPATH/.pocketsnes/ $EXTPATH/backup/pocketsnes
 fi
 
-dialog --clear --backtitle "SaveSync v1.0" --title "Backup Complete" --msgbox "Save backup complete. Press START to exit." 10 30
+dialog --clear --backtitle "SaveSync v1.1" --title "Backup Complete" --msgbox "Save backup complete. Press START to exit." 10 30
 exit
