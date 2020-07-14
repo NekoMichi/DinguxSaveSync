@@ -55,7 +55,7 @@ if [ -d $INTPATH/.fceux/ ]; then
 	if [ -d $EXTPATH/backup/fceux/ ]; then
 		echo "Syncing FCEUX data..."
 		rsync --update -rt $INTPATH/.fceux/ $EXTPATH/backup/fceux
-		rsync --update -rt $EXTPATH/backup/fceux/ $INTPATH/.fceux
+		rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/fceux/ $INTPATH/.fceux
 	else
 		echo "FCEUX backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/backup/fceux
@@ -67,7 +67,7 @@ else
 		echo "FCEUX folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.fceux
 		echo "Syncing FCEUX data..."
-		rsync --update -rt $EXTPATH/backup/fceux/ $INTPATH/.fceux
+		rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/fceux/ $INTPATH/.fceux
 	fi
 fi
 
@@ -76,7 +76,7 @@ if [ -d $INTPATH/.gambatte/ ]; then
 	if [ -d $EXTPATH/backup/gambatte/ ]; then
 		echo "Syncing Gambatte data..."
 		rsync --update -rt $INTPATH/.gambatte/ $EXTPATH/backup/gambatte
-		rsync --update -rt $EXTPATH/backup/gambatte/ $INTPATH/.gambatte
+		rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/gambatte/ $INTPATH/.gambatte
 	else
 		echo "Gambatte backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/backup/gambatte
@@ -88,7 +88,7 @@ else
 		echo "Gambatte folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.gambatte
 		echo "Syncing Gambatte data..."
-		rsync --update -rt $EXTPATH/backup/gambatte/ $INTPATH/.gambatte
+		rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/gambatte/ $INTPATH/.gambatte
 	fi
 fi
 
@@ -97,7 +97,7 @@ if [ -d $INTPATH/.gpsp/ ]; then
 	if [ -d $EXTPATH/backup/gpsp/ ]; then
 		echo "Syncing ReGBA data..."
 		rsync --update -rt $INTPATH/.gpsp/ $EXTPATH/backup/gpsp
-		rsync --update -rt $EXTPATH/backup/gpsp/ $INTPATH/.gpsp
+		rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/gpsp/ $INTPATH/.gpsp
 	else
 		echo "ReGBA backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/backup/gpsp
@@ -109,7 +109,7 @@ else
 		echo "ReGBA folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.gpsp
 		echo "Syncing ReGBA data..."
-		rsync --update -rt $EXTPATH/backup/gpsp/ $INTPATH/.gpsp
+		rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/gpsp/ $INTPATH/.gpsp
 	fi
 fi
 
@@ -118,7 +118,7 @@ if [ -d $INTPATH/.pcsx4all/ ]; then
 	if [ -d $EXTPATH/backup/pcsx4all/ ]; then
 		echo "Syncing PCSX4all data..."
 		rsync --update -rt $INTPATH/.pcsx4all/ $EXTPATH/backup/pcsx4all
-		rsync --update -rt $EXTPATH/backup/pcsx4all/ $INTPATH/.pcsx4all
+		rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/pcsx4all/ $INTPATH/.pcsx4all
 	else
 		echo "PCSX4all backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/backup/pcsx4all
@@ -130,7 +130,7 @@ else
 		echo "PCSX4all folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.pcsx4all
 		echo "Syncing PCSX4all data..."
-		rsync --update -rt $EXTPATH/backup/pcsx4all/ $INTPATH/.pcsx4all
+		rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/pcsx4all/ $INTPATH/.pcsx4all
 	fi
 fi
 
@@ -139,7 +139,7 @@ if [ -d $INTPATH/.picodrive/ ]; then
 	if [ -d $EXTPATH/backup/picodrive/ ]; then
 		echo "Syncing PicoDrive data..."
 		rsync --update -rt $INTPATH/.picodrive/ $EXTPATH/backup/picodrive
-		rsync --update -rt $EXTPATH/backup/picodrive/ $INTPATH/.picodrive
+		rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/picodrive/ $INTPATH/.picodrive
 	else
 		echo "PicoDrive backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/backup/picodrive
@@ -151,7 +151,7 @@ else
 		echo "PicoDrive folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.picodrive
 		echo "Syncing PicoDrive data..."
-		rsync --update -rt $EXTPATH/backup/picodrive/ $INTPATH/.picodrive
+		rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/picodrive/ $INTPATH/.picodrive
 	fi
 fi
 
@@ -160,7 +160,7 @@ if [ -d $INTPATH/.snes96_snapshots/ ]; then
 	if [ -d $EXTPATH/backup/snes96_snapshots/ ]; then
 		echo "Syncing SNES96 data..."
 		rsync --update -rt $INTPATH/.snes96_snapshots/ $EXTPATH/backup/snes96_snapshots
-		rsync --update -rt $EXTPATH/backup/snes96_snapshots/ $INTPATH/.snes96_snapshots
+		rsync --update -rt --exclude '*.opt' $EXTPATH/backup/snes96_snapshots/ $INTPATH/.snes96_snapshots
 	else
 		echo "SNES96 backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/backup/snes96_snapshots
@@ -172,7 +172,7 @@ else
 		echo "SNES96 folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.snes96_snapshots
 		echo "Syncing SNES96 data..."
-		rsync --update -rt $EXTPATH/backup/snes96_snapshots/ $INTPATH/.snes96_snapshots
+		rsync --update -rt --exclude '*.opt' $EXTPATH/backup/snes96_snapshots/ $INTPATH/.snes96_snapshots
 	fi
 fi
 
@@ -181,7 +181,7 @@ if [ -d $INTPATH/.pocketsnes/ ]; then
 	if [ -d $EXTPATH/backup/pocketsnes/ ]; then
 		echo "Syncing PocketSNES data..."
 		rsync --update -rt $INTPATH/.pocketsnes/ $EXTPATH/backup/pocketsnes
-		rsync --update -rt $EXTPATH/backup/pocketsnes/ $INTPATH/.pocketsnes
+		rsync --update -rt --exclude '*.opt' $EXTPATH/backup/pocketsnes/ $INTPATH/.pocketsnes
 	else
 		echo "PocketSNES backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/backup/pocketsnes
@@ -193,9 +193,9 @@ else
 		echo "PocketSNES folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.pocketsnes
 		echo "Syncing PocketSNES data..."
-		rsync --update -rt $EXTPATH/backup/pocketsnes/ $INTPATH/.pocketsnes
+		rsync --update -rt --exclude '*.opt' $EXTPATH/backup/pocketsnes/ $INTPATH/.pocketsnes
 	fi
 fi
 
-dialog --clear --backtitle "SaveSync v1.0" --title "Sync Complete" --msgbox "Save sync complete. Press START to exit." 10 30
+dialog --clear --backtitle "SaveSync v1.1" --title "Sync Complete" --msgbox "Save sync complete. Press START to exit." 10 30
 exit
