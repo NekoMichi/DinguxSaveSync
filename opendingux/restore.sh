@@ -32,7 +32,7 @@ if [ -d $EXTPATH/backup/fceux/ ]; then
 		mkdir $INTPATH/.fceux
 	fi
 	echo "Restoring FCEUX data..."
-	rsync --update -rt $EXTPATH/backup/fceux/ $INTPATH/.fceux
+	rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/fceux/ $INTPATH/.fceux
 fi
 
 # Restores Gambatte data
@@ -42,7 +42,7 @@ if [ -d $EXTPATH/backup/gambatte/ ]; then
 		mkdir $INTPATH/.gambatte
 	fi
 	echo "Restoring Gambatte data..."
-	rsync --update -rt $EXTPATH/backup/gambatte/ $INTPATH/.gambatte
+	rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/gambatte/ $INTPATH/.gambatte
 fi
 
 # Restores ReGBA data
@@ -52,7 +52,7 @@ if [ -d $EXTPATH/backup/gpsp/ ]; then
 		mkdir $INTPATH/.gpsp
 	fi
 	echo "Restoring ReGBA data..."
-	rsync --update -rt $EXTPATH/backup/gpsp/ $INTPATH/.gpsp
+	rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/gpsp/ $INTPATH/.gpsp
 fi
 
 # Restores PCSX4all data
@@ -62,7 +62,7 @@ if [ -d $EXTPATH/backup/pcsx4all/ ]; then
 		mkdir $INTPATH/.pcsx4all
 	fi
 	echo "Restoring PCSX4all data..."
-	rsync --update -rt $EXTPATH/backup/pcsx4all/ $INTPATH/.pcsx4all
+	rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/pcsx4all/ $INTPATH/.pcsx4all
 fi
 
 # Restores Picodrive data
@@ -72,7 +72,7 @@ if [ -d $EXTPATH/backup/picodrive/ ]; then
 		mkdir $INTPATH/.picodrive
 	fi
 	echo "Restoring PicoDrive data..."
-	rsync --update -rt $EXTPATH/backup/picodrive/ $INTPATH/.picodrive
+	rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/picodrive/ $INTPATH/.picodrive
 fi
 
 # Backs up PocketSNES data
@@ -82,7 +82,7 @@ if [ -d $EXTPATH/backup/snes96_snapshots/ ]; then
 		mkdir $INTPATH/.snes96_snapshots
 	fi
 	echo "Restoring SNES96 data..."
-	rsync --update -rt $EXTPATH/backup/snes96_snapshots/ $INTPATH/.snes96_snapshots
+	rsync --update -rt --exclude '*.opt' $EXTPATH/backup/snes96_snapshots/ $INTPATH/.snes96_snapshots
 fi
 
 if [ -d $EXTPATH/backup/pocketsnes/ ]; then
@@ -91,8 +91,8 @@ if [ -d $EXTPATH/backup/pocketsnes/ ]; then
 		mkdir $INTPATH/.pocketsnes
 	fi
 	echo "Backing up PocketSNES data..."
-	rsync --update -rt $EXTPATH/backup/pocketsnes/ $INTPATH/.pocketsnes
+	rsync --update -rt --exclude '*.opt' $EXTPATH/backup/pocketsnes/ $INTPATH/.pocketsnes
 fi
 
-dialog --clear --backtitle "SaveSync v1.0" --title "Restore Complete" --msgbox "Save restore complete. Press START to exit." 10 30
+dialog --clear --backtitle "SaveSync v1.1" --title "Restore Complete" --msgbox "Save restore complete. Press START to exit." 10 30
 exit
