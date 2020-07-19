@@ -198,5 +198,5 @@ else
 	fi
 fi
 
-dialog --clear --backtitle "SaveSync v1.2" --title "Sync Complete" --msgbox "Save sync complete. Press START to exit." 10 30
+dialog --clear --backtitle "SaveSync v1.3" --title "Sync Complete" --msgbox "Save sync complete. Press START to exit." 10 30
 exit
