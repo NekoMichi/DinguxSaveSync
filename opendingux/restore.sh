@@ -24,6 +24,7 @@ if [ ! -d $EXTPATH/backup/ ]; then
 	read -p "Press START to exit."
 	exit
 fi
+chmod -R 777 $EXTPATH/backup
 
 # Restores FCEUX data
 if [ -d $EXTPATH/backup/fceux/ ]; then
@@ -94,5 +95,5 @@ if [ -d $EXTPATH/backup/pocketsnes/ ]; then
 	rsync --update -rt --exclude '*.opt' $EXTPATH/backup/pocketsnes/ $INTPATH/.pocketsnes
 fi
 
-dialog --clear --backtitle "SaveSync v1.1" --title "Restore Complete" --msgbox "Save restore complete. Press START to exit." 10 30
+dialog --clear --backtitle "SaveSync v1.2" --title "Restore Complete" --msgbox "Save restore complete. Press START to exit." 10 30
 exit
