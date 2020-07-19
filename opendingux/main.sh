@@ -3,7 +3,7 @@
 # desc=Main menu of SaveSync
 # author=NekoMichi
 
-MODE=$(dialog --clear --backtitle "SaveSync v1.1" --title "SaveSync" --menu "Please select an action. Use arrow keys to make your selection and press START to confirm." 15 35 4 \
+MODE=$(dialog --clear --backtitle "SaveSync v1.2" --title "SaveSync" --menu "Please select an action. Use arrow keys to make your selection and press START to confirm." 15 35 4 \
 1 "Backup" \
 2 "Restore" \
 3 "Sync" \
