@@ -24,6 +24,8 @@ if [ ! -d $EXTPATH/backup/ ]; then
 	read -p "Press START to exit."
 	exit
 fi
+
+# Overrides permissions on backup folder
 chmod -R 777 $EXTPATH/backup
 
 # Restores FCEUX data
@@ -33,7 +35,8 @@ if [ -d $EXTPATH/backup/fceux/ ]; then
 		mkdir $INTPATH/.fceux
 	fi
 	echo "Restoring FCEUX data..."
-	rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/fceux/ $INTPATH/.fceux
+	rsync -rt --exclude '*.cfg' $EXTPATH/backup/fceux/sav/ $INTPATH/.fceux/sav
+	rsync -rt --exclude '*.cfg' $EXTPATH/backup/fceux/fcs/ $INTPATH/.fceux/fcs
 fi
 
 # Restores Gambatte data
@@ -43,7 +46,7 @@ if [ -d $EXTPATH/backup/gambatte/ ]; then
 		mkdir $INTPATH/.gambatte
 	fi
 	echo "Restoring Gambatte data..."
-	rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/gambatte/ $INTPATH/.gambatte
+	rsync -rt --exclude '*.cfg' $EXTPATH/backup/gambatte/saves/ $INTPATH/.gambatte/saves
 fi
 
 # Restores ReGBA data
@@ -53,7 +56,7 @@ if [ -d $EXTPATH/backup/gpsp/ ]; then
 		mkdir $INTPATH/.gpsp
 	fi
 	echo "Restoring ReGBA data..."
-	rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/gpsp/ $INTPATH/.gpsp
+	rsync -rt --exclude '*.cfg' $EXTPATH/backup/gpsp/ $INTPATH/.gpsp
 fi
 
 # Restores PCSX4all data
@@ -63,7 +66,8 @@ if [ -d $EXTPATH/backup/pcsx4all/ ]; then
 		mkdir $INTPATH/.pcsx4all
 	fi
 	echo "Restoring PCSX4all data..."
-	rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/pcsx4all/ $INTPATH/.pcsx4all
+	rsync -rt --exclude '*.cfg' $EXTPATH/backup/pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
+	rsync -rt --exclude '*.cfg' $EXTPATH/backup/pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
 fi
 
 # Restores Picodrive data
@@ -73,7 +77,8 @@ if [ -d $EXTPATH/backup/picodrive/ ]; then
 		mkdir $INTPATH/.picodrive
 	fi
 	echo "Restoring PicoDrive data..."
-	rsync --update -rt --exclude '*.cfg' $EXTPATH/backup/picodrive/ $INTPATH/.picodrive
+	rsync -rt --exclude '*.cfg' $EXTPATH/backup/picodrive/mds/ $INTPATH/.picodrive/mds
+	rsync -rt --exclude '*.cfg' $EXTPATH/backup/picodrive/srm/ $INTPATH/.picodrive/srm
 fi
 
 # Backs up PocketSNES data
@@ -83,7 +88,7 @@ if [ -d $EXTPATH/backup/snes96_snapshots/ ]; then
 		mkdir $INTPATH/.snes96_snapshots
 	fi
 	echo "Restoring SNES96 data..."
-	rsync --update -rt --exclude '*.opt' $EXTPATH/backup/snes96_snapshots/ $INTPATH/.snes96_snapshots
+	rsync -rt --exclude '*.opt' $EXTPATH/backup/snes96_snapshots/ $INTPATH/.snes96_snapshots
 fi
 
 if [ -d $EXTPATH/backup/pocketsnes/ ]; then
@@ -92,8 +97,8 @@ if [ -d $EXTPATH/backup/pocketsnes/ ]; then
 		mkdir $INTPATH/.pocketsnes
 	fi
 	echo "Backing up PocketSNES data..."
-	rsync --update -rt --exclude '*.opt' $EXTPATH/backup/pocketsnes/ $INTPATH/.pocketsnes
+	rsync -rt --exclude '*.opt' $EXTPATH/backup/pocketsnes/ $INTPATH/.pocketsnes
 fi
 
-dialog --clear --backtitle "SaveSync v1.2" --title "Restore Complete" --msgbox "Save restore complete. Press START to exit." 10 30
+dialog --clear --backtitle "SaveSync v1.3" --title "Restore Complete" --msgbox "Save restore complete. Press START to exit." 10 30
 exit
