@@ -21,15 +21,9 @@ if [ ! -d $EXTPATH/backup/ ]; then
 	echo "Backup folder doesn't exist, creating folder."
 	mkdir $EXTPATH/backup
 fi
-chmod -R 777 $EXTPATH/backup
 
-# Backs up GMenu2x data
-# if [ ! -d $EXTPATH/backup/gmenu2x/ ]; then
-#	echo "Gmenu2x backup folder doesn't exist, creating folder."
-#	mkdir $EXTPATH/backup/gmenu2x
-# fi
-# echo "Backing up Gmenu2x data..."
-# rsync --update -rt $INTPATH/.gmenu2x/ $EXTPATH/backup/gmenu2x
+# Overrides permissions on backup folder
+chmod -R 777 $EXTPATH/backup
 
 # Backs up screenshots
 if [ -d $INTPATH/screenshots/ ]; then
@@ -38,18 +32,8 @@ if [ -d $INTPATH/screenshots/ ]; then
 		mkdir $EXTPATH/backup/screenshots
 	fi
 	echo "Backing up screenshots"
-	rsync --update -rt $INTPATH/screenshots/ $EXTPATH/backup/screenshots
+	rsync -rt --ignore-existing $INTPATH/screenshots/ $EXTPATH/backup/screenshots
 fi
-
-# Backs up scripts
-# if [ -d $INTPATH/.scriptrunner/ ]; then
-#	if [ ! -d $EXTPATH/backup/scriptrunner/ ]; then
-#		echo "Scripts backup folder doesn't exist, creating folder."
-#		mkdir $EXTPATH/backup/scriptrunner
-#	fi
-#	echo "Backing up scripts"
-#	rsync --update -rt $INTPATH/.scriptrunner/ $EXTPATH/backup/scriptrunner
-# fi
 
 # Backs up FCEUX data
 if [ -d $INTPATH/.fceux/ ]; then
@@ -58,7 +42,8 @@ if [ -d $INTPATH/.fceux/ ]; then
 		mkdir $EXTPATH/backup/fceux
 	fi
 	echo "Backing up FCEUX data..."
-	rsync --update -rt $INTPATH/.fceux/ $EXTPATH/backup/fceux
+	rsync -rt $INTPATH/.fceux/sav/ $EXTPATH/backup/fceux/sav
+	rsync -rt $INTPATH/.fceux/fcs/ $EXTPATH/backup/fceux/fcs
 fi
 
 # Backs up Gambatte data
@@ -68,7 +53,7 @@ if [ -d $INTPATH/.gambatte/ ]; then
 		mkdir $EXTPATH/backup/gambatte
 	fi
 	echo "Backing up Gambatte data..."
-	rsync --update -rt $INTPATH/.gambatte/ $EXTPATH/backup/gambatte
+	rsync -rt $INTPATH/.gambatte/saves/ $EXTPATH/backup/gambatte/saves
 fi
 
 # Backs up ReGBA data
@@ -78,7 +63,7 @@ if [ -d $INTPATH/.gpsp/ ]; then
 		mkdir $EXTPATH/backup/gpsp
 	fi
 	echo "Backing up ReGBA data..."
-	rsync --update -rt $INTPATH/.gpsp/ $EXTPATH/backup/gpsp
+	rsync -rt $INTPATH/.gpsp/ $EXTPATH/backup/gpsp
 fi
 
 # Backs up PCSX4all data
@@ -88,7 +73,8 @@ if [ -d $INTPATH/.pcsx4all/ ]; then
 		mkdir $EXTPATH/backup/pcsx4all
 	fi
 	echo "Backing up PCSX4all data..."
-	rsync --update -rt $INTPATH/.pcsx4all/ $EXTPATH/backup/pcsx4all
+	rsync -rt $INTPATH/.pcsx4all/memcards/ $EXTPATH/backup/pcsx4all/memcards
+	rsync -rt $INTPATH/.pcsx4all/sstates/ $EXTPATH/backup/pcsx4all/sstates
 fi
 
 # Backs up Picodrive data
@@ -98,7 +84,8 @@ if [ -d $INTPATH/.picodrive/ ]; then
 		mkdir $EXTPATH/backup/picodrive
 	fi
 	echo "Backing up PicoDrive data..."
-	rsync --update -rt $INTPATH/.picodrive/ $EXTPATH/backup/picodrive
+	rsync -rt $INTPATH/.picodrive/mds/ $EXTPATH/backup/picodrive/mds
+	rsync -rt $INTPATH/.picodrive/srm/ $EXTPATH/backup/picodrive/srm
 fi
 
 # Backs up PocketSNES data
@@ -108,7 +95,7 @@ if [ -d $INTPATH/.snes96_snapshots/ ]; then
 		mkdir $EXTPATH/backup/snes96_snapshots
 	fi
 	echo "Backing up SNES96 data..."
-	rsync --update -rt $INTPATH/.snes96_snapshots/ $EXTPATH/backup/snes96_snapshots
+	rsync -rt $INTPATH/.snes96_snapshots/ $EXTPATH/backup/snes96_snapshots
 fi
 
 if [ -d $INTPATH/.pocketsnes/ ]; then
@@ -117,8 +104,8 @@ if [ -d $INTPATH/.pocketsnes/ ]; then
 		mkdir $EXTPATH/backup/pocketsnes
 	fi
 	echo "Backing up PocketSNES data..."
-	rsync --update -rt $INTPATH/.pocketsnes/ $EXTPATH/backup/pocketsnes
+	rsync -rt $INTPATH/.pocketsnes/ $EXTPATH/backup/pocketsnes
 fi
 
-dialog --clear --backtitle "SaveSync v1.2" --title "Backup Complete" --msgbox "Save backup complete. Press START to exit." 10 30
+dialog --clear --backtitle "SaveSync v1.3" --title "Backup Complete" --msgbox "Save backup complete. Press START to exit." 10 30
 exit
