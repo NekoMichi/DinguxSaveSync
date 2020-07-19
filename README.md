@@ -14,11 +14,11 @@ SaveSync will transfer save data between the internal storage and the secondary 
 **Features**
 
 From the main menu, there are three options:
-- Backup - Copies save data from the internal storage to a folder called "backup" on the external storage. If there is no backup folder present, the app will automatically create one. Saves exported to the external storage can then be transferred to other devices or even used in other emulators. The app will only overwrite files in the backup folder if a newer version is found on the internal storage, if the version in the backup folder has been changed and is newer than the one in the internal storage, it will be skipped.
-- Restore - Transfers backed up save data from the external storage to the internal storage. This is useful if saves were exported for external editing or use on other devices and will allow the device to then use the edited or updated save data. The app will only overwrite files in the internal storage if a newer version is found in the backup folder, if the version in the internal storage has been changed and is newer than the one in the backup folder, it will be skipped.
+- Backup - Copies save data from the internal storage to a folder called "backup" on the external storage. If there is no backup folder present, the app will automatically create one. Saves exported to the external storage can then be transferred to other devices or even used in other emulators. The app will overwrite any existing saves in the backup folder even if it has a newer modified date than the internal save.
+- Restore - Transfers backed up save data from the external storage to the internal storage. This is useful if saves were exported for external editing or use on other devices and will allow the device to then use the edited or updated save data. The app will overwrite any existing saves in the internal folder even if it has a newer modified date than the external save.
 - Sync - The app will attempt to merge the contents of both the internal storage and the backup folder, if certain files are newer on the internal storage then it will overwrite the version in the backup folder and vice-versa. Useful if you want to unify save data between multiple devices.
 
-![BAckup screen](/screenshots/screenshot02.png)
+![Backup screen](/screenshots/screenshot02.png)
 
 **Data backed up**
 
