@@ -3,8 +3,8 @@
 # desc=Syncs save data with external SD card
 # author=NekoMichi
 
-INTPATH="/media/data/local/home/"
-EXTPATH="/media/sdcard/"
+# INTPATH="/media/data/local/home/"
+# EXTPATH="/media/sdcard/"
 
 echo "===Sync Saves==="
 # Checks to see if there is a card inserted in slot 2
@@ -198,5 +198,5 @@ else
 	fi
 fi
 
-dialog --clear --backtitle "SaveSync v1.3" --title "Sync Complete" --msgbox "Save sync complete. Press START to exit." 10 30
+dialog --clear --backtitle "SaveSync $APPVERSION" --title "Sync Complete" --msgbox "Save sync complete. Press START to exit." 10 29
 exit
