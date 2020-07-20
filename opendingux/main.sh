@@ -3,7 +3,11 @@
 # desc=Main menu of SaveSync
 # author=NekoMichi
 
-MODE=$(dialog --clear --backtitle "SaveSync v1.3" --title "SaveSync" --menu "Please select an action. Use arrow keys to make your selection and press START to confirm." 15 35 4 \
+export APPVERSION="v1.4"
+export INTPATH="/media/data/local/home/"
+export EXTPATH="/media/sdcard/"
+
+MODE=$(dialog --clear --backtitle "SaveSync $APPVERSION" --title "SaveSync" --menu "Please select an action. Use arrow keys to make your selection and press START to confirm." 15 35 4 \
 1 "Backup" \
 2 "Restore" \
 3 "Sync" \
