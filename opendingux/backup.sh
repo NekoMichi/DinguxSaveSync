@@ -3,8 +3,8 @@
 # desc=Backup save data to external SD card
 # author=NekoMichi
 
-INTPATH="/media/data/local/home/"
-EXTPATH="/media/sdcard/"
+# INTPATH="/media/data/local/home/"
+# EXTPATH="/media/sdcard/"
 
 echo "===Backup Saves==="
 # Checks to see if there is a card inserted in slot 2
@@ -107,5 +107,5 @@ if [ -d $INTPATH/.pocketsnes/ ]; then
 	rsync -rt $INTPATH/.pocketsnes/ $EXTPATH/backup/pocketsnes
 fi
 
-dialog --clear --backtitle "SaveSync v1.3" --title "Backup Complete" --msgbox "Save backup complete. Press START to exit." 10 30
+dialog --clear --backtitle "SaveSync $APPVERSION" --title "Backup Complete" --msgbox "Save backup complete. Press START to exit." 10 29
 exit
