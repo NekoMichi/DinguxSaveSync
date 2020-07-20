@@ -3,10 +3,22 @@
 # desc=Restore save data from external SD card
 # author=NekoMichi
 
-INTPATH="/media/data/local/home/"
-EXTPATH="/media/sdcard/"
+# Displays a confirmation dialog
+dialog --clear --title "Confirm Restore?" --backtitle "SaveSync $APPVERSION" --yesno "Are you sure you want to restore saves from backup? Any existing saves on this system will be overwritten." 10 49
+
+confirmrestore=$?
+clear
+
+if [ $confirmrestore = "1" ]; then
+	dialog --clear --backtitle "SaveSync $APPVERSION" --title "Restore Cancelled" --msgbox "Save restore cancelled. No files were changed. Press START to exit." 10 29
+	exit
+fi
+
+# INTPATH="/media/data/local/home/"
+# EXTPATH="/media/sdcard/"
 
 echo "===Restore Saves==="
+
 # Checks to see if there is a card inserted in slot 2
 if [ ! -d $EXTPATH ]; then
 	echo "Could not detect secondary micro SD card."
@@ -100,5 +112,5 @@ if [ -d $EXTPATH/backup/pocketsnes/ ]; then
 	rsync -rt --exclude '*.opt' $EXTPATH/backup/pocketsnes/ $INTPATH/.pocketsnes
 fi
 
-dialog --clear --backtitle "SaveSync v1.3" --title "Restore Complete" --msgbox "Save restore complete. Press START to exit." 10 30
+dialog --clear --backtitle "SaveSync $APPVERSION" --title "Restore Complete" --msgbox "Save restore complete. Press START to exit." 10 29
 exit
