@@ -3,9 +3,6 @@
 # desc=Backup save data to external SD card
 # author=NekoMichi
 
-# INTPATH="/media/data/local/home/"
-# EXTPATH="/media/sdcard/"
-
 echo "===Backup Saves==="
 # Checks to see if there is a card inserted in slot 2
 if [ ! -d $EXTPATH ]; then
@@ -32,7 +29,7 @@ if [ -d $INTPATH/screenshots/ ]; then
 		mkdir $EXTPATH/backup/screenshots
 	fi
 	echo "Backing up screenshots"
-	rsync -rt --ignore-existing $INTPATH/screenshots/ $EXTPATH/backup/screenshots
+	rsync -rtW --ignore-existing $INTPATH/screenshots/ $EXTPATH/backup/screenshots
 fi
 
 # Backs up FCEUX data
@@ -42,8 +39,8 @@ if [ -d $INTPATH/.fceux/ ]; then
 		mkdir $EXTPATH/backup/fceux
 	fi
 	echo "Backing up FCEUX data..."
-	rsync -rt $INTPATH/.fceux/sav/ $EXTPATH/backup/fceux/sav
-	rsync -rt $INTPATH/.fceux/fcs/ $EXTPATH/backup/fceux/fcs
+	rsync -rtW $INTPATH/.fceux/sav/ $EXTPATH/backup/fceux/sav
+	rsync -rtW $INTPATH/.fceux/fcs/ $EXTPATH/backup/fceux/fcs
 fi
 
 # Backs up Gambatte data
@@ -53,7 +50,7 @@ if [ -d $INTPATH/.gambatte/ ]; then
 		mkdir $EXTPATH/backup/gambatte
 	fi
 	echo "Backing up Gambatte data..."
-	rsync -rt $INTPATH/.gambatte/saves/ $EXTPATH/backup/gambatte/saves
+	rsync -rtW $INTPATH/.gambatte/saves/ $EXTPATH/backup/gambatte/saves
 fi
 
 # Backs up ReGBA data
@@ -63,7 +60,7 @@ if [ -d $INTPATH/.gpsp/ ]; then
 		mkdir $EXTPATH/backup/gpsp
 	fi
 	echo "Backing up ReGBA data..."
-	rsync -rt $INTPATH/.gpsp/ $EXTPATH/backup/gpsp
+	rsync -rtW $INTPATH/.gpsp/ $EXTPATH/backup/gpsp
 fi
 
 # Backs up PCSX4all data
@@ -73,8 +70,8 @@ if [ -d $INTPATH/.pcsx4all/ ]; then
 		mkdir $EXTPATH/backup/pcsx4all
 	fi
 	echo "Backing up PCSX4all data..."
-	rsync -rt $INTPATH/.pcsx4all/memcards/ $EXTPATH/backup/pcsx4all/memcards
-	rsync -rt $INTPATH/.pcsx4all/sstates/ $EXTPATH/backup/pcsx4all/sstates
+	rsync -rtW $INTPATH/.pcsx4all/memcards/ $EXTPATH/backup/pcsx4all/memcards
+	rsync -rtW $INTPATH/.pcsx4all/sstates/ $EXTPATH/backup/pcsx4all/sstates
 fi
 
 # Backs up Picodrive data
@@ -84,8 +81,8 @@ if [ -d $INTPATH/.picodrive/ ]; then
 		mkdir $EXTPATH/backup/picodrive
 	fi
 	echo "Backing up PicoDrive data..."
-	rsync -rt $INTPATH/.picodrive/mds/ $EXTPATH/backup/picodrive/mds
-	rsync -rt $INTPATH/.picodrive/srm/ $EXTPATH/backup/picodrive/srm
+	rsync -rtW $INTPATH/.picodrive/mds/ $EXTPATH/backup/picodrive/mds
+	rsync -rtW $INTPATH/.picodrive/srm/ $EXTPATH/backup/picodrive/srm
 fi
 
 # Backs up PocketSNES data
@@ -95,7 +92,7 @@ if [ -d $INTPATH/.snes96_snapshots/ ]; then
 		mkdir $EXTPATH/backup/snes96_snapshots
 	fi
 	echo "Backing up SNES96 data..."
-	rsync -rt $INTPATH/.snes96_snapshots/ $EXTPATH/backup/snes96_snapshots
+	rsync -rtW $INTPATH/.snes96_snapshots/ $EXTPATH/backup/snes96_snapshots
 fi
 
 if [ -d $INTPATH/.pocketsnes/ ]; then
@@ -104,7 +101,7 @@ if [ -d $INTPATH/.pocketsnes/ ]; then
 		mkdir $EXTPATH/backup/pocketsnes
 	fi
 	echo "Backing up PocketSNES data..."
-	rsync -rt $INTPATH/.pocketsnes/ $EXTPATH/backup/pocketsnes
+	rsync -rtW $INTPATH/.pocketsnes/ $EXTPATH/backup/pocketsnes
 fi
 
 dialog --clear --backtitle "SaveSync $APPVERSION" --title "Backup Complete" --msgbox "Save backup complete. Press START to exit." 10 29
