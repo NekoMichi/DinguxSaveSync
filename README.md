@@ -1,7 +1,7 @@
 # DinguxSaveSync
 A small utility to backup, restore, and sync save data on OpenDingux devices with the secondary SD card.
 
-![Main menu](/screenshots/screenshot01.png)
+![Main menu](/screenshots/screenshot-menu-1.5.png)
 
 **How to install**
 
@@ -18,7 +18,7 @@ From the main menu, there are three options:
 - Restore - Transfers backed up save data from the external storage to the internal storage. This is useful if saves were exported for external editing or use on other devices and will allow the device to then use the edited or updated save data. The app will overwrite any existing saves in the internal folder even if it has a newer modified date than the external save.
 - Sync - The app will attempt to merge the contents of both the internal storage and the backup folder, if certain files are newer on the internal storage then it will overwrite the version in the backup folder and vice-versa. Useful if you want to unify save data between multiple devices.
 
-![Backup screen](/screenshots/screenshot02.png)
+![Backup screen](/screenshots/screenshot-backup-1.5.png)
 
 **Data backed up**
 
