@@ -105,7 +105,7 @@ if [ -d $EXTPATH/backup/pocketsnes/ ]; then
 		echo "PocketSNES folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.pocketsnes
 	fi
-	echo "Backing up PocketSNES data..."
+	echo "Restoring PocketSNES data..."
 	rsync -rtW --exclude '*.opt' $EXTPATH/backup/pocketsnes/ $INTPATH/.pocketsnes
 fi
 
