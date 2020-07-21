@@ -3,20 +3,6 @@
 # desc=Restore save data from external SD card
 # author=NekoMichi
 
-# Displays a confirmation dialog
-dialog --clear --title "Confirm Restore?" --backtitle "SaveSync $APPVERSION" --yesno "Are you sure you want to restore saves from backup? Any existing saves on this system will be overwritten." 10 49
-
-confirmrestore=$?
-clear
-
-if [ $confirmrestore = "1" ]; then
-	dialog --clear --backtitle "SaveSync $APPVERSION" --title "Restore Cancelled" --msgbox "Save restore cancelled. No files were changed. Press START to exit." 10 29
-	exit
-fi
-
-# INTPATH="/media/data/local/home/"
-# EXTPATH="/media/sdcard/"
-
 echo "===Restore Saves==="
 
 # Checks to see if there is a card inserted in slot 2
@@ -37,6 +23,17 @@ if [ ! -d $EXTPATH/backup/ ]; then
 	exit
 fi
 
+# Displays a confirmation dialog
+dialog --clear --title "Confirm Restore?" --backtitle "SaveSync $APPVERSION" --yesno "Are you sure you want to restore saves from backup? Any existing saves on this system will be overwritten." 10 49
+
+confirmrestore=$?
+clear
+
+if [ $confirmrestore = "1" ]; then
+	dialog --clear --backtitle "SaveSync $APPVERSION" --title "Restore Cancelled" --msgbox "Save restore cancelled. No files were changed. Press START to exit." 10 29
+	exit
+fi
+
 # Overrides permissions on backup folder
 chmod -R 777 $EXTPATH/backup
 
@@ -47,8 +44,8 @@ if [ -d $EXTPATH/backup/fceux/ ]; then
 		mkdir $INTPATH/.fceux
 	fi
 	echo "Restoring FCEUX data..."
-	rsync -rt --exclude '*.cfg' $EXTPATH/backup/fceux/sav/ $INTPATH/.fceux/sav
-	rsync -rt --exclude '*.cfg' $EXTPATH/backup/fceux/fcs/ $INTPATH/.fceux/fcs
+	rsync -rtW --exclude '*.cfg' $EXTPATH/backup/fceux/sav/ $INTPATH/.fceux/sav
+	rsync -rtW --exclude '*.cfg' $EXTPATH/backup/fceux/fcs/ $INTPATH/.fceux/fcs
 fi
 
 # Restores Gambatte data
@@ -58,7 +55,7 @@ if [ -d $EXTPATH/backup/gambatte/ ]; then
 		mkdir $INTPATH/.gambatte
 	fi
 	echo "Restoring Gambatte data..."
-	rsync -rt --exclude '*.cfg' $EXTPATH/backup/gambatte/saves/ $INTPATH/.gambatte/saves
+	rsync -rtW --exclude '*.cfg' $EXTPATH/backup/gambatte/saves/ $INTPATH/.gambatte/saves
 fi
 
 # Restores ReGBA data
@@ -68,7 +65,7 @@ if [ -d $EXTPATH/backup/gpsp/ ]; then
 		mkdir $INTPATH/.gpsp
 	fi
 	echo "Restoring ReGBA data..."
-	rsync -rt --exclude '*.cfg' $EXTPATH/backup/gpsp/ $INTPATH/.gpsp
+	rsync -rtW --exclude '*.cfg' $EXTPATH/backup/gpsp/ $INTPATH/.gpsp
 fi
 
 # Restores PCSX4all data
@@ -78,8 +75,8 @@ if [ -d $EXTPATH/backup/pcsx4all/ ]; then
 		mkdir $INTPATH/.pcsx4all
 	fi
 	echo "Restoring PCSX4all data..."
-	rsync -rt --exclude '*.cfg' $EXTPATH/backup/pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
-	rsync -rt --exclude '*.cfg' $EXTPATH/backup/pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
+	rsync -rtW --exclude '*.cfg' $EXTPATH/backup/pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
+	rsync -rtW --exclude '*.cfg' $EXTPATH/backup/pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
 fi
 
 # Restores Picodrive data
@@ -89,8 +86,8 @@ if [ -d $EXTPATH/backup/picodrive/ ]; then
 		mkdir $INTPATH/.picodrive
 	fi
 	echo "Restoring PicoDrive data..."
-	rsync -rt --exclude '*.cfg' $EXTPATH/backup/picodrive/mds/ $INTPATH/.picodrive/mds
-	rsync -rt --exclude '*.cfg' $EXTPATH/backup/picodrive/srm/ $INTPATH/.picodrive/srm
+	rsync -rtW --exclude '*.cfg' --exclude '*.cfg0' $EXTPATH/backup/picodrive/mds/ $INTPATH/.picodrive/mds
+	rsync -rtW --exclude '*.cfg' --exclude '*.cfg0' $EXTPATH/backup/picodrive/srm/ $INTPATH/.picodrive/srm
 fi
 
 # Backs up PocketSNES data
@@ -100,7 +97,7 @@ if [ -d $EXTPATH/backup/snes96_snapshots/ ]; then
 		mkdir $INTPATH/.snes96_snapshots
 	fi
 	echo "Restoring SNES96 data..."
-	rsync -rt --exclude '*.opt' $EXTPATH/backup/snes96_snapshots/ $INTPATH/.snes96_snapshots
+	rsync -rtW --exclude '*.opt' $EXTPATH/backup/snes96_snapshots/ $INTPATH/.snes96_snapshots
 fi
 
 if [ -d $EXTPATH/backup/pocketsnes/ ]; then
@@ -109,7 +106,7 @@ if [ -d $EXTPATH/backup/pocketsnes/ ]; then
 		mkdir $INTPATH/.pocketsnes
 	fi
 	echo "Backing up PocketSNES data..."
-	rsync -rt --exclude '*.opt' $EXTPATH/backup/pocketsnes/ $INTPATH/.pocketsnes
+	rsync -rtW --exclude '*.opt' $EXTPATH/backup/pocketsnes/ $INTPATH/.pocketsnes
 fi
 
 dialog --clear --backtitle "SaveSync $APPVERSION" --title "Restore Complete" --msgbox "Save restore complete. Press START to exit." 10 29
