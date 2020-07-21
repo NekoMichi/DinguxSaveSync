@@ -13,25 +13,31 @@ SaveSync will transfer save data between the internal storage and the secondary 
 
 **Features**
 
-From the main menu, there are three options:
+From the main menu, there are four options:
 - Backup - Copies save data from the internal storage to a folder called "backup" on the external storage. If there is no backup folder present, the app will automatically create one. Saves exported to the external storage can then be transferred to other devices or even used in other emulators. The app will overwrite any existing saves in the backup folder even if it has a newer modified date than the internal save.
 - Restore - Transfers backed up save data from the external storage to the internal storage. This is useful if saves were exported for external editing or use on other devices and will allow the device to then use the edited or updated save data. The app will overwrite any existing saves in the internal folder even if it has a newer modified date than the external save.
 - Sync - The app will attempt to merge the contents of both the internal storage and the backup folder, if certain files are newer on the internal storage then it will overwrite the version in the backup folder and vice-versa. Useful if you want to unify save data between multiple devices.
+- Advanced options - Allows various features to be debugged.
 
 ![Backup screen](/screenshots/screenshot-backup-1.5.png)
 
 **Data backed up**
 
 SaveSync will only access data from specific apps and emulators, they are:
-- GMenu2x settings (backup only, will not be overwritten during syncing)
-- Screenshots (backup only, will not be overwritten during syncing)
-- Custom ScriptRunner scripts (backup only, will not be overwritten during syncing)
+- Screenshots (backup only)
 - FCEUX (NES emulator)
 - Gambatte (GameBoy emulator)
 - ReGBA (GameBoy Advance Emulator)
 - PCSX4all (PlayStation 1 emulator)
 - PicoDrive (Sega Master System/Genesis/Game Gear emulator)
 - PocketSNES (Super NES emulator)
+
+**Advanced options**
+
+The advanced options menu provides a number of features primarily used for testing/debugging:
+- Debug backup - Performs a dry-run backup that lists files that would have been copied from the home folder to the backup folder in the event of an actual backup, and saves the log to /media/sdcard/log/. No actual files will be transferred.
+- Debug restore - Performs a dry-run restore that lists the files that would have transferred from the backup folder to the home folder in the event of an actual restore, and saves the log to /media/sdcard/backup/log/. No actual files will be transferred.
+- Debug sync - Performs a dry-run sync that lists the files that would have been transferred if an actual sync were to be run, and saves the log to /media/sdcard/backup/log/. No actual files will be transferred.
 
 **Known issues/quirks**
 - The first time this app is run, it may take longer than usual as it needs to generate the initial backup folder structure and files. Subsequent runs will be much faster as it only accesses files that have changed since the last backup.
