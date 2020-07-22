@@ -35,11 +35,11 @@ SaveSync will only access data from specific apps and emulators, they are:
 **Advanced options**
 
 The advanced options menu provides a number of features primarily used for testing/debugging:
-- Debug backup - Performs a dry-run backup that lists files that would have been copied from the home folder to the backup folder in the event of an actual backup, and saves the log to /media/sdcard/log/. No actual files will be transferred.
-- Debug restore - Performs a dry-run restore that lists the files that would have transferred from the backup folder to the home folder in the event of an actual restore, and saves the log to /media/sdcard/backup/log/. No actual files will be transferred.
-- Debug sync - Performs a dry-run sync that lists the files that would have been transferred if an actual sync were to be run, and saves the log to /media/sdcard/backup/log/. No actual files will be transferred.
+- Debug backup - Simulates a backup operation that lists files that would have been copied from the home folder to the backup folder in the event of an actual backup, then saves the log to /media/sdcard/log/. No actual files will be transferred.
+- Debug restore - Simulates a restore operation that lists the files that would have transferred from the backup folder to the home folder in the event of an actual restore, then saves the log to /media/sdcard/backup/log/. No actual files will be transferred.
+- Debug sync - Simulates a sync operation that lists the files that would have been transferred if an actual sync were to be run, then saves the log to /media/sdcard/backup/log/. No actual files will be transferred.
 
 **Known issues/quirks**
 - The first time this app is run, it may take longer than usual as it needs to generate the initial backup folder structure and files. Subsequent runs will be much faster as it only accesses files that have changed since the last backup.
-- After running backup/restore/sync for the first time, some emulators might take a little longer than usual to start up. This only happens once.
-- SaveSync will only check timestamps when deciding whether or not to overwrite save data. This means if you backup your saves and then start a fresh save on one of the games and replace the backed up file with the fresh save, it will replace the save on the internal partition on the next sync.
+- After running backup/restore/sync for the first time, some emulators might take a little longer than usual to start up. This only happens once and is due to a limitation with OpenDingux itself.
+- SaveSync will only check timestamps when deciding whether or not to overwrite save data. This means if you backup your saves and then start a fresh save on one of the games and replace the backed up file with the fresh save, it will replace the save on the internal partition on the next sync because its last-modified timestamp is more recent.
