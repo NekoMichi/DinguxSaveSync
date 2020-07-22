@@ -9,7 +9,7 @@ Download the latest version of savesync.opk and copy it to either the apps folde
 
 **Prerequisites**
 
-SaveSync will transfer save data between the internal storage and the secondary SD card, make sure there is one inserted before running the app. **This utility will not work on devices with a faulty slot-2 reader.** SaveSync also needs all associated devices to have the correct time and date set, as it compares timestamps when deciding whether or not to overwrite files.
+SaveSync will transfer save data between the internal storage and the secondary SD card, make sure there is one inserted before running the app. **This utility will not work on devices with a faulty slot-2 reader.** SaveSync also needs all associated devices to have the **correct time and date** set, as it compares timestamps when deciding whether or not to overwrite files.
 
 **Features**
 
