@@ -39,6 +39,8 @@ SaveSync will only access data from specific apps and emulators, they are:
 
 The snapshots feature allows multiple backup archives to be created at different time points, so the user can restore from a previous point. Snapshots are saved to /media/sdcard/backupsnapshots/
 
+Do not create any new folders here or rename any existing snapshot folders, as it may prevent the snapshots from being useable.
+
 **Advanced options**
 
 The advanced options menu provides a number of features primarily used for testing/debugging:
