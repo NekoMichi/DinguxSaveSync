@@ -1,7 +1,7 @@
 # DinguxSaveSync
 A small utility to backup, restore, and sync save data on OpenDingux devices with the secondary SD card.
 
-![Main menu](/screenshots/screenshot-menu-1.5.png)
+![Main menu](/screenshots/screenshot-menu-2.0.png)
 
 **How to install**
 
@@ -13,10 +13,11 @@ SaveSync will transfer save data between the internal storage and the secondary 
 
 **Features**
 
-From the main menu, there are four options:
+From the main menu, there are five options:
 - Backup - Copies save data from the internal storage to a folder called "backup" on the external storage. If there is no backup folder present, the app will automatically create one. Saves exported to the external storage can then be transferred to other devices or even used in other emulators. The app will overwrite any existing saves in the backup folder even if it has a newer modified date than the internal save.
 - Restore - Transfers backed up save data from the external storage to the internal storage. This is useful if saves were exported for external editing or use on other devices and will allow the device to then use the edited or updated save data. The app will overwrite any existing saves in the internal folder even if it has a newer modified date than the external save.
 - Sync - The app will attempt to merge the contents of both the internal storage and the backup folder, if certain files are newer on the internal storage then it will overwrite the version in the backup folder and vice-versa. Useful if you want to unify save data between multiple devices.
+- Snapshots - Create multiple backups of different time points and restore from any of them.
 - Advanced options - Allows various features to be debugged.
 
 ![Backup screen](/screenshots/screenshot-backup-1.5.png)
@@ -31,6 +32,12 @@ SaveSync will only access data from specific apps and emulators, they are:
 - PCSX4all (PlayStation 1 emulator)
 - PicoDrive (Sega Master System/Genesis/Game Gear emulator)
 - PocketSNES (Super NES emulator)
+
+**Snapshots**
+
+![Snapshots menu](/screenshots/screenshot-snapshots-2.0.png)
+
+The snapshots feature allows multiple backup archives to be created at different time points, so the user can restore from a previous point. Snapshots are saved to /media/sdcard/backupsnapshots/
 
 **Advanced options**
 
