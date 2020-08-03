@@ -51,5 +51,5 @@ DELETEPATH=$SNAPSHOTPATH"/"$SELECTEDSNAPSHOT" SNAP"
 chmod -R 777 "$DELETEPATH"
 rm -r "$DELETEPATH"
 
-dialog --clear --backtitle "SaveSync $APPVERSION" --title "Snapshot Deleted" --msgbox "Deleted snapshot:\n$SELECTEDSNAPSHOT\n\nPress START to exit." 8 35
+dialog --clear --backtitle "SaveSync $APPVERSION" --title "Snapshot Deleted" --msgbox "Deleted snapshot:\n$SELECTEDSNAPSHOT\n\nPress START to exit." 8 43
 exit
