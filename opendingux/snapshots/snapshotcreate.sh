@@ -79,5 +79,5 @@ if [ -d $INTPATH/.pocketsnes/ ]; then
 	rsync -rtW $INTPATH/.pocketsnes/ "$EXPORTPATH/pocketsnes"
 fi
 
-dialog --clear --backtitle "SaveSync $APPVERSION" --title "Snapshot Complete" --msgbox "Snapshot saved to \n\n$SNAPSHOTPATH/\n$TIMESTAMP\n\nPress START to exit." 10 35
+dialog --clear --backtitle "SaveSync $APPVERSION" --title "Snapshot Complete" --msgbox "Snapshot saved to \n\n$SNAPSHOTPATH/\n$TIMESTAMP\n\nPress START to exit." 10 43
 exit
