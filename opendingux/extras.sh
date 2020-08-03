@@ -23,15 +23,15 @@ MODE=$(dialog --clear --backtitle "SaveSync $APPVERSION" --title "SaveSync - Adv
 clear
 
 if [ $MODE = "1" ]; then
-	export TIMESTAMP=$(date +%y-%m-%d_%H-%M-%S)_testbackup
+	export TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)_testbackup
 	./debug/drybackup.sh | tee $EXTPATH/log/$TIMESTAMP.txt
 fi
 if [ $MODE = "2" ]; then
-	export TIMESTAMP=$(date +%y-%m-%d_%H-%M-%S)_testrestore
+	export TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)_testrestore
 	./debug/dryrestore.sh | tee $EXTPATH/log/$TIMESTAMP.txt
 fi
 if [ $MODE = "3" ]; then
-	export TIMESTAMP=$(date +%y-%m-%d_%H-%M-%S)_testsync
+	export TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)_testsync
 	./debug/drysync.sh | tee $EXTPATH/log/$TIMESTAMP.txt
 fi
 
