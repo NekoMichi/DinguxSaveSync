@@ -23,7 +23,7 @@ fi
 chmod -R 777 $SNAPSHOTPATH
 
 # Create timestamp
-TIMESTAMP="SNAPSHOT_"$(date +%y-%m-%d_%H-%M-%S)" SNAP"
+TIMESTAMP="SNAPSHOT_"$(date +%Y-%m-%d_%H-%M-%S)" SNAP"
 EXPORTPATH=$SNAPSHOTPATH/$TIMESTAMP
 mkdir "$EXPORTPATH"
 chmod -R 777 "$EXPORTPATH"
