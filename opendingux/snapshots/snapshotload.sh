@@ -126,5 +126,5 @@ if [ -d "$RESTOREPATH/pocketsnes/" ]; then
 	rsync -rtW --exclude '*.opt' "$RESTOREPATH/pocketsnes/" $INTPATH/.pocketsnes
 fi
 
-dialog --clear --backtitle "SaveSync $APPVERSION" --title "Restore Complete" --msgbox "Restored from snapshot:\n$SELECTEDSNAPSHOT\n\nPress START to exit." 8 35
+dialog --clear --backtitle "SaveSync $APPVERSION" --title "Restore Complete" --msgbox "Restored from snapshot:\n$SELECTEDSNAPSHOT\n\nPress START to exit." 8 43
 exit
