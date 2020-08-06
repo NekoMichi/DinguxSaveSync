@@ -4,7 +4,7 @@
 # author=NekoMichi
 
 # Checks to see if there is a card inserted in slot 2
-if [ ! -d /media/sdcard ]; then
+if [ ! -b /dev/mmcblk1 ]; then
 	dialog --clear --backtitle "SaveSync $APPVERSION" --title "No SD Card Found" --msgbox "No SD card inserted in slot-2.\n\nPress START to exit." 8 29
 	exit
 fi
