@@ -3,9 +3,17 @@
 # desc=Main menu of SaveSync
 # author=NekoMichi
 
-export APPVERSION="v2.0"
+export APPVERSION="v2.1"
+
+# Checks to see if there is a card inserted in slot 2
+if [ ! -b /dev/mmcblk1 ]; then
+	dialog --clear --backtitle "SaveSync $APPVERSION" --title "No SD Card Found" --msgbox "No SD card inserted in slot-2.\n\nPress START to exit." 8 29
+	exit
+fi
+
+export SDPATH=$(findmnt -n --output=target /dev/mmcblk1p1 | head -1)
 export INTPATH="/media/data/local/home"
-export EXTPATH="/media/sdcard/backup"
+export EXTPATH="$SDPATH/backup"
 
 MODE=$(dialog --clear --backtitle "SaveSync $APPVERSION" --title "SaveSync" --menu "Please select an action. Use arrow keys to make your selection and press START to confirm." 15 35 5 \
 1 "Backup" \
