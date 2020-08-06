@@ -6,7 +6,7 @@
 echo "===Sync Saves (Test)==="
 
 # Checks to see if there is a card inserted in slot 2
-if [ ! -d /media/sdcard ]; then
+if [ ! -b /dev/mmcblk1 ]; then
 	echo "Could not detect secondary micro SD card."
 	echo "Please make sure you have a secondary SD card inserted."
 	echo ""
