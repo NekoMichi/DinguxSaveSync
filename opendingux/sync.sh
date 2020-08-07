@@ -34,20 +34,28 @@ fi
 if [ -d $INTPATH/.fceux/ ]; then
 	if [ -d $EXTPATH/fceux/ ]; then
 		echo "Syncing FCEUX data..."
-		rsync --update -rtW $INTPATH/.fceux/ $EXTPATH/fceux
-		rsync --update -rtW --exclude '*.cfg' $EXTPATH/fceux/ $INTPATH/.fceux
+		rsync --update -rtW $INTPATH/.fceux/sav/ $EXTPATH/fceux/sav
+		rsync --update -rtW $INTPATH/.fceux/fcs/ $EXTPATH/fceux/fcs
+		rsync --update -rtW $EXTPATH/fceux/sav/ $INTPATH/.fceux/sav
+		rsync --update -rtW $EXTPATH/fceux/fcs/ $INTPATH/.fceux/fcs
 	else
 		echo "FCEUX backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/fceux
+		mkdir $EXTPATH/fceux/sav
+		mkdir $EXTPATH/fceux/fcs
 		echo "Syncing FCEUX data..."
-		rsync --update -rtW $INTPATH/.fceux/ $EXTPATH/fceux
+		rsync --update -rtW $INTPATH/.fceux/sav/ $EXTPATH/fceux/sav
+		rsync --update -rtW $INTPATH/.fceux/fcs/ $EXTPATH/fceux/fcs
 	fi
 else
 	if [ -d $EXTPATH/fceux/ ]; then
 		echo "FCEUX folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.fceux
+		mkdir $INTPATH/.fceux/sav
+		mkdir $INTPATH/.fceux/fcs
 		echo "Syncing FCEUX data..."
-		rsync --update -rtW --exclude '*.cfg' $EXTPATH/fceux/ $INTPATH/.fceux
+		rsync --update -rtW $EXTPATH/fceux/sav/ $INTPATH/.fceux/sav
+		rsync --update -rtW $EXTPATH/fceux/fcs/ $INTPATH/.fceux/fcs
 	fi
 fi
 
@@ -55,20 +63,22 @@ fi
 if [ -d $INTPATH/.gambatte/ ]; then
 	if [ -d $EXTPATH/gambatte/ ]; then
 		echo "Syncing Gambatte data..."
-		rsync --update -rtW $INTPATH/.gambatte/ $EXTPATH/gambatte
-		rsync --update -rtW --exclude '*.cfg' $EXTPATH/gambatte/ $INTPATH/.gambatte
+		rsync --update -rtW $INTPATH/.gambatte/saves/ $EXTPATH/gambatte/saves
+		rsync --update -rtW $EXTPATH/gambatte/saves/ $INTPATH/.gambatte/saves
 	else
 		echo "Gambatte backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/gambatte
+		mkdir $EXTPATH/gambatte/saves
 		echo "Syncing Gambatte data..."
-		rsync --update -rtW $INTPATH/.gambatte/ $EXTPATH/gambatte
+		rsync --update -rtW $INTPATH/.gambatte/saves/ $EXTPATH/gambatte/saves
 	fi
 else
 	if [ -d $EXTPATH/gambatte/ ]; then
 		echo "Gambatte folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.gambatte
+		mkdir $INTPATH/.gambatte/saves
 		echo "Syncing Gambatte data..."
-		rsync --update -rtW --exclude '*.cfg' $EXTPATH/gambatte/ $INTPATH/.gambatte
+		rsync --update -rtW $EXTPATH/gambatte/saves/ $INTPATH/.gambatte/saves
 	fi
 fi
 
@@ -97,20 +107,28 @@ fi
 if [ -d $INTPATH/.pcsx4all/ ]; then
 	if [ -d $EXTPATH/pcsx4all/ ]; then
 		echo "Syncing PCSX4all data..."
-		rsync --update -rtW $INTPATH/.pcsx4all/ $EXTPATH/pcsx4all
-		rsync --update -rtW --exclude '*.cfg' $EXTPATH/pcsx4all/ $INTPATH/.pcsx4all
+		rsync --update -rtW $INTPATH/.pcsx4all/memcards/ $EXTPATH/pcsx4all/memcards
+		rsync --update -rtW $INTPATH/.pcsx4all/sstates/ $EXTPATH/pcsx4all/sstates
+		rsync --update -rtW $EXTPATH/pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
+		rsync --update -rtW $EXTPATH/pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
 	else
 		echo "PCSX4all backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/pcsx4all
+		mkdir $EXTPATH/pcsx4all/memcards
+		mkdir $EXTPATH/pcsx4all/sstates
 		echo "Syncing PCSX4all data..."
-		rsync --update -rtW $INTPATH/.pcsx4all/ $EXTPATH/pcsx4all
+		rsync --update -rtW $INTPATH/.pcsx4all/memcards/ $EXTPATH/pcsx4all/memcards
+		rsync --update -rtW $INTPATH/.pcsx4all/sstates/ $EXTPATH/pcsx4all/sstates
 	fi
 else
 	if [ -d $EXTPATH/pcsx4all/ ]; then
 		echo "PCSX4all folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.pcsx4all
+		mkdir $INTPATH/.pcsx4all/memcards
+		mkdir $INTPATH/.pcsx4all/sstates
 		echo "Syncing PCSX4all data..."
-		rsync --update -rtW --exclude '*.cfg' $EXTPATH/pcsx4all/ $INTPATH/.pcsx4all
+		rsync --update -rtW $EXTPATH/pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
+		rsync --update -rtW $EXTPATH/pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
 	fi
 fi
 
@@ -118,20 +136,28 @@ fi
 if [ -d $INTPATH/.picodrive/ ]; then
 	if [ -d $EXTPATH/picodrive/ ]; then
 		echo "Syncing PicoDrive data..."
-		rsync --update -rtW $INTPATH/.picodrive/ $EXTPATH/picodrive
-		rsync --update -rtW --exclude '*.cfg' --exclude '*.cfg0' $EXTPATH/picodrive/ $INTPATH/.picodrive
+		rsync --update -rtW $INTPATH/.picodrive/mds/ $EXTPATH/picodrive/mds
+		rsync --update -rtW $INTPATH/.picodrive/srm/ $EXTPATH/picodrive/srm
+		rsync --update -rtW $EXTPATH/picodrive/mds/ $INTPATH/.picodrive/mds
+		rsync --update -rtW $EXTPATH/picodrive/srm/ $INTPATH/.picodrive/srm
 	else
 		echo "PicoDrive backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/picodrive
+		mkdir $EXTPATH/picodrive/mds
+		mkdir $EXTPATH/picodrive/srm
 		echo "Syncing PicoDrive data..."
-		rsync --update -rtW $INTPATH/.picodrive/ $EXTPATH/picodrive
+		rsync --update -rtW $INTPATH/.picodrive/mds/ $EXTPATH/picodrive/mds
+		rsync --update -rtW $INTPATH/.picodrive/srm/ $EXTPATH/picodrive/srm
 	fi
 else
 	if [ -d $EXTPATH/picodrive/ ]; then
 		echo "PicoDrive folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.picodrive
+		mkdir $INTPATH/.picodrive/mds
+		mkdir $INTPATH/.picodrive/srm
 		echo "Syncing PicoDrive data..."
-		rsync --update -rtW --exclude '*.cfg' --exclude '*.cfg0' $EXTPATH/picodrive/ $INTPATH/.picodrive
+		rsync --update -rtW $EXTPATH/picodrive/mds/ $INTPATH/.picodrive/mds
+		rsync --update -rtW $EXTPATH/picodrive/srm/ $INTPATH/.picodrive/srm
 	fi
 fi
 
