@@ -47,6 +47,11 @@ The advanced options menu provides a number of features primarily used for testi
 - Debug backup - Simulates a backup operation that lists files that would have been copied from the home folder to the backup folder in the event of an actual backup, then saves the log to /media/sdcard/log/. No actual files will be transferred.
 - Debug restore - Simulates a restore operation that lists the files that would have transferred from the backup folder to the home folder in the event of an actual restore, then saves the log to /media/sdcard/backup/log/. No actual files will be transferred.
 - Debug sync - Simulates a sync operation that lists the files that would have been transferred if an actual sync were to be run, then saves the log to /media/sdcard/backup/log/. No actual files will be transferred.
+- Export - Allows saves on the host device to be written directly to the system card of another device. In order to do this, take the system card from slot-1 of the receiving device and insert it into slot-2 of the source device.
+- Import - Allows saves on the system card of another device to be directly written to the host device. In order to do this, take the system card from slot-1 of the source device and insert it into slot-2 of the host device.
+- Direct sync - If the card in slot-2 is the system card from another OpenDingux device, this option will attempt to sync saves with it directly.
+
+For example, if you want to clone saves from your device onto a second device, eject the card in slot-1 of the second device, insert it into slot-2 of the host device, and then run Advanced > Export.
 
 **Known issues/quirks**
 - The first time this app is run, it may take longer than usual as it needs to generate the initial backup folder structure and files. Subsequent runs will be much faster as it only accesses files that have changed since the last backup.
