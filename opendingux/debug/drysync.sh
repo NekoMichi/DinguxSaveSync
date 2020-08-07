@@ -37,21 +37,29 @@ fi
 if [ -d $INTPATH/.fceux/ ]; then
 	if [ -d $EXTPATH/fceux/ ]; then
 		echo "Exported FCEUX files:"
-		rsync --update -nvrtW $INTPATH/.fceux/ $EXTPATH/fceux
+		rsync --update -nvrtW $INTPATH/.fceux/sav/ $EXTPATH/fceux/sav
+		rsync --update -nvrtW $INTPATH/.fceux/fcs/ $EXTPATH/fceux/fcs
 		echo "Imported FCEUX files:"
-		rsync --update -nvrtW --exclude '*.cfg' $EXTPATH/fceux/ $INTPATH/.fceux
+		rsync --update -nvrtW $EXTPATH/fceux/sav/ $INTPATH/.fceux/sav
+		rsync --update -nvrtW $EXTPATH/fceux/fcs/ $INTPATH/.fceux/fcs
 	else
 		echo "FCEUX backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/fceux
+		mkdir $EXTPATH/fceux/sav
+		mkdir $EXTPATH/fceux/fcs
 		echo "Exported FCEUX files:"
-		rsync --update -nvrtW $INTPATH/.fceux/ $EXTPATH/fceux
+		rsync --update -nvrtW $INTPATH/.fceux/sav/ $EXTPATH/fceux/sav
+		rsync --update -nvrtW $INTPATH/.fceux/fcs/ $EXTPATH/fceux/fcs
 	fi
 else
 	if [ -d $EXTPATH/fceux/ ]; then
 		echo "FCEUX folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.fceux
+		mkdir $INTPATH/.fceux/sav
+		mkdir $INTPATH/.fceux/fcs
 		echo "Imported FCEUX files:"
-		rsync --update -nvrtW --exclude '*.cfg' $EXTPATH/fceux/ $INTPATH/.fceux
+		rsync --update -nvrtW $EXTPATH/fceux/sav/ $INTPATH/.fceux/sav
+		rsync --update -nvrtW $EXTPATH/fceux/fcs/ $INTPATH/.fceux/fcs
 	fi
 fi
 
@@ -59,21 +67,23 @@ fi
 if [ -d $INTPATH/.gambatte/ ]; then
 	if [ -d $EXTPATH/gambatte/ ]; then
 		echo "Exported Gambatte files:"
-		rsync --update -nvrtW $INTPATH/.gambatte/ $EXTPATH/gambatte
+		rsync --update -nvrtW $INTPATH/.gambatte/saves/ $EXTPATH/gambatte/saves
 		echo "Imported Gambatte files:"
-		rsync --update -nvrtW --exclude '*.cfg' $EXTPATH/gambatte/ $INTPATH/.gambatte
+		rsync --update -nvrtW $EXTPATH/gambatte/saves/ $INTPATH/.gambatte/saves
 	else
 		echo "Gambatte backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/gambatte
+		mkdir $EXTPATH/gambatte/saves
 		echo "Exported Gambatte files:"
-		rsync --update -nvrtW $INTPATH/.gambatte/ $EXTPATH/gambatte
+		rsync --update -nvrtW $INTPATH/.gambatte/saves/ $EXTPATH/gambatte/saves
 	fi
 else
 	if [ -d $EXTPATH/gambatte/ ]; then
 		echo "Gambatte folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.gambatte
+		mkdir $INTPATH/.gambatte/saves
 		echo "Imported Gambatte files:"
-		rsync --update -nvrtW --exclude '*.cfg' $EXTPATH/gambatte/ $INTPATH/.gambatte
+		rsync --update -nvrtW $EXTPATH/gambatte/saves/ $INTPATH/.gambatte/saves
 	fi
 fi
 
@@ -103,21 +113,29 @@ fi
 if [ -d $INTPATH/.pcsx4all/ ]; then
 	if [ -d $EXTPATH/pcsx4all/ ]; then
 		echo "Exported PCSX4all files:"
-		rsync --update -nvrtW $INTPATH/.pcsx4all/ $EXTPATH/pcsx4all
+		rsync --update -nvrtW $INTPATH/.pcsx4all/memcards/ $EXTPATH/pcsx4all/memcards
+		rsync --update -nvrtW $INTPATH/.pcsx4all/sstates/ $EXTPATH/pcsx4all/sstates
 		echo "Imported PCSX4all files:"
-		rsync --update -nvrtW --exclude '*.cfg' $EXTPATH/pcsx4all/ $INTPATH/.pcsx4all
+		rsync --update -nvrtW $EXTPATH/pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
+		rsync --update -nvrtW $EXTPATH/pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
 	else
 		echo "PCSX4all backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/pcsx4all
+		mkdir $EXTPATH/pcsx4all/memcards
+		mkdir $EXTPATH/pcsx4all/sstates
 		echo "Exported PCSX4all files:"
-		rsync --update -nvrtW $INTPATH/.pcsx4all/ $EXTPATH/pcsx4all
+		rsync --update -nvrtW $INTPATH/.pcsx4all/memcards/ $EXTPATH/pcsx4all/memcards
+		rsync --update -nvrtW $INTPATH/.pcsx4all/sstates/ $EXTPATH/pcsx4all/sstates
 	fi
 else
 	if [ -d $EXTPATH/pcsx4all/ ]; then
 		echo "PCSX4all folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.pcsx4all
+		mkdir $INTPATH/.pcsx4all/memcards
+		mkdir $INTPATH/.pcsx4all/sstates
 		echo "Imported PCSX4all files:"
-		rsync --update -nvrtW --exclude '*.cfg' $EXTPATH/pcsx4all/ $INTPATH/.pcsx4all
+		rsync --update -nvrtW $EXTPATH/pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
+		rsync --update -nvrtW $EXTPATH/pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
 	fi
 fi
 
@@ -125,21 +143,29 @@ fi
 if [ -d $INTPATH/.picodrive/ ]; then
 	if [ -d $EXTPATH/picodrive/ ]; then
 		echo "Exported Picodrive files:"
-		rsync --update -nvrtW $INTPATH/.picodrive/ $EXTPATH/picodrive
+		rsync --update -nvrtW $INTPATH/.picodrive/mds/ $EXTPATH/picodrive/mds
+		rsync --update -nvrtW $INTPATH/.picodrive/srm/ $EXTPATH/picodrive/srm
 		echo "Imported Picodrive files:"
-		rsync --update -nvrtW --exclude '*.cfg' --exclude '*.cfg0' $EXTPATH/picodrive/ $INTPATH/.picodrive
+		rsync --update -nvrtW $EXTPATH/picodrive/mds/ $INTPATH/.picodrive/mds
+		rsync --update -nvrtW $EXTPATH/picodrive/srm/ $INTPATH/.picodrive/srm
 	else
 		echo "PicoDrive backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/picodrive
+		mkdir $EXTPATH/picodrive/mds
+		mkdir $EXTPATH/picodrive/srm
 		echo "Exported Picodrive files:"
-		rsync --update -nvrtW $INTPATH/.picodrive/ $EXTPATH/picodrive
+		rsync --update -nvrtW $INTPATH/.picodrive/mds/ $EXTPATH/picodrive/mds
+		rsync --update -nvrtW $INTPATH/.picodrive/srm/ $EXTPATH/picodrive/srm
 	fi
 else
 	if [ -d $EXTPATH/picodrive/ ]; then
 		echo "PicoDrive folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.picodrive
+		mkdir $INTPATH/.picodrive/mds
+		mkdir $INTPATH/.picodrive/srm
 		echo "Imported Picodrive files:"
-		rsync --update -nvrtW --exclude '*.cfg' --exclude '*.cfg0' $EXTPATH/picodrive/ $INTPATH/.picodrive
+		rsync --update -nvrtW $EXTPATH/picodrive/mds/ $INTPATH/.picodrive/mds
+		rsync --update -nvrtW $EXTPATH/picodrive/srm/ $INTPATH/.picodrive/srm
 	fi
 fi
 
