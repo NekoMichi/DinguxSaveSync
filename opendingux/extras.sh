@@ -14,10 +14,13 @@ if [ ! -d $EXTPATH/log/ ]; then
 	mkdir $EXTPATH/log
 fi
 
-MODE=$(dialog --clear --backtitle "SaveSync $APPVERSION" --title "SaveSync - Advanced" --menu "Please select an action. Use arrow keys to make your selection and press START to confirm." 15 35 4 \
+MODE=$(dialog --clear --backtitle "SaveSync $APPVERSION" --title "SaveSync - Advanced" --menu "Please select an action. Use arrow keys to make your selection and press START to confirm." 17 35 6 \
 1 "Debug backup" \
 2 "Debug restore" \
 3 "Debug sync" \
+4 "Export" \
+5 "Import" \
+6 "Direct sync" \
 2>&1 >/dev/tty)
 
 clear
@@ -33,6 +36,15 @@ fi
 if [ $MODE = "3" ]; then
 	export TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)_testsync
 	./debug/drysync.sh | tee $EXTPATH/log/$TIMESTAMP.txt
+fi
+if [ $MODE = "4" ]; then
+	./tf1/tf1backup.sh
+fi
+if [ $MODE = "5" ]; then
+	./tf1/tf1restore.sh
+fi
+if [ $MODE = "6" ]; then
+	./tf1/tf1sync.sh
 fi
 
 exit
