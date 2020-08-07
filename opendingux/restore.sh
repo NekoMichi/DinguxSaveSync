@@ -22,7 +22,7 @@ confirmrestore=$?
 clear
 
 if [ $confirmrestore = "1" ]; then
-	dialog --clear --backtitle "SaveSync $APPVERSION" --title "Restore Cancelled" --msgbox "Save restore cancelled. No files were changed. Press START to exit." 10 29
+	dialog --clear --backtitle "SaveSync $APPVERSION" --title "Restore Cancelled" --msgbox "Save restore cancelled. No files were changed. Press START to exit." 7 29
 	exit
 fi
 
@@ -84,7 +84,7 @@ if [ -d $EXTPATH/picodrive/ ]; then
 	rsync -rtW --exclude '*.cfg' --exclude '*.cfg0' $EXTPATH/picodrive/srm/ $INTPATH/.picodrive/srm
 fi
 
-# Backs up PocketSNES data
+# Restores PocketSNES data
 if [ -d $EXTPATH/snes96_snapshots/ ]; then
 	if [ ! -d $INTPATH/.snes96_snapshots/ ]; then
 		echo "SNES96 folder doesn't exist in home directory, creating folder."
