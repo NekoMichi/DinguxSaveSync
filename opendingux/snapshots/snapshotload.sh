@@ -59,10 +59,12 @@ if [ -d "$RESTOREPATH/fceux/" ]; then
 	if [ ! -d $INTPATH/.fceux/ ]; then
 		echo "FCEUX folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.fceux
+		mkdir $INTPATH/.fceux/sav
+		mkdir $INTPATH/.fceux/fcs
 	fi
 	echo "Restoring FCEUX data..."
-	rsync -rtW --exclude '*.cfg' "$RESTOREPATH/fceux/sav/" $INTPATH/.fceux/sav
-	rsync -rtW --exclude '*.cfg' "$RESTOREPATH/fceux/fcs/" $INTPATH/.fceux/fcs
+	rsync -rtW "$RESTOREPATH/fceux/sav/" $INTPATH/.fceux/sav
+	rsync -rtW "$RESTOREPATH/fceux/fcs/" $INTPATH/.fceux/fcs
 fi
 
 # Restores Gambatte data
@@ -70,9 +72,21 @@ if [ -d "$RESTOREPATH/gambatte/" ]; then
 	if [ ! -d $INTPATH/.gambatte/ ]; then
 		echo "Gambatte folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.gambatte
+		mkdir $INTPATH/.gambatte/saves
 	fi
 	echo "Restoring Gambatte data..."
-	rsync -rtW --exclude '*.cfg' "$RESTOREPATH/gambatte/saves/" $INTPATH/.gambatte/saves
+	rsync -rtW "$RESTOREPATH/gambatte/saves/" $INTPATH/.gambatte/saves
+fi
+
+# Restores OhBoy data
+if [ -d "$RESTOREPATH/ohboy/" ]; then
+	if [ ! -d $INTPATH/.ohboy/ ]; then
+		echo "OhBoy folder doesn't exist in home directory, creating folder."
+		mkdir $INTPATH/.ohboy
+		mkdir $INTPATH/.ohboy/saves
+	fi
+	echo "Restoring OhBoy data..."
+	rsync -rtW "$RESTOREPATH/ohboy/saves/" $INTPATH/.ohboy/saves
 fi
 
 # Restores ReGBA data
@@ -90,10 +104,12 @@ if [ -d "$RESTOREPATH/pcsx4all/" ]; then
 	if [ ! -d $INTPATH/.pcsx4all/ ]; then
 		echo "PCSX4all folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.pcsx4all
+		mkdir $INTPATH/.pcsx4all/memcards
+		mkdir $INTPATH/.pcsx4all/sstates
 	fi
 	echo "Restoring PCSX4all data..."
-	rsync -rtW --exclude '*.cfg' "$RESTOREPATH/pcsx4all/memcards/" $INTPATH/.pcsx4all/memcards
-	rsync -rtW --exclude '*.cfg' "$RESTOREPATH/pcsx4all/sstates/" $INTPATH/.pcsx4all/sstates
+	rsync -rtW "$RESTOREPATH/pcsx4all/memcards/" $INTPATH/.pcsx4all/memcards
+	rsync -rtW "$RESTOREPATH/pcsx4all/sstates/" $INTPATH/.pcsx4all/sstates
 fi
 
 # Restores Picodrive data
@@ -101,10 +117,37 @@ if [ -d "$RESTOREPATH/picodrive/" ]; then
 	if [ ! -d $INTPATH/.picodrive/ ]; then
 		echo "Picodrive folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.picodrive
+		mkdir $INTPATH/.picodrive/mds
+		mkdir $INTPATH/.picodrive/srm
 	fi
 	echo "Restoring PicoDrive data..."
-	rsync -rtW --exclude '*.cfg' --exclude '*.cfg0' "$RESTOREPATH/picodrive/mds/" $INTPATH/.picodrive/mds
-	rsync -rtW --exclude '*.cfg' --exclude '*.cfg0' "$RESTOREPATH/picodrive/srm/" $INTPATH/.picodrive/srm
+	rsync -rtW "$RESTOREPATH/picodrive/mds/" $INTPATH/.picodrive/mds
+	rsync -rtW "$RESTOREPATH/picodrive/srm/" $INTPATH/.picodrive/srm
+fi
+
+# Restores SMS Plus data
+if [ -d "$RESTOREPATH/smsplus/" ]; then
+	if [ ! -d $INTPATH/.smsplus/ ]; then
+		echo "SMS Plus folder doesn't exist in home directory, creating folder."
+		mkdir $INTPATH/.smsplus
+		mkdir $INTPATH/.smsplus/sram
+		mkdir $INTPATH/.smsplus/state
+	fi
+	echo "Restoring SMS Plus data..."
+	rsync -rtW "$RESTOREPATH/smsplus/sram/" $INTPATH/.smsplus/sram
+	rsync -rtW "$RESTOREPATH/smsplus/state/" $INTPATH/.smsplus/state
+fi
+
+if [ -d "$RESTOREPATH/sms_sdl/" ]; then
+	if [ ! -d $INTPATH/.sms_sdl/ ]; then
+		echo "SMS SDL folder doesn't exist in home directory, creating folder."
+		mkdir $INTPATH/.sms_sdl
+		mkdir $INTPATH/.sms_sdl/sram
+		mkdir $INTPATH/.sms_sdl/state
+	fi
+	echo "Restoring SMS SDL data..."
+	rsync -rtW "$RESTOREPATH/sms_sdl/sram/" $INTPATH/.sms_sdl/sram
+	rsync -rtW "$RESTOREPATH/sms_sdl/state/" $INTPATH/.sms_sdl/state
 fi
 
 # Backs up PocketSNES data
@@ -124,6 +167,45 @@ if [ -d "$RESTOREPATH/pocketsnes/" ]; then
 	fi
 	echo "Restoring PocketSNES data..."
 	rsync -rtW --exclude '*.opt' "$RESTOREPATH/pocketsnes/" $INTPATH/.pocketsnes
+fi
+
+# Restores Snes9x data
+if [ -d "$RESTOREPATH/snes9x/" ]; then
+	if [ ! -d $INTPATH/.snes9x/ ]; then
+		echo "Snes9x folder doesn't exist in home directory, creating folder."
+		mkdir $INTPATH/.snes9x
+		mkdir $INTPATH/.snes9x/spc
+		mkdir $INTPATH/.snes9x/sram
+	fi
+	echo "Restoring Snes9x data..."
+	rsync -rtW "$RESTOREPATH/snes9x/spc/" $INTPATH/.snes9x/spc
+	rsync -rtW "$RESTOREPATH/snes9x/sram/" $INTPATH/.snes9x/sram
+fi
+
+# Restores SwanEmu data
+if [ -d "$RESTOREPATH/swanemu/" ]; then
+	if [ ! -d $INTPATH/.swanemu/ ]; then
+		echo "SwanEmu folder doesn't exist in home directory, creating folder."
+		mkdir $INTPATH/.swanemu
+		mkdir $INTPATH/.swanemu/eeprom
+		mkdir $INTPATH/.swanemu/sstates
+	fi
+	echo "Restoring SwanEmu data..."
+	rsync -rtW "$RESTOREPATH/swanemu/eeprom/" $INTPATH/.swanemu/eeprom
+	rsync -rtW "$RESTOREPATH/swanemu/sstates/" $INTPATH/.swanemu/sstates
+fi
+
+# Restores Temper data
+if [ -d "$RESTOREPATH/temper/" ]; then
+	if [ ! -d $INTPATH/.temper/ ]; then
+		echo "Temper folder doesn't exist in home directory, creating folder."
+		mkdir $INTPATH/.temper
+		mkdir $INTPATH/.temper/bram
+		mkdir $INTPATH/.temper/save_states
+	fi
+	echo "Restoring Temper data..."
+	rsync -rtW "$RESTOREPATH/temper/bram/" $INTPATH/.temper/bram
+	rsync -rtW "$RESTOREPATH/temper/save_states/" $INTPATH/.temper/save_states
 fi
 
 dialog --clear --backtitle "SaveSync $APPVERSION" --title "Restore Complete" --msgbox "Restored from snapshot:\n$SELECTEDSNAPSHOT\n\nPress START to exit." 8 43
