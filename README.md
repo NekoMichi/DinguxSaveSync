@@ -27,11 +27,16 @@ From the main menu, there are five options:
 SaveSync will only access data from specific apps and emulators, they are:
 - Screenshots (backup only)
 - FCEUX (NES emulator)
-- Gambatte (GameBoy emulator)
+- Gambatte (GameBoy/GameBoy Color emulator)
+- OhBoy (GameBoy/GameBoy Color emulator)
 - ReGBA (GameBoy Advance Emulator)
 - PCSX4all (PlayStation 1 emulator)
 - PicoDrive (Sega Master System/Genesis/Game Gear emulator)
+- SMS Plus (Sega Master System/Genesis/Sega CD emulator)
 - PocketSNES (Super NES emulator)
+- Snes9x (Super NES emulator)
+- SwanEmu (Wonderswan emulator)
+- Temper (PC Engine emulator)
 
 **Snapshots**
 
