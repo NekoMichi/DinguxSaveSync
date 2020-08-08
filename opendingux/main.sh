@@ -3,7 +3,7 @@
 # desc=Main menu of SaveSync
 # author=NekoMichi
 
-export APPVERSION="v2.2"
+export APPVERSION="v2.3"
 
 # Checks to see if there is a card inserted in slot 2
 if [ ! -b /dev/mmcblk1 ]; then
