@@ -31,10 +31,10 @@ echo "Valid OpenDingux card detected in slot 2."
 # Displays a confirmation dialog
 dialog --clear --title "Confirm Import?" --backtitle "SaveSync $APPVERSION" --yesno "Are you sure you want to import saves? This will overwrite any existing saves on this current device." 7 49
 
-confirmexport=$?
+confirmimport=$?
 clear
 
-if [ $confirmexport = "1" ]; then
+if [ $confirmimport = "1" ]; then
 	dialog --clear --backtitle "SaveSync $APPVERSION" --title "Import Cancelled" --msgbox "Save import cancelled. No files were changed. Press START to exit." 7 29
 	exit
 fi
