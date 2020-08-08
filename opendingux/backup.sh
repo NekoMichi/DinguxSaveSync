@@ -35,6 +35,8 @@ if [ -d $INTPATH/.fceux/ ]; then
 	if [ ! -d $EXTPATH/fceux/ ]; then
 		echo "FCEUX backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/fceux
+		mkdir $EXTPATH/fceux/sav
+		mkdir $EXTPATH/fceux/fcs
 	fi
 	echo "Backing up FCEUX data..."
 	rsync -rtW $INTPATH/.fceux/sav/ $EXTPATH/fceux/sav
@@ -112,7 +114,7 @@ fi
 
 if [ -d $INTPATH/.sms_sdl/ ]; then
 	if [ ! -d $EXTPATH/sms_sdl/ ]; then
-		echo "SMS Plus backup folder doesn't exist, creating folder."
+		echo "SMS SDL backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/sms_sdl
 		mkdir $EXTPATH/sms_sdl/sram
 		mkdir $EXTPATH/sms_sdl/state
