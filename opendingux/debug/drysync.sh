@@ -87,6 +87,30 @@ else
 	fi
 fi
 
+# Syncs OhBoy data
+if [ -d $INTPATH/.ohboy/ ]; then
+	if [ -d $EXTPATH/ohboy/ ]; then
+		echo "Exported OhBoy files:"
+		rsync --update -nvrtW $INTPATH/.ohboy/saves/ $EXTPATH/ohboy/saves
+		echo "Imported OhBoy files:"
+		rsync --update -nvrtW $EXTPATH/ohboy/saves/ $INTPATH/.ohboy/saves
+	else
+		echo "OhBoy backup folder doesn't exist, creating folder."
+		mkdir $EXTPATH/ohboy
+		mkdir $EXTPATH/ohboy/saves
+		echo "Exported OhBoy files:"
+		rsync --update -nvrtW $INTPATH/.ohboy/saves/ $EXTPATH/ohboy/saves
+	fi
+else
+	if [ -d $EXTPATH/ohboy/ ]; then
+		echo "OhBoy folder doesn't exist in home directory, creating folder."
+		mkdir $INTPATH/.ohboy
+		mkdir $INTPATH/.ohboy/saves
+		echo "Imported OhBoy files:"
+		rsync --update -nvrtW $EXTPATH/ohboy/saves/ $INTPATH/.ohboy/saves
+	fi
+fi
+
 # Syncs ReGBA data
 if [ -d $INTPATH/.gpsp/ ]; then
 	if [ -d $EXTPATH/gpsp/ ]; then
@@ -169,6 +193,65 @@ else
 	fi
 fi
 
+# Syncs SMS Plus data
+if [ -d $INTPATH/.smsplus/ ]; then
+	if [ -d $EXTPATH/smsplus/ ]; then
+		echo "Exported SMS Plus files:"
+		rsync --update -nvrtW $INTPATH/.smsplus/sram/ $EXTPATH/smsplus/sram
+		rsync --update -nvrtW $INTPATH/.smsplus/state/ $EXTPATH/smsplus/state
+		echo "Imported SMS Plus files:"
+		rsync --update -nvrtW $EXTPATH/smsplus/sram/ $INTPATH/.smsplus/sram
+		rsync --update -nvrtW $EXTPATH/smsplus/state/ $INTPATH/.smsplus/state
+	else
+		echo "SMS Plus backup folder doesn't exist, creating folder."
+		mkdir $EXTPATH/smsplus
+		mkdir $EXTPATH/smsplus/sram
+		mkdir $EXTPATH/smsplus/state
+		echo "Exported SMS Plus files:"
+		rsync --update -nvrtW $INTPATH/.smsplus/sram/ $EXTPATH/smsplus/sram
+		rsync --update -nvrtW $INTPATH/.smsplus/state/ $EXTPATH/smsplus/state
+	fi
+else
+	if [ -d $EXTPATH/smsplus/ ]; then
+		echo "SMS Plus folder doesn't exist in home directory, creating folder."
+		mkdir $INTPATH/.smsplus
+		mkdir $INTPATH/.smsplus/sram
+		mkdir $INTPATH/.smsplus/state
+		echo "Imported SMS Plus files:"
+		rsync --update -nvrtW $EXTPATH/smsplus/sram/ $INTPATH/.smsplus/sram
+		rsync --update -nvrtW $EXTPATH/smsplus/state/ $INTPATH/.smsplus/state
+	fi
+fi
+
+if [ -d $INTPATH/.sms_sdl/ ]; then
+	if [ -d $EXTPATH/sms_sdl/ ]; then
+		echo "Exported SMS SDL files:"
+		rsync --update -nvrtW $INTPATH/.sms_sdl/sram/ $EXTPATH/sms_sdl/sram
+		rsync --update -nvrtW $INTPATH/.sms_sdl/state/ $EXTPATH/sms_sdl/state
+		echo "Imported SMS SDL files:"
+		rsync --update -nvrtW $EXTPATH/sms_sdl/sram/ $INTPATH/.sms_sdl/sram
+		rsync --update -nvrtW $EXTPATH/sms_sdl/state/ $INTPATH/.sms_sdl/state
+	else
+		echo "SMS SDL backup folder doesn't exist, creating folder."
+		mkdir $EXTPATH/sms_sdl
+		mkdir $EXTPATH/sms_sdl/sram
+		mkdir $EXTPATH/sms_sdl/state
+		echo "Exported SMS SDL files:"
+		rsync --update -nvrtW $INTPATH/.sms_sdl/sram/ $EXTPATH/sms_sdl/sram
+		rsync --update -nvrtW $INTPATH/.sms_sdl/state/ $EXTPATH/sms_sdl/state
+	fi
+else
+	if [ -d $EXTPATH/sms_sdl/ ]; then
+		echo "SMS SDL folder doesn't exist in home directory, creating folder."
+		mkdir $INTPATH/.sms_sdl
+		mkdir $INTPATH/.sms_sdl/sram
+		mkdir $INTPATH/.sms_sdl/state
+		echo "Imported SMS SDL files:"
+		rsync --update -nvrtW $EXTPATH/sms_sdl/sram/ $INTPATH/.sms_sdl/sram
+		rsync --update -nvrtW $EXTPATH/sms_sdl/state/ $INTPATH/.sms_sdl/state
+	fi
+fi
+
 # Syncs SNES96 data
 if [ -d $INTPATH/.snes96_snapshots/ ]; then
 	if [ -d $EXTPATH/snes96_snapshots/ ]; then
@@ -210,6 +293,96 @@ else
 		mkdir $INTPATH/.pocketsnes
 		echo "Imported PocketSNES files:"
 		rsync --update -nvrtW --exclude '*.opt' $EXTPATH/pocketsnes/ $INTPATH/.pocketsnes
+	fi
+fi
+
+# Syncs Snes9x data
+if [ -d $INTPATH/.snes9x/ ]; then
+	if [ -d $EXTPATH/snes9x/ ]; then
+		echo "Exported Snes9x files:"
+		rsync --update -nvrtW $INTPATH/.snes9x/spc/ $EXTPATH/snes9x/spc
+		rsync --update -nvrtW $INTPATH/.snes9x/sram/ $EXTPATH/snes9x/sram
+		echo "Imported Snes9x files:"
+		rsync --update -nvrtW $EXTPATH/snes9x/spc/ $INTPATH/.snes9x/spc
+		rsync --update -nvrtW $EXTPATH/snes9x/sram/ $INTPATH/.snes9x/sram
+	else
+		echo "Snes9x backup folder doesn't exist, creating folder."
+		mkdir $EXTPATH/snes9x
+		mkdir $EXTPATH/snes9x/spc
+		mkdir $EXTPATH/snes9x/sram
+		echo "Exported Snes9x files:"
+		rsync --update -nvrtW $INTPATH/.snes9x/spc/ $EXTPATH/snes9x/spc
+		rsync --update -nvrtW $INTPATH/.snes9x/sram/ $EXTPATH/snes9x/sram
+	fi
+else
+	if [ -d $EXTPATH/snes9x/ ]; then
+		echo "Snes9x folder doesn't exist in home directory, creating folder."
+		mkdir $INTPATH/.snes9x
+		mkdir $INTPATH/.snes9x/spc
+		mkdir $INTPATH/.snes9x/sram
+		echo "Imported Snes9x files:"
+		rsync --update -nvrtW $EXTPATH/snes9x/spc/ $INTPATH/.snes9x/spc
+		rsync --update -nvrtW $EXTPATH/snes9x/sram/ $INTPATH/.snes9x/sram
+	fi
+fi
+
+# Syncs SwanEmu data
+if [ -d $INTPATH/.swanemu/ ]; then
+	if [ -d $EXTPATH/swanemu/ ]; then
+		echo "Exported SwanEmu files:"
+		rsync --update -nvrtW $INTPATH/.swanemu/eeprom/ $EXTPATH/swanemu/eeprom
+		rsync --update -nvrtW $INTPATH/.swanemu/sstates/ $EXTPATH/swanemu/sstates
+		echo "Imported SwanEmu files:"
+		rsync --update -nvrtW $EXTPATH/swanemu/eeprom/ $INTPATH/.swanemu/eeprom
+		rsync --update -nvrtW $EXTPATH/swanemu/sstates/ $INTPATH/.swanemu/sstates
+	else
+		echo "SwanEmu backup folder doesn't exist, creating folder."
+		mkdir $EXTPATH/swanemu
+		mkdir $EXTPATH/swanemu/eeprom
+		mkdir $EXTPATH/swanemu/sstates
+		echo "Exported SwanEmu files:"
+		rsync --update -nvrtW $INTPATH/.swanemu/eeprom/ $EXTPATH/swanemu/eeprom
+		rsync --update -nvrtW $INTPATH/.swanemu/sstates/ $EXTPATH/swanemu/sstates
+	fi
+else
+	if [ -d $EXTPATH/swanemu/ ]; then
+		echo "SwanEmu folder doesn't exist in home directory, creating folder."
+		mkdir $INTPATH/.swanemu
+		mkdir $INTPATH/.swanemu/eeprom
+		mkdir $INTPATH/.swanemu/sstates
+		echo "Imported SwanEmu files:"
+		rsync --update -nvrtW $EXTPATH/swanemu/eeprom/ $INTPATH/.swanemu/eeprom
+		rsync --update -nvrtW $EXTPATH/swanemu/sstates/ $INTPATH/.swanemu/sstates
+	fi
+fi
+
+# Syncs Temper data
+if [ -d $INTPATH/.temper/ ]; then
+	if [ -d $EXTPATH/temper/ ]; then
+		echo "Exported Temper files:"
+		rsync --update -nvrtW $INTPATH/.temper/bram/ $EXTPATH/temper/bram
+		rsync --update -nvrtW $INTPATH/.temper/save_states/ $EXTPATH/temper/save_states
+		echo "Imported Temper files:"
+		rsync --update -nvrtW $EXTPATH/temper/bram/ $INTPATH/.temper/bram
+		rsync --update -nvrtW $EXTPATH/temper/save_states/ $INTPATH/.temper/save_states
+	else
+		echo "Temper backup folder doesn't exist, creating folder."
+		mkdir $EXTPATH/temper
+		mkdir $EXTPATH/temper/bram
+		mkdir $EXTPATH/temper/save_states
+		echo "Exported Temper files:"
+		rsync --update -nvrtW $INTPATH/.temper/bram/ $EXTPATH/temper/bram
+		rsync --update -nvrtW $INTPATH/.temper/save_states/ $EXTPATH/temper/save_states
+	fi
+else
+	if [ -d $EXTPATH/temper/ ]; then
+		echo "Temper folder doesn't exist in home directory, creating folder."
+		mkdir $INTPATH/.temper
+		mkdir $INTPATH/.temper/bram
+		mkdir $INTPATH/.temper/save_states
+		echo "Imported Temper files:"
+		rsync --update -nvrtW $EXTPATH/temper/bram/ $INTPATH/.temper/bram
+		rsync --update -nvrtW $EXTPATH/temper/save_states/ $INTPATH/.temper/save_states
 	fi
 fi
 
