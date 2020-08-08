@@ -31,11 +31,11 @@ echo "Valid OpenDingux card detected in slot 2."
 # Displays a confirmation dialog
 dialog --clear --title "Confirm Sync?" --backtitle "SaveSync $APPVERSION" --yesno "Are you sure you want to sync saves? This will overwrite any duplicate saves with the newer version." 7 49
 
-confirmexport=$?
+confirmsync=$?
 clear
 
-if [ $confirmexport = "1" ]; then
-	dialog --clear --backtitle "SaveSync $APPVERSION" --title "Export Cancelled" --msgbox "Save export cancelled. No files were changed. Press START to exit." 7 29
+if [ $confirmsync = "1" ]; then
+	dialog --clear --backtitle "SaveSync $APPVERSION" --title "Sync Cancelled" --msgbox "Save sync cancelled. No files were changed. Press START to exit." 7 29
 	exit
 fi
 
