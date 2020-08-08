@@ -52,6 +52,8 @@ if [ -d $INTPATH/.fceux/ ]; then
 	if [ ! -d $EXTPATH/.fceux/ ]; then
 		echo "FCEUX folder doesn't exist, creating folder."
 		mkdir $EXTPATH/.fceux
+		mkdir $EXTPATH/.fceux/sav
+		mkdir $EXTPATH/.fceux/fcs
 	fi
 	echo "Exporting FCEUX data..."
 	rsync -rtW $INTPATH/.fceux/sav/ $EXTPATH/.fceux/sav
@@ -63,9 +65,21 @@ if [ -d $INTPATH/.gambatte/ ]; then
 	if [ ! -d $EXTPATH/.gambatte/ ]; then
 		echo "Gambatte folder doesn't exist, creating folder."
 		mkdir $EXTPATH/.gambatte
+		mkdir $EXTPATH/.gambatte/saves
 	fi
 	echo "Exporting Gambatte data..."
 	rsync -rtW $INTPATH/.gambatte/saves/ $EXTPATH/.gambatte/saves
+fi
+
+# Exports OhBoy data
+if [ -d $INTPATH/.ohboy/ ]; then
+	if [ ! -d $EXTPATH/.ohboy/ ]; then
+		echo "OhBoy folder doesn't exist, creating folder."
+		mkdir $EXTPATH/.ohboy
+		mkdir $EXTPATH/.ohboy/saves
+	fi
+	echo "Exporting OhBoy data..."
+	rsync -rtW $INTPATH/.ohboy/saves/ $EXTPATH/.ohboy/saves
 fi
 
 # Exports ReGBA data
@@ -75,7 +89,7 @@ if [ -d $INTPATH/.gpsp/ ]; then
 		mkdir $EXTPATH/.gpsp
 	fi
 	echo "Exporting ReGBA data..."
-	rsync -rtW $INTPATH/.gpsp/ $EXTPATH/.gpsp
+	rsync -rtW --exclude '*.cfg' $INTPATH/.gpsp/ $EXTPATH/.gpsp
 fi
 
 # Exports PCSX4all data
@@ -83,6 +97,8 @@ if [ -d $INTPATH/.pcsx4all/ ]; then
 	if [ ! -d $EXTPATH/.pcsx4all/ ]; then
 		echo "PCSX4all folder doesn't exist, creating folder."
 		mkdir $EXTPATH/.pcsx4all
+		mkdir $EXTPATH/.pcsx4all/memcards
+		mkdir $EXTPATH/.pcsx4all/sstates
 	fi
 	echo "Exporting PCSX4all data..."
 	rsync -rtW $INTPATH/.pcsx4all/memcards/ $EXTPATH/.pcsx4all/memcards
@@ -94,10 +110,37 @@ if [ -d $INTPATH/.picodrive/ ]; then
 	if [ ! -d $EXTPATH/.picodrive/ ]; then
 		echo "Picodrive folder doesn't exist, creating folder."
 		mkdir $EXTPATH/.picodrive
+		mkdir $EXTPATH/.picodrive/mds
+		mkdir $EXTPATH/.picodrive/srm
 	fi
 	echo "Exporting PicoDrive data..."
 	rsync -rtW $INTPATH/.picodrive/mds/ $EXTPATH/.picodrive/mds
 	rsync -rtW $INTPATH/.picodrive/srm/ $EXTPATH/.picodrive/srm
+fi
+
+# Exports SMS Plus data
+if [ -d $INTPATH/.smsplus/ ]; then
+	if [ ! -d $EXTPATH/.smsplus/ ]; then
+		echo "SMS Plus folder doesn't exist, creating folder."
+		mkdir $EXTPATH/.smsplus
+		mkdir $EXTPATH/.smsplus/sram
+		mkdir $EXTPATH/.smsplus/state
+	fi
+	echo "Exporting SMS Plus data..."
+	rsync -rtW $INTPATH/.smsplus/sram/ $EXTPATH/.smsplus/sram
+	rsync -rtW $INTPATH/.smsplus/state/ $EXTPATH/.smsplus/state
+fi
+
+if [ -d $INTPATH/.sms_sdl/ ]; then
+	if [ ! -d $EXTPATH/.sms_sdl/ ]; then
+		echo "SMS SDL folder doesn't exist, creating folder."
+		mkdir $EXTPATH/.sms_sdl
+		mkdir $EXTPATH/.sms_sdl/sram
+		mkdir $EXTPATH/.sms_sdl/state
+	fi
+	echo "Exporting SMS SDL data..."
+	rsync -rtW $INTPATH/.sms_sdl/sram/ $EXTPATH/.sms_sdl/sram
+	rsync -rtW $INTPATH/.sms_sdl/state/ $EXTPATH/.sms_sdl/state
 fi
 
 # Exports PocketSNES data
@@ -107,7 +150,7 @@ if [ -d $INTPATH/.snes96_snapshots/ ]; then
 		mkdir $EXTPATH/.snes96_snapshots
 	fi
 	echo "Exporting SNES96 data..."
-	rsync -rtW $INTPATH/.snes96_snapshots/ $EXTPATH/.snes96_snapshots
+	rsync -rtW --exclude '*.opt' $INTPATH/.snes96_snapshots/ $EXTPATH/.snes96_snapshots
 fi
 
 if [ -d $INTPATH/.pocketsnes/ ]; then
@@ -116,7 +159,46 @@ if [ -d $INTPATH/.pocketsnes/ ]; then
 		mkdir $EXTPATH/.pocketsnes
 	fi
 	echo "Exporting PocketSNES data..."
-	rsync -rtW $INTPATH/.pocketsnes/ $EXTPATH/.pocketsnes
+	rsync -rtW --exclude '*.opt' $INTPATH/.pocketsnes/ $EXTPATH/.pocketsnes
+fi
+
+# Exports Snes9x data
+if [ -d $INTPATH/.snes9x/ ]; then
+	if [ ! -d $EXTPATH/.snes9x/ ]; then
+		echo "Snes9x folder doesn't exist, creating folder."
+		mkdir $EXTPATH/.snes9x
+		mkdir $EXTPATH/.snes9x/spc
+		mkdir $EXTPATH/.snes9x/sram
+	fi
+	echo "Exporting Snes9x data..."
+	rsync -rtW $INTPATH/.snes9x/spc/ $EXTPATH/.snes9x/spc
+	rsync -rtW $INTPATH/.snes9x/sram/ $EXTPATH/.snes9x/sram
+fi
+
+# Exports SwanEmu data
+if [ -d $INTPATH/.swanemu/ ]; then
+	if [ ! -d $EXTPATH/.swanemu/ ]; then
+		echo "SwanEmu folder doesn't exist, creating folder."
+		mkdir $EXTPATH/.swanemu
+		mkdir $EXTPATH/.swanemu/eeprom
+		mkdir $EXTPATH/.swanemu/sstates
+	fi
+	echo "Exporting SwanEmu data..."
+	rsync -rtW $INTPATH/.swanemu/eeprom/ $EXTPATH/.swanemu/eeprom
+	rsync -rtW $INTPATH/.swanemu/sstates/ $EXTPATH/.swanemu/sstates
+fi
+
+# Exports Temper data
+if [ -d $INTPATH/.temper/ ]; then
+	if [ ! -d $EXTPATH/.temper/ ]; then
+		echo "Temper folder doesn't exist, creating folder."
+		mkdir $EXTPATH/.temper
+		mkdir $EXTPATH/.temper/bram
+		mkdir $EXTPATH/.temper/save_states
+	fi
+	echo "Exporting Temper data..."
+	rsync -rtW $INTPATH/.temper/bram/ $EXTPATH/.temper/bram
+	rsync -rtW $INTPATH/.temper/save_states/ $EXTPATH/.temper/save_states
 fi
 
 dialog --clear --backtitle "SaveSync $APPVERSION" --title "Export Complete" --msgbox "Save export complete.\nPress START to exit." 6 29
