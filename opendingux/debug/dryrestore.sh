@@ -156,7 +156,7 @@ fi
 
 # Restores SwanEmu data
 if [ -d $EXTPATH/swanemu/ ]; then
-	if [ ! -d $INTPATH/.snes9x/ ]; then
+	if [ ! -d $INTPATH/.swanemu/ ]; then
 		echo "SwanEmu folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.swanemu
 		mkdir $INTPATH/.swanemu/eeprom
@@ -169,7 +169,7 @@ fi
 
 # Restores Temper data
 if [ -d $EXTPATH/temper/ ]; then
-	if [ ! -d $INTPATH/.snes9x/ ]; then
+	if [ ! -d $INTPATH/.temper/ ]; then
 		echo "Temper folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.temper
 		mkdir $INTPATH/.temper/bram
