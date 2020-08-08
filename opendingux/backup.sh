@@ -72,7 +72,7 @@ if [ -d $INTPATH/.gpsp/ ]; then
 		mkdir $EXTPATH/gpsp
 	fi
 	echo "Backing up ReGBA data..."
-	rsync -rtW $INTPATH/.gpsp/ $EXTPATH/gpsp
+	rsync -rtW --exclude '*.cfg' $INTPATH/.gpsp/ $EXTPATH/gpsp
 fi
 
 # Backs up PCSX4all data
@@ -131,7 +131,7 @@ if [ -d $INTPATH/.snes96_snapshots/ ]; then
 		mkdir $EXTPATH/snes96_snapshots
 	fi
 	echo "Backing up SNES96 data..."
-	rsync -rtW $INTPATH/.snes96_snapshots/ $EXTPATH/snes96_snapshots
+	rsync -rtW --exclude '*.opt' $INTPATH/.snes96_snapshots/ $EXTPATH/snes96_snapshots
 fi
 
 if [ -d $INTPATH/.pocketsnes/ ]; then
@@ -140,7 +140,7 @@ if [ -d $INTPATH/.pocketsnes/ ]; then
 		mkdir $EXTPATH/pocketsnes
 	fi
 	echo "Backing up PocketSNES data..."
-	rsync -rtW $INTPATH/.pocketsnes/ $EXTPATH/pocketsnes
+	rsync -rtW --exclude '*.opt' $INTPATH/.pocketsnes/ $EXTPATH/pocketsnes
 fi
 
 # Backs up Snes9x data
