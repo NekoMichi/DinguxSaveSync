@@ -20,8 +20,9 @@ if [ ! -d $EXTPATH ]; then
 	mkdir $EXTPATH
 fi
 
-# Overrides permissions on backup folder
+# Overrides permissions on folders
 chmod -R 777 $EXTPATH
+chmod -R 777 $INTPATH
 
 # Backs up screenshots
 if [ -d $INTPATH/screenshots/ ]; then
