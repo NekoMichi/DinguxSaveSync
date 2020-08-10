@@ -23,8 +23,9 @@ if [ ! -d $EXTPATH/ ]; then
 	exit
 fi
 
-# Overrides permissions on backup folder
-chmod -R 777 $EXTPATH/backup
+# Overrides permissions on folders
+chmod -R 777 $EXTPATH
+chmod -R 777 $INTPATH
 
 # Restores FCEUX data
 if [ -d $EXTPATH/fceux/ ]; then
@@ -46,7 +47,7 @@ if [ -d $EXTPATH/gambatte/ ]; then
 		mkdir $INTPATH/.gambatte
 		mkdir $INTPATH/.gambatte/saves
 	fi
-	echo "Imported Sambatte files:"
+	echo "Imported Gambatte files:"
 	rsync -nvrtW $EXTPATH/gambatte/saves/ $INTPATH/.gambatte/saves
 fi
 
