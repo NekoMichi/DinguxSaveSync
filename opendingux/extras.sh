@@ -3,39 +3,35 @@
 # desc=Main menu of SaveSync
 # author=NekoMichi
 
-# Checks to see if backup folder exists on card 2, if not then will create it
-if [ ! -d $EXTPATH/ ]; then
-	mkdir $EXTPATH
-	mkdir $EXTPATH/log
+# Create log folder if needed
+if [ ! -d ~/log/ ]; then
+	mkdir ~/log
 fi
 
-# Checks to see if log folder exists on card 2, if not then will create it
-if [ ! -d $EXTPATH/log/ ]; then
-	mkdir $EXTPATH/log
-fi
-
-MODE=$(dialog --clear --backtitle "SaveSync $APPVERSION" --title "SaveSync - Advanced" --menu "Please select an action. Use arrow keys to make your selection and press START to confirm." 17 35 6 \
+# Display menu
+MODE=$(dialog --clear --backtitle "SaveSync $APPVERSION" --title "SaveSync - Advanced" --menu "Please select an action. Use arrow keys to make your selection and press START to confirm." 18 35 7 \
 1 "Debug backup" \
 2 "Debug restore" \
 3 "Debug sync" \
 4 "Export" \
 5 "Import" \
 6 "Direct sync" \
+7 "Compare" \
 2>&1 >/dev/tty)
 
 clear
 
 if [ $MODE = "1" ]; then
 	export TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)_testbackup
-	./debug/drybackup.sh | tee $EXTPATH/log/$TIMESTAMP.txt
+	./debug/drybackup.sh 2>&1 | tee ~/log/$TIMESTAMP.txt
 fi
 if [ $MODE = "2" ]; then
 	export TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)_testrestore
-	./debug/dryrestore.sh | tee $EXTPATH/log/$TIMESTAMP.txt
+	./debug/dryrestore.sh 2>&1 | tee ~/log/$TIMESTAMP.txt
 fi
 if [ $MODE = "3" ]; then
 	export TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)_testsync
-	./debug/drysync.sh | tee $EXTPATH/log/$TIMESTAMP.txt
+	./debug/drysync.sh 2>&1 | tee ~/log/$TIMESTAMP.txt
 fi
 if [ $MODE = "4" ]; then
 	./tf1/tf1backup.sh
@@ -45,6 +41,10 @@ if [ $MODE = "5" ]; then
 fi
 if [ $MODE = "6" ]; then
 	./tf1/tf1sync.sh
+fi
+if [ $MODE = "7" ]; then
+	export TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)_diff
+	./tf1/tf1diff.sh 2>&1 | tee ~/log/$TIMESTAMP.txt
 fi
 
 exit
