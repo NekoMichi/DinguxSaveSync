@@ -34,9 +34,7 @@ fi
 if [ -d $INTPATH/.fceux/ ]; then
 	if [ ! -d $EXTPATH/fceux/ ]; then
 		echo "FCEUX backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/fceux
-		mkdir $EXTPATH/fceux/sav
-		mkdir $EXTPATH/fceux/fcs
+		mkdir -p $EXTPATH/fceux/sav $EXTPATH/fceux/fcs
 	fi
 	echo "Backing up FCEUX data..."
 	rsync -rtvhW $INTPATH/.fceux/sav/ $EXTPATH/fceux/sav
@@ -47,8 +45,7 @@ fi
 if [ -d $INTPATH/.gambatte/ ]; then
 	if [ ! -d $EXTPATH/gambatte/ ]; then
 		echo "Gambatte backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/gambatte
-		mkdir $EXTPATH/gambatte/saves
+		mkdir -p $EXTPATH/gambatte/saves
 	fi
 	echo "Backing up Gambatte data..."
 	rsync -rtvhW $INTPATH/.gambatte/saves/ $EXTPATH/gambatte/saves
@@ -58,8 +55,7 @@ fi
 if [ -d $INTPATH/.ohboy/ ]; then
 	if [ ! -d $EXTPATH/ohboy/ ]; then
 		echo "OhBoy backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/ohboy
-		mkdir $EXTPATH/ohboy/saves
+		mkdir -p $EXTPATH/ohboy/saves
 	fi
 	echo "Backing up OhBoy data..."
 	rsync -rtvhW $INTPATH/.ohboy/saves/ $EXTPATH/ohboy/saves
@@ -79,7 +75,7 @@ fi
 if [ -d $INTPATH/.pcsx4all/ ]; then
 	if [ ! -d $EXTPATH/pcsx4all/ ]; then
 		echo "PCSX4all backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/pcsx4all
+		mkdir -p $EXTPATH/pcsx4all/memcards/ $EXTPATH/pcsx4all/sstates/
 	fi
 	echo "Backing up PCSX4all data..."
 	rsync -rtvhW $INTPATH/.pcsx4all/memcards/ $EXTPATH/pcsx4all/memcards
@@ -90,9 +86,7 @@ fi
 if [ -d $INTPATH/.picodrive/ ]; then
 	if [ ! -d $EXTPATH/picodrive/ ]; then
 		echo "Picodrive backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/picodrive
-		mkdir $EXTPATH/picodrive/mds
-		mkdir $EXTPATH/picodrive/srm
+		mkdir -p $EXTPATH/picodrive/mds $EXTPATH/picodrive/srm
 	fi
 	echo "Backing up PicoDrive data..."
 	rsync -rtvhW $INTPATH/.picodrive/mds/ $EXTPATH/picodrive/mds
@@ -103,9 +97,7 @@ fi
 if [ -d $INTPATH/.smsplus/ ]; then
 	if [ ! -d $EXTPATH/smsplus/ ]; then
 		echo "SMS Plus backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/smsplus
-		mkdir $EXTPATH/smsplus/sram
-		mkdir $EXTPATH/smsplus/state
+		mkdir -p $EXTPATH/smsplus/sram $EXTPATH/smsplus/state
 	fi
 	echo "Backing up SMS Plus data..."
 	rsync -rtvhW $INTPATH/.smsplus/sram/ $EXTPATH/smsplus/sram
@@ -115,9 +107,7 @@ fi
 if [ -d $INTPATH/.sms_sdl/ ]; then
 	if [ ! -d $EXTPATH/sms_sdl/ ]; then
 		echo "SMS SDL backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/sms_sdl
-		mkdir $EXTPATH/sms_sdl/sram
-		mkdir $EXTPATH/sms_sdl/state
+		mkdir -p $EXTPATH/sms_sdl/sram $EXTPATH/sms_sdl/state
 	fi
 	echo "Backing up SMS SDL data..."
 	rsync -rtvhW $INTPATH/.sms_sdl/sram/ $EXTPATH/sms_sdl/sram
@@ -147,9 +137,7 @@ fi
 if [ -d $INTPATH/.snes9x/ ]; then
 	if [ ! -d $EXTPATH/snes9x/ ]; then
 		echo "Snes9x backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/snes9x
-		mkdir $EXTPATH/snes9x/spc
-		mkdir $EXTPATH/snes9x/sram
+		mkdir -p $EXTPATH/snes9x/spc $EXTPATH/snes9x/sram
 	fi
 	echo "Backing up Snes9x data..."
 	rsync -rtvhW $INTPATH/.snes9x/spc/ $EXTPATH/snes9x/spc
@@ -160,9 +148,7 @@ fi
 if [ -d $INTPATH/.swanemu/ ]; then
 	if [ ! -d $EXTPATH/swanemu/ ]; then
 		echo "SwanEmu backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/swanemu
-		mkdir $EXTPATH/swanemu/eeprom
-		mkdir $EXTPATH/swanemu/sstates
+		mkdir -p $EXTPATH/swanemu/eeprom $EXTPATH/swanemu/sstates
 	fi
 	echo "Backing up SwanEmu data..."
 	rsync -rtvhW $INTPATH/.swanemu/eeprom/ $EXTPATH/swanemu/eeprom
@@ -173,9 +159,7 @@ fi
 if [ -d $INTPATH/.temper/ ]; then
 	if [ ! -d $EXTPATH/temper/ ]; then
 		echo "Temper backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/temper
-		mkdir $EXTPATH/temper/bram
-		mkdir $EXTPATH/temper/save_states
+		mkdir -p $EXTPATH/temper/bram $EXTPATH/temper/save_states
 	fi
 	echo "Backing up Temper data..."
 	rsync -rtvhW $INTPATH/.temper/bram/ $EXTPATH/temper/bram
