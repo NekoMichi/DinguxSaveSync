@@ -26,7 +26,8 @@ if [ ! -d $EXTPATH ]; then
 	exit
 fi
 
-echo "Valid OpenDingux card detected in slot 2."
+# Debug message
+dialog --clear --backtitle "SaveSync $APPVERSION" --title "Debug Message" --msgbox "PARTPATH\n$PARTPATH\n\nEXTPATH\n$EXTPATH" 9 35
 
 # dialog --clear --backtitle "SaveSync $APPVERSION" --title "Found Home Folder" --msgbox "$EXTPATH\n\nPress START to exit." 9 31
 
