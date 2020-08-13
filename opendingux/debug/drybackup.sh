@@ -37,9 +37,7 @@ fi
 if [ -d $INTPATH/.fceux/ ]; then
 	if [ ! -d $EXTPATH/fceux/ ]; then
 		echo "FCEUX backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/fceux
-		mkdir $EXTPATH/fceux/sav
-		mkdir $EXTPATH/fceux/fcs
+		mkdir -p $EXTPATH/fceux/sav $EXTPATH/fceux/fcs
 	fi
 	echo "Exported FCEUX files:"
 	rsync -nvrtW $INTPATH/.fceux/sav/ $EXTPATH/fceux/sav
@@ -50,8 +48,7 @@ fi
 if [ -d $INTPATH/.gambatte/ ]; then
 	if [ ! -d $EXTPATH/gambatte/ ]; then
 		echo "Gambatte backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/gambatte
-		mkdir $EXTPATH/gambatte/saves
+		mkdir -p $EXTPATH/gambatte/saves
 	fi
 	echo "Exported Gambatte files:"
 	rsync -nvrtW $INTPATH/.gambatte/saves/ $EXTPATH/gambatte/saves
@@ -61,8 +58,7 @@ fi
 if [ -d $INTPATH/.ohboy/ ]; then
 	if [ ! -d $EXTPATH/ohboy/ ]; then
 		echo "OhBoy backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/ohboy
-		mkdir $EXTPATH/ohboy/saves
+		mkdir -p $EXTPATH/ohboy/saves
 	fi
 	echo "Exported OhBoy files:"
 	rsync -nvrtW $INTPATH/.ohboy/saves/ $EXTPATH/ohboy/saves
@@ -82,9 +78,7 @@ fi
 if [ -d $INTPATH/.pcsx4all/ ]; then
 	if [ ! -d $EXTPATH/pcsx4all/ ]; then
 		echo "PCSX4all backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/pcsx4all
-		mkdir $EXTPATH/pcsx4all/memcards
-		mkdir $EXTPATH/pcsx4all/sstates
+		mkdir -p $EXTPATH/pcsx4all/memcards $EXTPATH/pcsx4all/sstates
 	fi
 	echo "Exported PCSX4all files:"
 	rsync -nvrtW $INTPATH/.pcsx4all/memcards/ $EXTPATH/pcsx4all/memcards
@@ -95,9 +89,7 @@ fi
 if [ -d $INTPATH/.picodrive/ ]; then
 	if [ ! -d $EXTPATH/picodrive/ ]; then
 		echo "Picodrive backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/picodrive
-		mkdir $EXTPATH/picodrive/mds
-		mkdir $EXTPATH/picodrive/srm
+		mkdir -p $EXTPATH/picodrive/mds $EXTPATH/picodrive/srm
 	fi
 	echo "Exported Picodrive files:"
 	rsync -nvrtW $INTPATH/.picodrive/mds/ $EXTPATH/picodrive/mds
@@ -108,9 +100,7 @@ fi
 if [ -d $INTPATH/.smsplus/ ]; then
 	if [ ! -d $EXTPATH/smsplus/ ]; then
 		echo "SMS Plus backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/smsplus
-		mkdir $EXTPATH/smsplus/sram
-		mkdir $EXTPATH/smsplus/state
+		mkdir -p $EXTPATH/smsplus/sram $EXTPATH/smsplus/state
 	fi
 	echo "Exported SMS Plus files:"
 	rsync -nvrtW $INTPATH/.smsplus/sram/ $EXTPATH/smsplus/sram
@@ -120,9 +110,7 @@ fi
 if [ -d $INTPATH/.sms_sdl/ ]; then
 	if [ ! -d $EXTPATH/sms_sdl/ ]; then
 		echo "SMS SDL backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/sms_sdl
-		mkdir $EXTPATH/sms_sdl/sram
-		mkdir $EXTPATH/sms_sdl/state
+		mkdir -p $EXTPATH/sms_sdl/sram $EXTPATH/sms_sdl/state
 	fi
 	echo "Exported SMS SDL files:"
 	rsync -nvrtW $INTPATH/.sms_sdl/sram/ $EXTPATH/sms_sdl/sram
@@ -152,9 +140,7 @@ fi
 if [ -d $INTPATH/.snes9x/ ]; then
 	if [ ! -d $EXTPATH/snes9x/ ]; then
 		echo "Snes9x backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/snes9x
-		mkdir $EXTPATH/snes9x/spc
-		mkdir $EXTPATH/snes9x/sram
+		mkdir -p $EXTPATH/snes9x/spc $EXTPATH/snes9x/sram
 	fi
 	echo "Exported Snes9x files:"
 	rsync -nvrtW $INTPATH/.snes9x/spc/ $EXTPATH/snes9x/spc
@@ -165,9 +151,7 @@ fi
 if [ -d $INTPATH/.swanemu/ ]; then
 	if [ ! -d $EXTPATH/swanemu/ ]; then
 		echo "SwanEmu backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/swanemu
-		mkdir $EXTPATH/swanemu/eeprom
-		mkdir $EXTPATH/swanemu/sstates
+		mkdir -p $EXTPATH/swanemu/eeprom $EXTPATH/swanemu/sstates
 	fi
 	echo "Exported SwanEmu files:"
 	rsync -nvrtW $INTPATH/.swanemu/eeprom/ $EXTPATH/swanemu/eeprom
@@ -178,9 +162,7 @@ fi
 if [ -d $INTPATH/.temper/ ]; then
 	if [ ! -d $EXTPATH/temper/ ]; then
 		echo "Temper backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/temper
-		mkdir $EXTPATH/temper/bram
-		mkdir $EXTPATH/temper/save_states
+		mkdir -p $EXTPATH/temper/bram $EXTPATH/temper/save_states
 	fi
 	echo "Exported Temper files:"
 	rsync -nvrtW $INTPATH/.temper/bram/ $EXTPATH/temper/bram
@@ -189,6 +171,6 @@ fi
 
 echo ""
 echo "Debug backup complete."
-echo "Report saved to /media/sdcard/backup/log/$TIMESTAMP.txt"
+echo "Report saved to ~/log/$TIMESTAMP.txt"
 read -p "Press START to exit."
 exit
