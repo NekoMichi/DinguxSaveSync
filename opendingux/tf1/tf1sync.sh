@@ -26,7 +26,8 @@ if [ ! -d $EXTPATH ]; then
 	exit
 fi
 
-echo "Valid OpenDingux card detected in slot 2."
+# Debug message
+# dialog --clear --backtitle "SaveSync $APPVERSION" --title "Debug Message" --msgbox "PARTPATH\n$PARTPATH\n\nEXTPATH\n$EXTPATH" 9 35
 
 # Displays a confirmation dialog
 dialog --clear --title "Confirm Sync?" --backtitle "SaveSync $APPVERSION" --yesno "Are you sure you want to sync saves? This will overwrite any duplicate saves with the newer version." 7 49
@@ -45,9 +46,6 @@ echo "===Syncing Saves==="
 chmod -R 777 $EXTPATH
 chmod -R 777 $INTPATH
 
-PARTPATH=$(findmnt -n --output=target /dev/mmcblk1p2 | head -1)
-EXTPATH="$PARTPATH/local/home"
-
 # Syncs FCEUX data
 if [ -d $INTPATH/.fceux/ ]; then
 	if [ -d $EXTPATH/.fceux/ ]; then
@@ -58,9 +56,7 @@ if [ -d $INTPATH/.fceux/ ]; then
 		rsync --update -rtvhW $EXTPATH/.fceux/fcs/ $INTPATH/.fceux/fcs
 	else
 		echo "FCEUX folder doesn't exist on destination device, creating folder."
-		mkdir $EXTPATH/.fceux
-		mkdir $EXTPATH/.fceux/sav
-		mkdir $EXTPATH/.fceux/fcs
+		mkdir -p $EXTPATH/.fceux/sav $EXTPATH/.fceux/fcs
 		echo "Syncing FCEUX data..."
 		rsync --update -rtvhW $INTPATH/.fceux/sav/ $EXTPATH/.fceux/sav
 		rsync --update -rtvhW $INTPATH/.fceux/fcs/ $EXTPATH/.fceux/fcs
@@ -68,9 +64,7 @@ if [ -d $INTPATH/.fceux/ ]; then
 else
 	if [ -d $EXTPATH/.fceux/ ]; then
 		echo "FCEUX folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.fceux
-		mkdir $INTPATH/.fceux/sav
-		mkdir $INTPATH/.fceux/fcs
+		mkdir -p $INTPATH/.fceux/sav $INTPATH/.fceux/fcs
 		echo "Syncing FCEUX data..."
 		rsync --update -rtvhW $EXTPATH/.fceux/sav/ $INTPATH/.fceux/sav
 		rsync --update -rtvhW $EXTPATH/.fceux/fcs/ $INTPATH/.fceux/fcs
@@ -85,16 +79,14 @@ if [ -d $INTPATH/.gambatte/ ]; then
 		rsync --update -rtvhW $EXTPATH/.gambatte/saves/ $INTPATH/.gambatte/saves
 	else
 		echo "Gambatte folder doesn't exist on destination device, creating folder."
-		mkdir $EXTPATH/.gambatte
-		mkdir $EXTPATH/.gambatte/saves
+		mkdir -p $EXTPATH/.gambatte/saves
 		echo "Syncing Gambatte data..."
 		rsync --update -rtvhW $INTPATH/.gambatte/saves/ $EXTPATH/.gambatte/saves
 	fi
 else
 	if [ -d $EXTPATH/.gambatte/ ]; then
 		echo "Gambatte folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.gambatte
-		mkdir $INTPATH/.gambatte/saves
+		mkdir -p $INTPATH/.gambatte/saves
 		echo "Syncing Gambatte data..."
 		rsync --update -rtvhW $EXTPATH/.gambatte/saves/ $INTPATH/.gambatte/saves
 	fi
@@ -108,16 +100,14 @@ if [ -d $INTPATH/.ohboy/ ]; then
 		rsync --update -rtvhW $EXTPATH/.ohboy/saves/ $INTPATH/.ohboy/saves
 	else
 		echo "OhBoy folder doesn't exist on destination device, creating folder."
-		mkdir $EXTPATH/.ohboy
-		mkdir $EXTPATH/.ohboy/saves
+		mkdir -p $EXTPATH/.ohboy/saves
 		echo "Syncing OhBoy data..."
 		rsync --update -rtvhW $INTPATH/.ohboy/saves/ $EXTPATH/.ohboy/saves
 	fi
 else
 	if [ -d $EXTPATH/.ohboy/ ]; then
 		echo "OhBoy folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.ohboy
-		mkdir $INTPATH/.ohboy/saves
+		mkdir -p $INTPATH/.ohboy/saves
 		echo "Syncing OhBoy data..."
 		rsync --update -rtvhW $EXTPATH/.ohboy/saves/ $INTPATH/.ohboy/saves
 	fi
@@ -154,9 +144,7 @@ if [ -d $INTPATH/.pcsx4all/ ]; then
 		rsync --update -rtvhW $EXTPATH/.pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
 	else
 		echo "PCSX4all folder doesn't exist on destination device, creating folder."
-		mkdir $EXTPATH/.pcsx4all
-		mkdir $EXTPATH/.pcsx4all/memcards
-		mkdir $EXTPATH/.pcsx4all/sstates
+		mkdir -p $EXTPATH/.pcsx4all/memcards $EXTPATH/.pcsx4all/sstates
 		echo "Syncing PCSX4all data..."
 		rsync --update -rtvhW $INTPATH/.pcsx4all/memcards/ $EXTPATH/.pcsx4all/memcards
 		rsync --update -rtvhW $INTPATH/.pcsx4all/sstates/ $EXTPATH/.pcsx4all/sstates
@@ -164,9 +152,7 @@ if [ -d $INTPATH/.pcsx4all/ ]; then
 else
 	if [ -d $EXTPATH/.pcsx4all/ ]; then
 		echo "PCSX4all folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.pcsx4all
-		mkdir $INTPATH/.pcsx4all/memcards
-		mkdir $INTPATH/.pcsx4all/sstates
+		mkdir -p $INTPATH/.pcsx4all/memcards $INTPATH/.pcsx4all/sstates
 		echo "Syncing PCSX4all data..."
 		rsync --update -rtvhW $EXTPATH/.pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
 		rsync --update -rtvhW $EXTPATH/.pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
@@ -183,9 +169,7 @@ if [ -d $INTPATH/.picodrive/ ]; then
 		rsync --update -rtvhW $EXTPATH/.picodrive/srm/ $INTPATH/.picodrive/srm
 	else
 		echo "PicoDrive folder doesn't exist on destination device, creating folder."
-		mkdir $EXTPATH/.picodrive
-		mkdir $EXTPATH/.picodrive/mds
-		mkdir $EXTPATH/.picodrive/srm
+		mkdir -p $EXTPATH/.picodrive/mds $EXTPATH/.picodrive/srm
 		echo "Syncing PicoDrive data..."
 		rsync --update -rtvhW $INTPATH/.picodrive/mds/ $EXTPATH/.picodrive/mds
 		rsync --update -rtvhW $INTPATH/.picodrive/srm/ $EXTPATH/.picodrive/srm
@@ -193,9 +177,7 @@ if [ -d $INTPATH/.picodrive/ ]; then
 else
 	if [ -d $EXTPATH/.picodrive/ ]; then
 		echo "PicoDrive folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.picodrive
-		mkdir $INTPATH/.picodrive/mds
-		mkdir $INTPATH/.picodrive/srm
+		mkdir -p $INTPATH/.picodrive/mds $INTPATH/.picodrive/srm
 		echo "Syncing PicoDrive data..."
 		rsync --update -rtvhW $EXTPATH/.picodrive/mds/ $INTPATH/.picodrive/mds
 		rsync --update -rtvhW $EXTPATH/.picodrive/srm/ $INTPATH/.picodrive/srm
@@ -212,9 +194,7 @@ if [ -d $INTPATH/.smsplus/ ]; then
 		rsync --update -rtvhW $EXTPATH/.smsplus/state/ $INTPATH/.smsplus/state
 	else
 		echo "SMS Plus folder doesn't exist on destination device, creating folder."
-		mkdir $EXTPATH/.smsplus
-		mkdir $EXTPATH/.smsplus/sram
-		mkdir $EXTPATH/.smsplus/state
+		mkdir -p $EXTPATH/.smsplus/sram $EXTPATH/.smsplus/state
 		echo "Syncing SMS Plus data..."
 		rsync --update -rtvhW $INTPATH/.smsplus/sram/ $EXTPATH/.smsplus/sram
 		rsync --update -rtvhW $INTPATH/.smsplus/state/ $EXTPATH/.smsplus/state
@@ -222,9 +202,7 @@ if [ -d $INTPATH/.smsplus/ ]; then
 else
 	if [ -d $EXTPATH/.smsplus/ ]; then
 		echo "SMS Plus folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.smsplus
-		mkdir $INTPATH/.smsplus/sram
-		mkdir $INTPATH/.smsplus/state
+		mkdir -p $INTPATH/.smsplus/sram $INTPATH/.smsplus/state
 		echo "Syncing SMS Plus data..."
 		rsync --update -rtvhW $EXTPATH/.smsplus/sram/ $INTPATH/.smsplus/sram
 		rsync --update -rtvhW $EXTPATH/.smsplus/state/ $INTPATH/.smsplus/state
@@ -240,9 +218,7 @@ if [ -d $INTPATH/.sms_sdl/ ]; then
 		rsync --update -rtvhW $EXTPATH/.sms_sdl/state/ $INTPATH/.sms_sdl/state
 	else
 		echo "SMS SDL folder doesn't exist on destination device, creating folder."
-		mkdir $EXTPATH/.sms_sdl
-		mkdir $EXTPATH/.sms_sdl/sram
-		mkdir $EXTPATH/.sms_sdl/state
+		mkdir -p $EXTPATH/.sms_sdl/sram $EXTPATH/.sms_sdl/state
 		echo "Syncing SMS SDL data..."
 		rsync --update -rtvhW $INTPATH/.sms_sdl/sram/ $EXTPATH/.sms_sdl/sram
 		rsync --update -rtvhW $INTPATH/.sms_sdl/state/ $EXTPATH/.sms_sdl/state
@@ -250,9 +226,7 @@ if [ -d $INTPATH/.sms_sdl/ ]; then
 else
 	if [ -d $EXTPATH/.sms_sdl/ ]; then
 		echo "SMS SDL folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.sms_sdl
-		mkdir $INTPATH/.sms_sdl/sram
-		mkdir $INTPATH/.sms_sdl/state
+		mkdir -p $INTPATH/.sms_sdl/sram $INTPATH/.sms_sdl/state
 		echo "Syncing SMS SDL data..."
 		rsync --update -rtvhW $EXTPATH/.sms_sdl/sram/ $INTPATH/.sms_sdl/sram
 		rsync --update -rtvhW $EXTPATH/.sms_sdl/state/ $INTPATH/.sms_sdl/state
@@ -311,9 +285,7 @@ if [ -d $INTPATH/.snes9x/ ]; then
 		rsync --update -rtvhW $EXTPATH/.snes9x/sram/ $INTPATH/.snes9x/sram
 	else
 		echo "Snes9x folder doesn't exist on destination device, creating folder."
-		mkdir $EXTPATH/.snes9x
-		mkdir $EXTPATH/.snes9x/spc
-		mkdir $EXTPATH/.snes9x/sram
+		mkdir -p $EXTPATH/.snes9x/spc $EXTPATH/.snes9x/sram
 		echo "Syncing Snes9x data..."
 		rsync --update -rtvhW $INTPATH/.snes9x/spc/ $EXTPATH/.snes9x/spc
 		rsync --update -rtvhW $INTPATH/.snes9x/sram/ $EXTPATH/.snes9x/sram
@@ -321,9 +293,7 @@ if [ -d $INTPATH/.snes9x/ ]; then
 else
 	if [ -d $EXTPATH/.snes9x/ ]; then
 		echo "Snes9x folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.snes9x
-		mkdir $INTPATH/.snes9x/spc
-		mkdir $INTPATH/.snes9x/sram
+		mkdir -p $INTPATH/.snes9x/spc $INTPATH/.snes9x/sram
 		echo "Syncing Snes9x data..."
 		rsync --update -rtvhW $EXTPATH/.snes9x/spc/ $INTPATH/.snes9x/spc
 		rsync --update -rtvhW $EXTPATH/.snes9x/sram/ $INTPATH/.snes9x/sram
@@ -340,9 +310,7 @@ if [ -d $INTPATH/.swanemu/ ]; then
 		rsync --update -rtvhW $EXTPATH/.swanemu/sstates/ $INTPATH/.swanemu/sstates
 	else
 		echo "SwanEmu folder doesn't exist on destination device, creating folder."
-		mkdir $EXTPATH/.swanemu
-		mkdir $EXTPATH/.swanemu/eeprom
-		mkdir $EXTPATH/.swanemu/sstates
+		mkdir -p $EXTPATH/.swanemu/eeprom $EXTPATH/.swanemu/sstates
 		echo "Syncing SwanEmu data..."
 		rsync --update -rtvhW $INTPATH/.swanemu/eeprom/ $EXTPATH/.swanemu/eeprom
 		rsync --update -rtvhW $INTPATH/.swanemu/sstates/ $EXTPATH/.swanemu/sstates
@@ -350,9 +318,7 @@ if [ -d $INTPATH/.swanemu/ ]; then
 else
 	if [ -d $EXTPATH/.swanemu/ ]; then
 		echo "SwanEmu folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.swanemu
-		mkdir $INTPATH/.swanemu/eeprom
-		mkdir $INTPATH/.swanemu/sstates
+		mkdir -p $INTPATH/.swanemu/eeprom $INTPATH/.swanemu/sstates
 		echo "Syncing SwanEmu data..."
 		rsync --update -rtvhW $EXTPATH/.swanemu/eeprom/ $INTPATH/.swanemu/eeprom
 		rsync --update -rtvhW $EXTPATH/.swanemu/sstates/ $INTPATH/.swanemu/sstates
@@ -369,9 +335,7 @@ if [ -d $INTPATH/.temper/ ]; then
 		rsync --update -rtvhW $EXTPATH/.temper/save_states/ $INTPATH/.temper/save_states
 	else
 		echo "Temper folder doesn't exist on destination device, creating folder."
-		mkdir $EXTPATH/.temper
-		mkdir $EXTPATH/.temper/bram
-		mkdir $EXTPATH/.temper/save_states
+		mkdir -p $EXTPATH/.temper/bram $EXTPATH/.temper/save_states
 		echo "Syncing SwanEmu data..."
 		rsync --update -rtvhW $INTPATH/.temper/bram/ $EXTPATH/.temper/bram
 		rsync --update -rtvhW $INTPATH/.temper/save_states/ $EXTPATH/.temper/save_states
@@ -379,9 +343,7 @@ if [ -d $INTPATH/.temper/ ]; then
 else
 	if [ -d $EXTPATH/.temper/ ]; then
 		echo "Temper folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.temper
-		mkdir $INTPATH/.temper/bram
-		mkdir $INTPATH/.temper/save_states
+		mkdir -p $INTPATH/.temper/bram $INTPATH/.temper/save_states
 		echo "Syncing Temper data..."
 		rsync --update -rtvhW $EXTPATH/.temper/bram/ $INTPATH/.temper/bram
 		rsync --update -rtvhW $EXTPATH/.temper/save_states/ $INTPATH/.temper/save_states
