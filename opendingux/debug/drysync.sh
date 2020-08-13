@@ -45,9 +45,7 @@ if [ -d $INTPATH/.fceux/ ]; then
 		rsync --update -nvrtW $EXTPATH/fceux/fcs/ $INTPATH/.fceux/fcs
 	else
 		echo "FCEUX backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/fceux
-		mkdir $EXTPATH/fceux/sav
-		mkdir $EXTPATH/fceux/fcs
+		mkdir -p $EXTPATH/fceux/sav $EXTPATH/fceux/fcs
 		echo "Exported FCEUX files:"
 		rsync --update -nvrtW $INTPATH/.fceux/sav/ $EXTPATH/fceux/sav
 		rsync --update -nvrtW $INTPATH/.fceux/fcs/ $EXTPATH/fceux/fcs
@@ -55,9 +53,7 @@ if [ -d $INTPATH/.fceux/ ]; then
 else
 	if [ -d $EXTPATH/fceux/ ]; then
 		echo "FCEUX folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.fceux
-		mkdir $INTPATH/.fceux/sav
-		mkdir $INTPATH/.fceux/fcs
+		mkdir -p $INTPATH/.fceux/sav $INTPATH/.fceux/fcs
 		echo "Imported FCEUX files:"
 		rsync --update -nvrtW $EXTPATH/fceux/sav/ $INTPATH/.fceux/sav
 		rsync --update -nvrtW $EXTPATH/fceux/fcs/ $INTPATH/.fceux/fcs
@@ -73,16 +69,14 @@ if [ -d $INTPATH/.gambatte/ ]; then
 		rsync --update -nvrtW $EXTPATH/gambatte/saves/ $INTPATH/.gambatte/saves
 	else
 		echo "Gambatte backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/gambatte
-		mkdir $EXTPATH/gambatte/saves
+		mkdir -p $EXTPATH/gambatte/saves
 		echo "Exported Gambatte files:"
 		rsync --update -nvrtW $INTPATH/.gambatte/saves/ $EXTPATH/gambatte/saves
 	fi
 else
 	if [ -d $EXTPATH/gambatte/ ]; then
 		echo "Gambatte folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.gambatte
-		mkdir $INTPATH/.gambatte/saves
+		mkdir -p $INTPATH/.gambatte/saves
 		echo "Imported Gambatte files:"
 		rsync --update -nvrtW $EXTPATH/gambatte/saves/ $INTPATH/.gambatte/saves
 	fi
@@ -97,16 +91,14 @@ if [ -d $INTPATH/.ohboy/ ]; then
 		rsync --update -nvrtW $EXTPATH/ohboy/saves/ $INTPATH/.ohboy/saves
 	else
 		echo "OhBoy backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/ohboy
-		mkdir $EXTPATH/ohboy/saves
+		mkdir -p $EXTPATH/ohboy/saves
 		echo "Exported OhBoy files:"
 		rsync --update -nvrtW $INTPATH/.ohboy/saves/ $EXTPATH/ohboy/saves
 	fi
 else
 	if [ -d $EXTPATH/ohboy/ ]; then
 		echo "OhBoy folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.ohboy
-		mkdir $INTPATH/.ohboy/saves
+		mkdir -p $INTPATH/.ohboy/saves
 		echo "Imported OhBoy files:"
 		rsync --update -nvrtW $EXTPATH/ohboy/saves/ $INTPATH/.ohboy/saves
 	fi
@@ -145,9 +137,7 @@ if [ -d $INTPATH/.pcsx4all/ ]; then
 		rsync --update -nvrtW $EXTPATH/pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
 	else
 		echo "PCSX4all backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/pcsx4all
-		mkdir $EXTPATH/pcsx4all/memcards
-		mkdir $EXTPATH/pcsx4all/sstates
+		mkdir -p $EXTPATH/pcsx4all/memcards $EXTPATH/pcsx4all/sstates
 		echo "Exported PCSX4all files:"
 		rsync --update -nvrtW $INTPATH/.pcsx4all/memcards/ $EXTPATH/pcsx4all/memcards
 		rsync --update -nvrtW $INTPATH/.pcsx4all/sstates/ $EXTPATH/pcsx4all/sstates
@@ -155,9 +145,7 @@ if [ -d $INTPATH/.pcsx4all/ ]; then
 else
 	if [ -d $EXTPATH/pcsx4all/ ]; then
 		echo "PCSX4all folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.pcsx4all
-		mkdir $INTPATH/.pcsx4all/memcards
-		mkdir $INTPATH/.pcsx4all/sstates
+		mkdir -p $INTPATH/.pcsx4all/memcards $INTPATH/.pcsx4all/sstates
 		echo "Imported PCSX4all files:"
 		rsync --update -nvrtW $EXTPATH/pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
 		rsync --update -nvrtW $EXTPATH/pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
@@ -175,9 +163,7 @@ if [ -d $INTPATH/.picodrive/ ]; then
 		rsync --update -nvrtW $EXTPATH/picodrive/srm/ $INTPATH/.picodrive/srm
 	else
 		echo "PicoDrive backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/picodrive
-		mkdir $EXTPATH/picodrive/mds
-		mkdir $EXTPATH/picodrive/srm
+		mkdir -p $EXTPATH/picodrive/mds $EXTPATH/picodrive/srm
 		echo "Exported Picodrive files:"
 		rsync --update -nvrtW $INTPATH/.picodrive/mds/ $EXTPATH/picodrive/mds
 		rsync --update -nvrtW $INTPATH/.picodrive/srm/ $EXTPATH/picodrive/srm
@@ -185,9 +171,7 @@ if [ -d $INTPATH/.picodrive/ ]; then
 else
 	if [ -d $EXTPATH/picodrive/ ]; then
 		echo "PicoDrive folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.picodrive
-		mkdir $INTPATH/.picodrive/mds
-		mkdir $INTPATH/.picodrive/srm
+		mkdir -p $INTPATH/.picodrive/mds $INTPATH/.picodrive/srm
 		echo "Imported Picodrive files:"
 		rsync --update -nvrtW $EXTPATH/picodrive/mds/ $INTPATH/.picodrive/mds
 		rsync --update -nvrtW $EXTPATH/picodrive/srm/ $INTPATH/.picodrive/srm
@@ -205,9 +189,7 @@ if [ -d $INTPATH/.smsplus/ ]; then
 		rsync --update -nvrtW $EXTPATH/smsplus/state/ $INTPATH/.smsplus/state
 	else
 		echo "SMS Plus backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/smsplus
-		mkdir $EXTPATH/smsplus/sram
-		mkdir $EXTPATH/smsplus/state
+		mkdir -p $EXTPATH/smsplus/sram $EXTPATH/smsplus/state
 		echo "Exported SMS Plus files:"
 		rsync --update -nvrtW $INTPATH/.smsplus/sram/ $EXTPATH/smsplus/sram
 		rsync --update -nvrtW $INTPATH/.smsplus/state/ $EXTPATH/smsplus/state
@@ -215,9 +197,7 @@ if [ -d $INTPATH/.smsplus/ ]; then
 else
 	if [ -d $EXTPATH/smsplus/ ]; then
 		echo "SMS Plus folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.smsplus
-		mkdir $INTPATH/.smsplus/sram
-		mkdir $INTPATH/.smsplus/state
+		mkdir -p $INTPATH/.smsplus/sram $INTPATH/.smsplus/state
 		echo "Imported SMS Plus files:"
 		rsync --update -nvrtW $EXTPATH/smsplus/sram/ $INTPATH/.smsplus/sram
 		rsync --update -nvrtW $EXTPATH/smsplus/state/ $INTPATH/.smsplus/state
@@ -234,9 +214,7 @@ if [ -d $INTPATH/.sms_sdl/ ]; then
 		rsync --update -nvrtW $EXTPATH/sms_sdl/state/ $INTPATH/.sms_sdl/state
 	else
 		echo "SMS SDL backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/sms_sdl
-		mkdir $EXTPATH/sms_sdl/sram
-		mkdir $EXTPATH/sms_sdl/state
+		mkdir -p $EXTPATH/sms_sdl/sram $EXTPATH/sms_sdl/state
 		echo "Exported SMS SDL files:"
 		rsync --update -nvrtW $INTPATH/.sms_sdl/sram/ $EXTPATH/sms_sdl/sram
 		rsync --update -nvrtW $INTPATH/.sms_sdl/state/ $EXTPATH/sms_sdl/state
@@ -244,9 +222,7 @@ if [ -d $INTPATH/.sms_sdl/ ]; then
 else
 	if [ -d $EXTPATH/sms_sdl/ ]; then
 		echo "SMS SDL folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.sms_sdl
-		mkdir $INTPATH/.sms_sdl/sram
-		mkdir $INTPATH/.sms_sdl/state
+		mkdir -p $INTPATH/.sms_sdl/sram $INTPATH/.sms_sdl/state
 		echo "Imported SMS SDL files:"
 		rsync --update -nvrtW $EXTPATH/sms_sdl/sram/ $INTPATH/.sms_sdl/sram
 		rsync --update -nvrtW $EXTPATH/sms_sdl/state/ $INTPATH/.sms_sdl/state
@@ -308,9 +284,7 @@ if [ -d $INTPATH/.snes9x/ ]; then
 		rsync --update -nvrtW $EXTPATH/snes9x/sram/ $INTPATH/.snes9x/sram
 	else
 		echo "Snes9x backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/snes9x
-		mkdir $EXTPATH/snes9x/spc
-		mkdir $EXTPATH/snes9x/sram
+		mkdir -p $EXTPATH/snes9x/spc $EXTPATH/snes9x/sram
 		echo "Exported Snes9x files:"
 		rsync --update -nvrtW $INTPATH/.snes9x/spc/ $EXTPATH/snes9x/spc
 		rsync --update -nvrtW $INTPATH/.snes9x/sram/ $EXTPATH/snes9x/sram
@@ -318,9 +292,7 @@ if [ -d $INTPATH/.snes9x/ ]; then
 else
 	if [ -d $EXTPATH/snes9x/ ]; then
 		echo "Snes9x folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.snes9x
-		mkdir $INTPATH/.snes9x/spc
-		mkdir $INTPATH/.snes9x/sram
+		mkdir -p $INTPATH/.snes9x/spc $INTPATH/.snes9x/sram
 		echo "Imported Snes9x files:"
 		rsync --update -nvrtW $EXTPATH/snes9x/spc/ $INTPATH/.snes9x/spc
 		rsync --update -nvrtW $EXTPATH/snes9x/sram/ $INTPATH/.snes9x/sram
@@ -338,9 +310,7 @@ if [ -d $INTPATH/.swanemu/ ]; then
 		rsync --update -nvrtW $EXTPATH/swanemu/sstates/ $INTPATH/.swanemu/sstates
 	else
 		echo "SwanEmu backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/swanemu
-		mkdir $EXTPATH/swanemu/eeprom
-		mkdir $EXTPATH/swanemu/sstates
+		mkdir -p $EXTPATH/swanemu/eeprom $EXTPATH/swanemu/sstates
 		echo "Exported SwanEmu files:"
 		rsync --update -nvrtW $INTPATH/.swanemu/eeprom/ $EXTPATH/swanemu/eeprom
 		rsync --update -nvrtW $INTPATH/.swanemu/sstates/ $EXTPATH/swanemu/sstates
@@ -348,9 +318,7 @@ if [ -d $INTPATH/.swanemu/ ]; then
 else
 	if [ -d $EXTPATH/swanemu/ ]; then
 		echo "SwanEmu folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.swanemu
-		mkdir $INTPATH/.swanemu/eeprom
-		mkdir $INTPATH/.swanemu/sstates
+		mkdir -p $INTPATH/.swanemu/eeprom $INTPATH/.swanemu/sstates
 		echo "Imported SwanEmu files:"
 		rsync --update -nvrtW $EXTPATH/swanemu/eeprom/ $INTPATH/.swanemu/eeprom
 		rsync --update -nvrtW $EXTPATH/swanemu/sstates/ $INTPATH/.swanemu/sstates
@@ -368,9 +336,7 @@ if [ -d $INTPATH/.temper/ ]; then
 		rsync --update -nvrtW $EXTPATH/temper/save_states/ $INTPATH/.temper/save_states
 	else
 		echo "Temper backup folder doesn't exist, creating folder."
-		mkdir $EXTPATH/temper
-		mkdir $EXTPATH/temper/bram
-		mkdir $EXTPATH/temper/save_states
+		mkdir -p $EXTPATH/temper/bram $EXTPATH/temper/save_states
 		echo "Exported Temper files:"
 		rsync --update -nvrtW $INTPATH/.temper/bram/ $EXTPATH/temper/bram
 		rsync --update -nvrtW $INTPATH/.temper/save_states/ $EXTPATH/temper/save_states
@@ -378,9 +344,7 @@ if [ -d $INTPATH/.temper/ ]; then
 else
 	if [ -d $EXTPATH/temper/ ]; then
 		echo "Temper folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.temper
-		mkdir $INTPATH/.temper/bram
-		mkdir $INTPATH/.temper/save_states
+		mkdir -p $INTPATH/.temper/bram $INTPATH/.temper/save_states
 		echo "Imported Temper files:"
 		rsync --update -nvrtW $EXTPATH/temper/bram/ $INTPATH/.temper/bram
 		rsync --update -nvrtW $EXTPATH/temper/save_states/ $INTPATH/.temper/save_states
@@ -389,6 +353,6 @@ fi
 
 echo ""
 echo "Debug sync complete."
-echo "Report saved to /media/sdcard/backup/log/$TIMESTAMP.txt"
+echo "Report saved to ~/log/$TIMESTAMP.txt"
 read -p "Press START to exit."
 exit
