@@ -36,9 +36,7 @@ chmod -R 777 $INTPATH
 if [ -d $EXTPATH/fceux/ ]; then
 	if [ ! -d $INTPATH/.fceux/ ]; then
 		echo "FCEUX folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.fceux
-		mkdir $INTPATH/.fceux/sav
-		mkdir $INTPATH/.fceux/fcs
+		mkdir -p $INTPATH/.fceux/sav $INTPATH/.fceux/fcs
 	fi
 	echo "Restoring FCEUX data..."
 	rsync -rtvhW $EXTPATH/fceux/sav/ $INTPATH/.fceux/sav
@@ -49,8 +47,7 @@ fi
 if [ -d $EXTPATH/gambatte/ ]; then
 	if [ ! -d $INTPATH/.gambatte/ ]; then
 		echo "Gambatte folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.gambatte
-		mkdir $INTPATH/.gambatte/saves
+		mkdir -p $INTPATH/.gambatte/saves
 	fi
 	echo "Restoring Gambatte data..."
 	rsync -rtvhW $EXTPATH/gambatte/saves/ $INTPATH/.gambatte/saves
@@ -60,8 +57,7 @@ fi
 if [ -d $EXTPATH/ohboy/ ]; then
 	if [ ! -d $INTPATH/.ohboy/ ]; then
 		echo "OhBoy folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.ohboy
-		mkdir $INTPATH/.ohboy/saves
+		mkdir -p $INTPATH/.ohboy/saves
 	fi
 	echo "Restoring OhBoy data..."
 	rsync -rtvhW $EXTPATH/ohboy/saves/ $INTPATH/.ohboy/saves
@@ -81,7 +77,7 @@ fi
 if [ -d $EXTPATH/pcsx4all/ ]; then
 	if [ ! -d $INTPATH/.pcsx4all/ ]; then
 		echo "PCSX4all folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.pcsx4all
+		mkdir -p $INTPATH/.pcsx4all/memcards $INTPATH/.pcsx4all/sstates
 	fi
 	echo "Restoring PCSX4all data..."
 	rsync -rtvhW $EXTPATH/pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
@@ -92,9 +88,7 @@ fi
 if [ -d $EXTPATH/picodrive/ ]; then
 	if [ ! -d $INTPATH/.picodrive/ ]; then
 		echo "Picodrive folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.picodrive
-		mkdir $INTPATH/.picodrive/mds
-		mkdir $INTPATH/.picodrive/srm
+		mkdir -p $INTPATH/.picodrive/mds $INTPATH/.picodrive/srm
 	fi
 	echo "Restoring PicoDrive data..."
 	rsync -rtvhW $EXTPATH/picodrive/mds/ $INTPATH/.picodrive/mds
@@ -105,9 +99,7 @@ fi
 if [ -d $EXTPATH/smsplus/ ]; then
 	if [ ! -d $INTPATH/.smsplus/ ]; then
 		echo "SMS Plus folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.smsplus
-		mkdir $INTPATH/.smsplus/sram
-		mkdir $INTPATH/.smsplus/state
+		mkdir -p $INTPATH/.smsplus/sram $INTPATH/.smsplus/state
 	fi
 	echo "Restoring SMS Plus data..."
 	rsync -rtvhW $EXTPATH/smsplus/sram/ $INTPATH/.smsplus/sram
@@ -117,9 +109,7 @@ fi
 if [ -d $EXTPATH/sms_sdl/ ]; then
 	if [ ! -d $INTPATH/.sms_sdl/ ]; then
 		echo "SMS SDL folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.sms_sdl
-		mkdir $INTPATH/.sms_sdl/sram
-		mkdir $INTPATH/.sms_sdl/state
+		mkdir -p $INTPATH/.sms_sdl/sram $INTPATH/.sms_sdl/state
 	fi
 	echo "Restoring SMS SDL data..."
 	rsync -rtvhW $EXTPATH/sms_sdl/sram/ $INTPATH/.sms_sdl/sram
@@ -149,9 +139,7 @@ fi
 if [ -d $EXTPATH/snes9x/ ]; then
 	if [ ! -d $INTPATH/.snes9x/ ]; then
 		echo "Snes9x folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.snes9x
-		mkdir $INTPATH/.snes9x/spc
-		mkdir $INTPATH/.snes9x/sram
+		mkdir -p $INTPATH/.snes9x/spc $INTPATH/.snes9x/sram
 	fi
 	echo "Restoring Snes9x data..."
 	rsync -rtvhW $EXTPATH/snes9x/spc/ $INTPATH/.snes9x/spc
@@ -162,9 +150,7 @@ fi
 if [ -d $EXTPATH/swanemu/ ]; then
 	if [ ! -d $INTPATH/.swanemu/ ]; then
 		echo "SwanEmu folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.swanemu
-		mkdir $INTPATH/.swanemu/eeprom
-		mkdir $INTPATH/.swanemu/sstates
+		mkdir -p $INTPATH/.swanemu/eeprom $INTPATH/.swanemu/sstates
 	fi
 	echo "Restoring SwanEmu data..."
 	rsync -rtvhW $EXTPATH/swanemu/eeprom/ $INTPATH/.swanemu/eeprom
@@ -175,9 +161,7 @@ fi
 if [ -d $EXTPATH/temper/ ]; then
 	if [ ! -d $INTPATH/.temper/ ]; then
 		echo "Temper folder doesn't exist in home directory, creating folder."
-		mkdir $INTPATH/.temper
-		mkdir $INTPATH/.temper/bram
-		mkdir $INTPATH/.temper/save_states
+		mkdir -p $INTPATH/.temper/bram $INTPATH/.temper/save_states
 	fi
 	echo "Restoring Temper data..."
 	rsync -rtvhW $EXTPATH/temper/bram/ $INTPATH/.temper/bram
