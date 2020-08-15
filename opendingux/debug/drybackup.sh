@@ -23,6 +23,9 @@ fi
 # Overrides permissions on backup folder
 chmod -R 777 $EXTPATH
 
+# Sets alias
+alias tbac="rsync --inplace -nrtvh"
+
 # Backs up screenshots
 if [ -d $INTPATH/screenshots/ ]; then
 	if [ ! -d $EXTPATH/screenshots/ ]; then
@@ -30,7 +33,7 @@ if [ -d $INTPATH/screenshots/ ]; then
 		mkdir $EXTPATH/screenshots
 	fi
 	echo "Exported screenshots:"
-	rsync -nvrtW --ignore-existing $INTPATH/screenshots/ $EXTPATH/screenshots
+	tbac --ignore-existing $INTPATH/screenshots/ $EXTPATH/screenshots
 fi
 
 # Backs up FCEUX data
@@ -40,8 +43,8 @@ if [ -d $INTPATH/.fceux/ ]; then
 		mkdir -p $EXTPATH/fceux/sav $EXTPATH/fceux/fcs
 	fi
 	echo "Exported FCEUX files:"
-	rsync -nvrtW $INTPATH/.fceux/sav/ $EXTPATH/fceux/sav
-	rsync -nvrtW $INTPATH/.fceux/fcs/ $EXTPATH/fceux/fcs
+	tbac $INTPATH/.fceux/sav/ $EXTPATH/fceux/sav
+	tbac $INTPATH/.fceux/fcs/ $EXTPATH/fceux/fcs
 fi
 
 # Backs up Gambatte data
@@ -51,7 +54,7 @@ if [ -d $INTPATH/.gambatte/ ]; then
 		mkdir -p $EXTPATH/gambatte/saves
 	fi
 	echo "Exported Gambatte files:"
-	rsync -nvrtW $INTPATH/.gambatte/saves/ $EXTPATH/gambatte/saves
+	tbac $INTPATH/.gambatte/saves/ $EXTPATH/gambatte/saves
 fi
 
 # Backs up OhBoy data
@@ -61,7 +64,7 @@ if [ -d $INTPATH/.ohboy/ ]; then
 		mkdir -p $EXTPATH/ohboy/saves
 	fi
 	echo "Exported OhBoy files:"
-	rsync -nvrtW $INTPATH/.ohboy/saves/ $EXTPATH/ohboy/saves
+	tbac $INTPATH/.ohboy/saves/ $EXTPATH/ohboy/saves
 fi
 
 # Backs up ReGBA data
@@ -71,7 +74,7 @@ if [ -d $INTPATH/.gpsp/ ]; then
 		mkdir $EXTPATH/gpsp
 	fi
 	echo "Exported ReGBA files:"
-	rsync -nvrtW $INTPATH/.gpsp/ $EXTPATH/gpsp
+	tbac $INTPATH/.gpsp/ $EXTPATH/gpsp
 fi
 
 # Backs up PCSX4all data
@@ -81,8 +84,8 @@ if [ -d $INTPATH/.pcsx4all/ ]; then
 		mkdir -p $EXTPATH/pcsx4all/memcards $EXTPATH/pcsx4all/sstates
 	fi
 	echo "Exported PCSX4all files:"
-	rsync -nvrtW $INTPATH/.pcsx4all/memcards/ $EXTPATH/pcsx4all/memcards
-	rsync -nvrtW $INTPATH/.pcsx4all/sstates/ $EXTPATH/pcsx4all/sstates
+	tbac $INTPATH/.pcsx4all/memcards/ $EXTPATH/pcsx4all/memcards
+	tbac $INTPATH/.pcsx4all/sstates/ $EXTPATH/pcsx4all/sstates
 fi
 
 # Backs up Picodrive data
@@ -92,8 +95,8 @@ if [ -d $INTPATH/.picodrive/ ]; then
 		mkdir -p $EXTPATH/picodrive/mds $EXTPATH/picodrive/srm
 	fi
 	echo "Exported Picodrive files:"
-	rsync -nvrtW $INTPATH/.picodrive/mds/ $EXTPATH/picodrive/mds
-	rsync -nvrtW $INTPATH/.picodrive/srm/ $EXTPATH/picodrive/srm
+	tbac $INTPATH/.picodrive/mds/ $EXTPATH/picodrive/mds
+	tbac $INTPATH/.picodrive/srm/ $EXTPATH/picodrive/srm
 fi
 
 # Backs up SMS Plus data
@@ -103,8 +106,8 @@ if [ -d $INTPATH/.smsplus/ ]; then
 		mkdir -p $EXTPATH/smsplus/sram $EXTPATH/smsplus/state
 	fi
 	echo "Exported SMS Plus files:"
-	rsync -nvrtW $INTPATH/.smsplus/sram/ $EXTPATH/smsplus/sram
-	rsync -nvrtW $INTPATH/.smsplus/state/ $EXTPATH/smsplus/state
+	tbac $INTPATH/.smsplus/sram/ $EXTPATH/smsplus/sram
+	tbac $INTPATH/.smsplus/state/ $EXTPATH/smsplus/state
 fi
 
 if [ -d $INTPATH/.sms_sdl/ ]; then
@@ -113,8 +116,8 @@ if [ -d $INTPATH/.sms_sdl/ ]; then
 		mkdir -p $EXTPATH/sms_sdl/sram $EXTPATH/sms_sdl/state
 	fi
 	echo "Exported SMS SDL files:"
-	rsync -nvrtW $INTPATH/.sms_sdl/sram/ $EXTPATH/sms_sdl/sram
-	rsync -nvrtW $INTPATH/.sms_sdl/state/ $EXTPATH/sms_sdl/state
+	tbac $INTPATH/.sms_sdl/sram/ $EXTPATH/sms_sdl/sram
+	tbac $INTPATH/.sms_sdl/state/ $EXTPATH/sms_sdl/state
 fi
 
 # Backs up PocketSNES data
@@ -124,7 +127,7 @@ if [ -d $INTPATH/.snes96_snapshots/ ]; then
 		mkdir $EXTPATH/snes96_snapshots
 	fi
 	echo "Exported SNES96 files:"
-	rsync -nvrtW $INTPATH/.snes96_snapshots/ $EXTPATH/snes96_snapshots
+	tbac $INTPATH/.snes96_snapshots/ $EXTPATH/snes96_snapshots
 fi
 
 if [ -d $INTPATH/.pocketsnes/ ]; then
@@ -133,7 +136,7 @@ if [ -d $INTPATH/.pocketsnes/ ]; then
 		mkdir $EXTPATH/pocketsnes
 	fi
 	echo "Exported PocketSNES files:"
-	rsync -nvrtW $INTPATH/.pocketsnes/ $EXTPATH/pocketsnes
+	tbac $INTPATH/.pocketsnes/ $EXTPATH/pocketsnes
 fi
 
 # Backs up Snes9x data
@@ -143,8 +146,8 @@ if [ -d $INTPATH/.snes9x/ ]; then
 		mkdir -p $EXTPATH/snes9x/spc $EXTPATH/snes9x/sram
 	fi
 	echo "Exported Snes9x files:"
-	rsync -nvrtW $INTPATH/.snes9x/spc/ $EXTPATH/snes9x/spc
-	rsync -nvrtW $INTPATH/.snes9x/sram/ $EXTPATH/snes9x/sram
+	tbac $INTPATH/.snes9x/spc/ $EXTPATH/snes9x/spc
+	tbac $INTPATH/.snes9x/sram/ $EXTPATH/snes9x/sram
 fi
 
 # Backs up SwanEmu data
@@ -154,8 +157,8 @@ if [ -d $INTPATH/.swanemu/ ]; then
 		mkdir -p $EXTPATH/swanemu/eeprom $EXTPATH/swanemu/sstates
 	fi
 	echo "Exported SwanEmu files:"
-	rsync -nvrtW $INTPATH/.swanemu/eeprom/ $EXTPATH/swanemu/eeprom
-	rsync -nvrtW $INTPATH/.swanemu/sstates/ $EXTPATH/swanemu/sstates
+	tbac $INTPATH/.swanemu/eeprom/ $EXTPATH/swanemu/eeprom
+	tbac $INTPATH/.swanemu/sstates/ $EXTPATH/swanemu/sstates
 fi
 
 # Backs up Temper data
@@ -165,8 +168,8 @@ if [ -d $INTPATH/.temper/ ]; then
 		mkdir -p $EXTPATH/temper/bram $EXTPATH/temper/save_states
 	fi
 	echo "Exported Temper files:"
-	rsync -nvrtW $INTPATH/.temper/bram/ $EXTPATH/temper/bram
-	rsync -nvrtW $INTPATH/.temper/save_states/ $EXTPATH/temper/save_states
+	tbac $INTPATH/.temper/bram/ $EXTPATH/temper/bram
+	tbac $INTPATH/.temper/save_states/ $EXTPATH/temper/save_states
 fi
 
 echo ""
