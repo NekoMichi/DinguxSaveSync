@@ -46,6 +46,9 @@ echo "===Importing Saves==="
 chmod -R 777 $EXTPATH
 chmod -R 777 $INTPATH
 
+# Sets alias
+alias imp="rsync --inplace -rtvh"
+
 # Imports FCEUX data
 if [ -d $EXTPATH/.fceux/ ]; then
 	if [ ! -d $INTPATH/.fceux/ ]; then
@@ -53,8 +56,8 @@ if [ -d $EXTPATH/.fceux/ ]; then
 		mkdir -p $INTPATH/.fceux/sav $INTPATH/.fceux/fcs
 	fi
 	echo "Importing FCEUX data..."
-	rsync -rtvhW $EXTPATH/.fceux/sav/ $INTPATH/.fceux/sav
-	rsync -rtvhW $EXTPATH/.fceux/fcs/ $INTPATH/.fceux/fcs
+	imp $EXTPATH/.fceux/sav/ $INTPATH/.fceux/sav
+	imp $EXTPATH/.fceux/fcs/ $INTPATH/.fceux/fcs
 fi
 
 # Imports Gambatte data
@@ -64,7 +67,7 @@ if [ -d $EXTPATH/.gambatte/ ]; then
 		mkdir -p $INTPATH/.gambatte/saves
 	fi
 	echo "Importing Gambatte data..."
-	rsync -rtvhW $EXTPATH/.gambatte/saves/ $INTPATH/.gambatte/saves
+	imp $EXTPATH/.gambatte/saves/ $INTPATH/.gambatte/saves
 fi
 
 # Imports OhBoy data
@@ -74,7 +77,7 @@ if [ -d $EXTPATH/.ohboy/ ]; then
 		mkdir -p $INTPATH/.ohboy/saves
 	fi
 	echo "Importing OhBoy data..."
-	rsync -rtvhW $EXTPATH/.ohboy/saves/ $INTPATH/.ohboy/saves
+	imp $EXTPATH/.ohboy/saves/ $INTPATH/.ohboy/saves
 fi
 
 # Imports ReGBA data
@@ -84,7 +87,7 @@ if [ -d $EXTPATH/.gpsp/ ]; then
 		mkdir $INTPATH/.gpsp
 	fi
 	echo "Importing ReGBA data..."
-	rsync -rtvhW --exclude '*.cfg' $EXTPATH/.gpsp/ $INTPATH/.gpsp
+	imp --exclude '*.cfg' $EXTPATH/.gpsp/ $INTPATH/.gpsp
 fi
 
 # Imports PCSX4all data
@@ -94,8 +97,8 @@ if [ -d $EXTPATH/.pcsx4all/ ]; then
 		mkdir -p $INTPATH/.pcsx4all/memcards $INTPATH/.pcsx4all/sstates
 	fi
 	echo "Importing PCSX4all data..."
-	rsync -rtvhW $EXTPATH/.pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
-	rsync -rtvhW $EXTPATH/.pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
+	imp $EXTPATH/.pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
+	imp $EXTPATH/.pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
 fi
 
 # Imports Picodrive data
@@ -105,8 +108,8 @@ if [ -d $EXTPATH/.picodrive/ ]; then
 		mkdir -p $INTPATH/.picodrive/mds $INTPATH/.picodrive/srm
 	fi
 	echo "Importing PicoDrive data..."
-	rsync -rtvhW $EXTPATH/.picodrive/mds/ $INTPATH/.picodrive/mds
-	rsync -rtvhW $EXTPATH/.picodrive/srm/ $INTPATH/.picodrive/srm
+	imp $EXTPATH/.picodrive/mds/ $INTPATH/.picodrive/mds
+	imp $EXTPATH/.picodrive/srm/ $INTPATH/.picodrive/srm
 fi
 
 # Imports SMS Plus data
@@ -116,8 +119,8 @@ if [ -d $EXTPATH/.smsplus/ ]; then
 		mkdir -p $INTPATH/.smsplus/sram $INTPATH/.smsplus/state
 	fi
 	echo "Importing SMS Plus data..."
-	rsync -rtvhW $EXTPATH/.smsplus/sram/ $INTPATH/.smsplus/sram
-	rsync -rtvhW $EXTPATH/.smsplus/state/ $INTPATH/.smsplus/state
+	imp $EXTPATH/.smsplus/sram/ $INTPATH/.smsplus/sram
+	imp $EXTPATH/.smsplus/state/ $INTPATH/.smsplus/state
 fi
 
 if [ -d $EXTPATH/.sms_sdl/ ]; then
@@ -126,8 +129,8 @@ if [ -d $EXTPATH/.sms_sdl/ ]; then
 		mkdir -p $INTPATH/.sms_sdl/sram $INTPATH/.sms_sdl/state
 	fi
 	echo "Importing SMS SDL data..."
-	rsync -rtvhW $EXTPATH/.sms_sdl/sram/ $INTPATH/.sms_sdl/sram
-	rsync -rtvhW $EXTPATH/.sms_sdl/state/ $INTPATH/.sms_sdl/state
+	imp $EXTPATH/.sms_sdl/sram/ $INTPATH/.sms_sdl/sram
+	imp $EXTPATH/.sms_sdl/state/ $INTPATH/.sms_sdl/state
 fi
 
 # Importing PocketSNES data
@@ -137,7 +140,7 @@ if [ -d $EXTPATH/.snes96_snapshots/ ]; then
 		mkdir $INTPATH/.snes96_snapshots
 	fi
 	echo "Importing SNES96 data..."
-	rsync -rtvhW --exclude '*.opt' $EXTPATH/.snes96_snapshots/ $INTPATH/.snes96_snapshots
+	imp --exclude '*.opt' $EXTPATH/.snes96_snapshots/ $INTPATH/.snes96_snapshots
 fi
 
 if [ -d $EXTPATH/.pocketsnes/ ]; then
@@ -146,7 +149,7 @@ if [ -d $EXTPATH/.pocketsnes/ ]; then
 		mkdir $INTPATH/.pocketsnes
 	fi
 	echo "Importing PocketSNES data..."
-	rsync -rtvhW --exclude '*.opt' $EXTPATH/.pocketsnes/ $INTPATH/.pocketsnes
+	imp --exclude '*.opt' $EXTPATH/.pocketsnes/ $INTPATH/.pocketsnes
 fi
 
 # Imports Snes9x data
@@ -156,8 +159,8 @@ if [ -d $EXTPATH/.snes9x/ ]; then
 		mkdir -p $INTPATH/.snes9x/spc $INTPATH/.snes9x/sram
 	fi
 	echo "Importing Snes9x data..."
-	rsync -rtvhW $EXTPATH/.snes9x/spc/ $INTPATH/.snes9x/spc
-	rsync -rtvhW $EXTPATH/.snes9x/sram/ $INTPATH/.snes9x/sram
+	imp $EXTPATH/.snes9x/spc/ $INTPATH/.snes9x/spc
+	imp $EXTPATH/.snes9x/sram/ $INTPATH/.snes9x/sram
 fi
 
 # Imports SwanEmu data
@@ -167,8 +170,8 @@ if [ -d $EXTPATH/.swanemu/ ]; then
 		mkdir -p $INTPATH/.swanemu/eeprom $INTPATH/.swanemu/sstates
 	fi
 	echo "Importing SwanEmu data..."
-	rsync -rtvhW $EXTPATH/.swanemu/eeprom/ $INTPATH/.swanemu/eeprom
-	rsync -rtvhW $EXTPATH/.swanemu/sstates/ $INTPATH/.swanemu/sstates
+	imp $EXTPATH/.swanemu/eeprom/ $INTPATH/.swanemu/eeprom
+	imp $EXTPATH/.swanemu/sstates/ $INTPATH/.swanemu/sstates
 fi
 
 # Imports Temper data
@@ -178,8 +181,8 @@ if [ -d $EXTPATH/.temper/ ]; then
 		mkdir -p $INTPATH/.temper/bram $INTPATH/.temper/save_states
 	fi
 	echo "Importing Temper data..."
-	rsync -rtvhW $EXTPATH/.temper/bram/ $INTPATH/.temper/bram
-	rsync -rtvhW $EXTPATH/.temper/save_states/ $INTPATH/.temper/save_states
+	imp $EXTPATH/.temper/bram/ $INTPATH/.temper/bram
+	imp $EXTPATH/.temper/save_states/ $INTPATH/.temper/save_states
 fi
 
 dialog --clear --backtitle "SaveSync $APPVERSION" --title "Import Complete" --msgbox "Save import complete.\nPress START to exit." 6 29
