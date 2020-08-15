@@ -24,6 +24,9 @@ fi
 chmod -R 777 $EXTPATH
 chmod -R 777 $INTPATH
 
+# Sets alias
+alias tres="rsync --inplace -nrtvh"
+
 # Restores FCEUX data
 if [ -d $EXTPATH/fceux/ ]; then
 	if [ ! -d $INTPATH/.fceux/ ]; then
@@ -31,8 +34,8 @@ if [ -d $EXTPATH/fceux/ ]; then
 		mkdir -p $INTPATH/.fceux/sav $INTPATH/.fceux/fcs
 	fi
 	echo "Imported FCEUX files:"
-	rsync -nvrtW $EXTPATH/fceux/sav/ $INTPATH/.fceux/sav
-	rsync -nvrtW $EXTPATH/fceux/fcs/ $INTPATH/.fceux/fcs
+	tres $EXTPATH/fceux/sav/ $INTPATH/.fceux/sav
+	tres $EXTPATH/fceux/fcs/ $INTPATH/.fceux/fcs
 fi
 
 # Restores Gambatte data
@@ -42,7 +45,7 @@ if [ -d $EXTPATH/gambatte/ ]; then
 		mkdir -p $INTPATH/.gambatte/saves
 	fi
 	echo "Imported Gambatte files:"
-	rsync -nvrtW $EXTPATH/gambatte/saves/ $INTPATH/.gambatte/saves
+	tres $EXTPATH/gambatte/saves/ $INTPATH/.gambatte/saves
 fi
 
 # Restores OhBoy data
@@ -52,7 +55,7 @@ if [ -d $EXTPATH/ohboy/ ]; then
 		mkdir -p $INTPATH/.ohboy/saves
 	fi
 	echo "Imported OhBoy files:"
-	rsync -nvrtW $EXTPATH/ohboy/saves/ $INTPATH/.ohboy/saves
+	tres $EXTPATH/ohboy/saves/ $INTPATH/.ohboy/saves
 fi
 
 # Restores ReGBA data
@@ -62,7 +65,7 @@ if [ -d $EXTPATH/gpsp/ ]; then
 		mkdir $INTPATH/.gpsp
 	fi
 	echo "Imported ReGBA files:"
-	rsync -nvrtW --exclude '*.cfg' $EXTPATH/gpsp/ $INTPATH/.gpsp
+	tres --exclude '*.cfg' $EXTPATH/gpsp/ $INTPATH/.gpsp
 fi
 
 # Restores PCSX4all data
@@ -72,8 +75,8 @@ if [ -d $EXTPATH/pcsx4all/ ]; then
 		mkdir -p $INTPATH/.pcsx4all/memcards $INTPATH/.pcsx4all/sstates
 	fi
 	echo "Imported PCSX4all files:"
-	rsync -nvrtW $EXTPATH/pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
-	rsync -nvrtW $EXTPATH/pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
+	tres $EXTPATH/pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
+	tres $EXTPATH/pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
 fi
 
 # Restores Picodrive data
@@ -83,8 +86,8 @@ if [ -d $EXTPATH/picodrive/ ]; then
 		mkdir -p $INTPATH/.picodrive/mds $INTPATH/.picodrive/srm
 	fi
 	echo "Imported PicoDrive files:"
-	rsync -nvrtW $EXTPATH/picodrive/mds/ $INTPATH/.picodrive/mds
-	rsync -nvrtW $EXTPATH/picodrive/srm/ $INTPATH/.picodrive/srm
+	tres $EXTPATH/picodrive/mds/ $INTPATH/.picodrive/mds
+	tres $EXTPATH/picodrive/srm/ $INTPATH/.picodrive/srm
 fi
 
 # Restores SMS Plus data
@@ -94,8 +97,8 @@ if [ -d $EXTPATH/smsplus/ ]; then
 		mkdir -p $INTPATH/.smsplus/sram $INTPATH/.smsplus/state
 	fi
 	echo "Imported SMS Plus files:"
-	rsync -nvrtW $EXTPATH/smsplus/sram/ $INTPATH/.smsplus/sram
-	rsync -nvrtW $EXTPATH/smsplus/state/ $INTPATH/.smsplus/state
+	tres $EXTPATH/smsplus/sram/ $INTPATH/.smsplus/sram
+	tres $EXTPATH/smsplus/state/ $INTPATH/.smsplus/state
 fi
 
 if [ -d $EXTPATH/sms_sdl/ ]; then
@@ -104,8 +107,8 @@ if [ -d $EXTPATH/sms_sdl/ ]; then
 		mkdir -p $INTPATH/.sms_sdl/sram $INTPATH/.sms_sdl/state
 	fi
 	echo "Imported SMS SDL files:"
-	rsync -nvrtW $EXTPATH/sms_sdl/sram/ $INTPATH/.sms_sdl/sram
-	rsync -nvrtW $EXTPATH/sms_sdl/state/ $INTPATH/.sms_sdl/state
+	tres $EXTPATH/sms_sdl/sram/ $INTPATH/.sms_sdl/sram
+	tres $EXTPATH/sms_sdl/state/ $INTPATH/.sms_sdl/state
 fi
 
 # Restores PocketSNES data
@@ -115,7 +118,7 @@ if [ -d $EXTPATH/snes96_snapshots/ ]; then
 		mkdir $INTPATH/.snes96_snapshots
 	fi
 	echo "Imported SNES96 files:"
-	rsync -nvrtW --exclude '*.opt' $EXTPATH/snes96_snapshots/ $INTPATH/.snes96_snapshots
+	tres --exclude '*.opt' $EXTPATH/snes96_snapshots/ $INTPATH/.snes96_snapshots
 fi
 
 if [ -d $EXTPATH/pocketsnes/ ]; then
@@ -124,7 +127,7 @@ if [ -d $EXTPATH/pocketsnes/ ]; then
 		mkdir $INTPATH/.pocketsnes
 	fi
 	echo "Imported PocketSNES files:"
-	rsync -nvrtW --exclude '*.opt' $EXTPATH/pocketsnes/ $INTPATH/.pocketsnes
+	tres --exclude '*.opt' $EXTPATH/pocketsnes/ $INTPATH/.pocketsnes
 fi
 
 # Restores Snes9x data
@@ -134,8 +137,8 @@ if [ -d $EXTPATH/snes9x/ ]; then
 		mkdir -p $INTPATH/.snes9x/spc $INTPATH/.snes9x/sram
 	fi
 	echo "Imported Snes9x files:"
-	rsync -nvrtW $EXTPATH/snes9x/spc/ $INTPATH/.snes9x/spc
-	rsync -nvrtW $EXTPATH/snes9x/sram/ $INTPATH/.snes9x/sram
+	tres $EXTPATH/snes9x/spc/ $INTPATH/.snes9x/spc
+	tres $EXTPATH/snes9x/sram/ $INTPATH/.snes9x/sram
 fi
 
 # Restores SwanEmu data
@@ -145,8 +148,8 @@ if [ -d $EXTPATH/swanemu/ ]; then
 		mkdir -p $INTPATH/.swanemu/eeprom $INTPATH/.swanemu/sstates
 	fi
 	echo "Imported SwanEmu files:"
-	rsync -nvrtW $EXTPATH/swanemu/eeprom/ $INTPATH/.swanemu/eeprom
-	rsync -nvrtW $EXTPATH/swanemu/sstates/ $INTPATH/.swanemu/sstates
+	tres $EXTPATH/swanemu/eeprom/ $INTPATH/.swanemu/eeprom
+	tres $EXTPATH/swanemu/sstates/ $INTPATH/.swanemu/sstates
 fi
 
 # Restores Temper data
@@ -156,8 +159,8 @@ if [ -d $EXTPATH/temper/ ]; then
 		mkdir -p $INTPATH/.temper/bram $INTPATH/.temper/save_states
 	fi
 	echo "Imported Temper files:"
-	rsync -nvrtW $EXTPATH/temper/bram/ $INTPATH/.temper/bram
-	rsync -nvrtW $EXTPATH/temper/save_states/ $INTPATH/.temper/save_states
+	tres $EXTPATH/temper/bram/ $INTPATH/.temper/bram
+	tres $EXTPATH/temper/save_states/ $INTPATH/.temper/save_states
 fi
 
 echo ""
