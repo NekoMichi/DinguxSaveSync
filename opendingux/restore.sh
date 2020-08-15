@@ -32,6 +32,9 @@ echo "===Restoring Saves==="
 chmod -R 777 $EXTPATH
 chmod -R 777 $INTPATH
 
+# Sets alias
+alias res="rsync --inplace -rtvh"
+
 # Restores FCEUX data
 if [ -d $EXTPATH/fceux/ ]; then
 	if [ ! -d $INTPATH/.fceux/ ]; then
@@ -39,8 +42,8 @@ if [ -d $EXTPATH/fceux/ ]; then
 		mkdir -p $INTPATH/.fceux/sav $INTPATH/.fceux/fcs
 	fi
 	echo "Restoring FCEUX data..."
-	rsync -rtvhW $EXTPATH/fceux/sav/ $INTPATH/.fceux/sav
-	rsync -rtvhW $EXTPATH/fceux/fcs/ $INTPATH/.fceux/fcs
+	res $EXTPATH/fceux/sav/ $INTPATH/.fceux/sav
+	res $EXTPATH/fceux/fcs/ $INTPATH/.fceux/fcs
 fi
 
 # Restores Gambatte data
@@ -50,7 +53,7 @@ if [ -d $EXTPATH/gambatte/ ]; then
 		mkdir -p $INTPATH/.gambatte/saves
 	fi
 	echo "Restoring Gambatte data..."
-	rsync -rtvhW $EXTPATH/gambatte/saves/ $INTPATH/.gambatte/saves
+	res $EXTPATH/gambatte/saves/ $INTPATH/.gambatte/saves
 fi
 
 # Restores OhBoy data
@@ -60,7 +63,7 @@ if [ -d $EXTPATH/ohboy/ ]; then
 		mkdir -p $INTPATH/.ohboy/saves
 	fi
 	echo "Restoring OhBoy data..."
-	rsync -rtvhW $EXTPATH/ohboy/saves/ $INTPATH/.ohboy/saves
+	res $EXTPATH/ohboy/saves/ $INTPATH/.ohboy/saves
 fi
 
 # Restores ReGBA data
@@ -70,7 +73,7 @@ if [ -d $EXTPATH/gpsp/ ]; then
 		mkdir $INTPATH/.gpsp
 	fi
 	echo "Restoring ReGBA data..."
-	rsync -rtvhW --exclude '*.cfg' $EXTPATH/gpsp/ $INTPATH/.gpsp
+	res --exclude '*.cfg' $EXTPATH/gpsp/ $INTPATH/.gpsp
 fi
 
 # Restores PCSX4all data
@@ -80,8 +83,8 @@ if [ -d $EXTPATH/pcsx4all/ ]; then
 		mkdir -p $INTPATH/.pcsx4all/memcards $INTPATH/.pcsx4all/sstates
 	fi
 	echo "Restoring PCSX4all data..."
-	rsync -rtvhW $EXTPATH/pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
-	rsync -rtvhW $EXTPATH/pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
+	res $EXTPATH/pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
+	res $EXTPATH/pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
 fi
 
 # Restores Picodrive data
@@ -91,8 +94,8 @@ if [ -d $EXTPATH/picodrive/ ]; then
 		mkdir -p $INTPATH/.picodrive/mds $INTPATH/.picodrive/srm
 	fi
 	echo "Restoring PicoDrive data..."
-	rsync -rtvhW $EXTPATH/picodrive/mds/ $INTPATH/.picodrive/mds
-	rsync -rtvhW $EXTPATH/picodrive/srm/ $INTPATH/.picodrive/srm
+	res $EXTPATH/picodrive/mds/ $INTPATH/.picodrive/mds
+	res $EXTPATH/picodrive/srm/ $INTPATH/.picodrive/srm
 fi
 
 # Restores SMS Plus data
@@ -102,8 +105,8 @@ if [ -d $EXTPATH/smsplus/ ]; then
 		mkdir -p $INTPATH/.smsplus/sram $INTPATH/.smsplus/state
 	fi
 	echo "Restoring SMS Plus data..."
-	rsync -rtvhW $EXTPATH/smsplus/sram/ $INTPATH/.smsplus/sram
-	rsync -rtvhW $EXTPATH/smsplus/state/ $INTPATH/.smsplus/state
+	res $EXTPATH/smsplus/sram/ $INTPATH/.smsplus/sram
+	res $EXTPATH/smsplus/state/ $INTPATH/.smsplus/state
 fi
 
 if [ -d $EXTPATH/sms_sdl/ ]; then
@@ -112,8 +115,8 @@ if [ -d $EXTPATH/sms_sdl/ ]; then
 		mkdir -p $INTPATH/.sms_sdl/sram $INTPATH/.sms_sdl/state
 	fi
 	echo "Restoring SMS SDL data..."
-	rsync -rtvhW $EXTPATH/sms_sdl/sram/ $INTPATH/.sms_sdl/sram
-	rsync -rtvhW $EXTPATH/sms_sdl/state/ $INTPATH/.sms_sdl/state
+	res $EXTPATH/sms_sdl/sram/ $INTPATH/.sms_sdl/sram
+	res $EXTPATH/sms_sdl/state/ $INTPATH/.sms_sdl/state
 fi
 
 # Restores PocketSNES data
@@ -123,7 +126,7 @@ if [ -d $EXTPATH/snes96_snapshots/ ]; then
 		mkdir $INTPATH/.snes96_snapshots
 	fi
 	echo "Restoring SNES96 data..."
-	rsync -rtvhW --exclude '*.opt' $EXTPATH/snes96_snapshots/ $INTPATH/.snes96_snapshots
+	res --exclude '*.opt' $EXTPATH/snes96_snapshots/ $INTPATH/.snes96_snapshots
 fi
 
 if [ -d $EXTPATH/pocketsnes/ ]; then
@@ -132,7 +135,7 @@ if [ -d $EXTPATH/pocketsnes/ ]; then
 		mkdir $INTPATH/.pocketsnes
 	fi
 	echo "Restoring PocketSNES data..."
-	rsync -rtvhW --exclude '*.opt' $EXTPATH/pocketsnes/ $INTPATH/.pocketsnes
+	res --exclude '*.opt' $EXTPATH/pocketsnes/ $INTPATH/.pocketsnes
 fi
 
 # Restores Snes9x data
@@ -142,8 +145,8 @@ if [ -d $EXTPATH/snes9x/ ]; then
 		mkdir -p $INTPATH/.snes9x/spc $INTPATH/.snes9x/sram
 	fi
 	echo "Restoring Snes9x data..."
-	rsync -rtvhW $EXTPATH/snes9x/spc/ $INTPATH/.snes9x/spc
-	rsync -rtvhW $EXTPATH/snes9x/sram/ $INTPATH/.snes9x/sram
+	res $EXTPATH/snes9x/spc/ $INTPATH/.snes9x/spc
+	res $EXTPATH/snes9x/sram/ $INTPATH/.snes9x/sram
 fi
 
 # Restores SwanEmu data
@@ -153,8 +156,8 @@ if [ -d $EXTPATH/swanemu/ ]; then
 		mkdir -p $INTPATH/.swanemu/eeprom $INTPATH/.swanemu/sstates
 	fi
 	echo "Restoring SwanEmu data..."
-	rsync -rtvhW $EXTPATH/swanemu/eeprom/ $INTPATH/.swanemu/eeprom
-	rsync -rtvhW $EXTPATH/swanemu/sstates/ $INTPATH/.swanemu/sstates
+	res $EXTPATH/swanemu/eeprom/ $INTPATH/.swanemu/eeprom
+	res $EXTPATH/swanemu/sstates/ $INTPATH/.swanemu/sstates
 fi
 
 # Restores Temper data
@@ -164,8 +167,8 @@ if [ -d $EXTPATH/temper/ ]; then
 		mkdir -p $INTPATH/.temper/bram $INTPATH/.temper/save_states
 	fi
 	echo "Restoring Temper data..."
-	rsync -rtvhW $EXTPATH/temper/bram/ $INTPATH/.temper/bram
-	rsync -rtvhW $EXTPATH/temper/save_states/ $INTPATH/.temper/save_states
+	res $EXTPATH/temper/bram/ $INTPATH/.temper/bram
+	res $EXTPATH/temper/save_states/ $INTPATH/.temper/save_states
 fi
 
 dialog --clear --backtitle "SaveSync $APPVERSION" --title "Restore Complete" --msgbox "Save restore complete.\nPress START to exit." 6 29
