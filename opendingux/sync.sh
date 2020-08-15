@@ -21,6 +21,9 @@ fi
 chmod -R 777 $EXTPATH
 chmod -R 777 $INTPATH
 
+# Sets alias
+alias syn="rsync --update --inplace -rtvh"
+
 # Backs up screenshots
 if [ -d /media/data/local/home/screenshots/ ]; then
 	if [ ! -d $EXTPATH/screenshots/ ]; then
@@ -28,31 +31,31 @@ if [ -d /media/data/local/home/screenshots/ ]; then
 		mkdir $EXTPATH/screenshots
 	fi
 	echo "Backing up screenshots..."
-	rsync -rtvhW --ignore-existing $INTPATH/screenshots/ $EXTPATH/screenshots
+	rsync -rtvh --ignore-existing $INTPATH/screenshots/ $EXTPATH/screenshots
 fi
 
 # Syncs FCEUX data
 if [ -d $INTPATH/.fceux/ ]; then
 	if [ -d $EXTPATH/fceux/ ]; then
 		echo "Syncing FCEUX data..."
-		rsync --update -rtvhW $INTPATH/.fceux/sav/ $EXTPATH/fceux/sav
-		rsync --update -rtvhW $INTPATH/.fceux/fcs/ $EXTPATH/fceux/fcs
-		rsync --update -rtvhW $EXTPATH/fceux/sav/ $INTPATH/.fceux/sav
-		rsync --update -rtvhW $EXTPATH/fceux/fcs/ $INTPATH/.fceux/fcs
+		syn $INTPATH/.fceux/sav/ $EXTPATH/fceux/sav
+		syn $INTPATH/.fceux/fcs/ $EXTPATH/fceux/fcs
+		syn $EXTPATH/fceux/sav/ $INTPATH/.fceux/sav
+		syn $EXTPATH/fceux/fcs/ $INTPATH/.fceux/fcs
 	else
 		echo "FCEUX backup folder doesn't exist, creating folder."
 		mkdir -p $EXTPATH/fceux/sav $EXTPATH/fceux/fcs
 		echo "Syncing FCEUX data..."
-		rsync --update -rtvhW $INTPATH/.fceux/sav/ $EXTPATH/fceux/sav
-		rsync --update -rtvhW $INTPATH/.fceux/fcs/ $EXTPATH/fceux/fcs
+		syn $INTPATH/.fceux/sav/ $EXTPATH/fceux/sav
+		syn $INTPATH/.fceux/fcs/ $EXTPATH/fceux/fcs
 	fi
 else
 	if [ -d $EXTPATH/fceux/ ]; then
 		echo "FCEUX folder doesn't exist in home directory, creating folder."
 		mkdir -p $INTPATH/.fceux/sav $INTPATH/.fceux/fcs
 		echo "Syncing FCEUX data..."
-		rsync --update -rtvhW $EXTPATH/fceux/sav/ $INTPATH/.fceux/sav
-		rsync --update -rtvhW $EXTPATH/fceux/fcs/ $INTPATH/.fceux/fcs
+		syn $EXTPATH/fceux/sav/ $INTPATH/.fceux/sav
+		syn $EXTPATH/fceux/fcs/ $INTPATH/.fceux/fcs
 	fi
 fi
 
@@ -60,20 +63,20 @@ fi
 if [ -d $INTPATH/.gambatte/ ]; then
 	if [ -d $EXTPATH/gambatte/ ]; then
 		echo "Syncing Gambatte data..."
-		rsync --update -rtvhW $INTPATH/.gambatte/saves/ $EXTPATH/gambatte/saves
-		rsync --update -rtvhW $EXTPATH/gambatte/saves/ $INTPATH/.gambatte/saves
+		syn $INTPATH/.gambatte/saves/ $EXTPATH/gambatte/saves
+		syn $EXTPATH/gambatte/saves/ $INTPATH/.gambatte/saves
 	else
 		echo "Gambatte backup folder doesn't exist, creating folder."
 		mkdir -p $EXTPATH/gambatte/saves
 		echo "Syncing Gambatte data..."
-		rsync --update -rtvhW $INTPATH/.gambatte/saves/ $EXTPATH/gambatte/saves
+		syn $INTPATH/.gambatte/saves/ $EXTPATH/gambatte/saves
 	fi
 else
 	if [ -d $EXTPATH/gambatte/ ]; then
 		echo "Gambatte folder doesn't exist in home directory, creating folder."
 		mkdir -p $INTPATH/.gambatte/saves
 		echo "Syncing Gambatte data..."
-		rsync --update -rtvhW $EXTPATH/gambatte/saves/ $INTPATH/.gambatte/saves
+		syn $EXTPATH/gambatte/saves/ $INTPATH/.gambatte/saves
 	fi
 fi
 
@@ -81,20 +84,20 @@ fi
 if [ -d $INTPATH/.ohboy/ ]; then
 	if [ -d $EXTPATH/ohboy/ ]; then
 		echo "Syncing OhBoy data..."
-		rsync --update -rtvhW $INTPATH/.ohboy/saves/ $EXTPATH/ohboy/saves
-		rsync --update -rtvhW $EXTPATH/ohboy/saves/ $INTPATH/.ohboy/saves
+		syn $INTPATH/.ohboy/saves/ $EXTPATH/ohboy/saves
+		syn $EXTPATH/ohboy/saves/ $INTPATH/.ohboy/saves
 	else
 		echo "OhBoy backup folder doesn't exist, creating folder."
 		mkdir -p $EXTPATH/ohboy/saves
 		echo "Syncing OhBoy data..."
-		rsync --update -rtvhW $INTPATH/.ohboy/saves/ $EXTPATH/ohboy/saves
+		syn $INTPATH/.ohboy/saves/ $EXTPATH/ohboy/saves
 	fi
 else
 	if [ -d $EXTPATH/ohboy/ ]; then
 		echo "OhBoy folder doesn't exist in home directory, creating folder."
 		mkdir -p $INTPATH/.ohboy/saves
 		echo "Syncing OhBoy data..."
-		rsync --update -rtvhW $EXTPATH/ohboy/saves/ $INTPATH/.ohboy/saves
+		syn $EXTPATH/ohboy/saves/ $INTPATH/.ohboy/saves
 	fi
 fi
 
@@ -102,20 +105,20 @@ fi
 if [ -d $INTPATH/.gpsp/ ]; then
 	if [ -d $EXTPATH/gpsp/ ]; then
 		echo "Syncing ReGBA data..."
-		rsync --update -rtvhW $INTPATH/.gpsp/ $EXTPATH/gpsp
-		rsync --update -rtvhW --exclude '*.cfg' $EXTPATH/gpsp/ $INTPATH/.gpsp
+		syn $INTPATH/.gpsp/ $EXTPATH/gpsp
+		syn --exclude '*.cfg' $EXTPATH/gpsp/ $INTPATH/.gpsp
 	else
 		echo "ReGBA backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/gpsp
 		echo "Syncing ReGBA data..."
-		rsync --update -rtvhW $INTPATH/.gpsp/ $EXTPATH/gpsp
+		syn $INTPATH/.gpsp/ $EXTPATH/gpsp
 	fi
 else
 	if [ -d $EXTPATH/gpsp/ ]; then
 		echo "ReGBA folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.gpsp
 		echo "Syncing ReGBA data..."
-		rsync --update -rtvhW --exclude '*.cfg' $EXTPATH/gpsp/ $INTPATH/.gpsp
+		syn --exclude '*.cfg' $EXTPATH/gpsp/ $INTPATH/.gpsp
 	fi
 fi
 
@@ -123,24 +126,24 @@ fi
 if [ -d $INTPATH/.pcsx4all/ ]; then
 	if [ -d $EXTPATH/pcsx4all/ ]; then
 		echo "Syncing PCSX4all data..."
-		rsync --update -rtvhW $INTPATH/.pcsx4all/memcards/ $EXTPATH/pcsx4all/memcards
-		rsync --update -rtvhW $INTPATH/.pcsx4all/sstates/ $EXTPATH/pcsx4all/sstates
-		rsync --update -rtvhW $EXTPATH/pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
-		rsync --update -rtvhW $EXTPATH/pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
+		syn $INTPATH/.pcsx4all/memcards/ $EXTPATH/pcsx4all/memcards
+		syn $INTPATH/.pcsx4all/sstates/ $EXTPATH/pcsx4all/sstates
+		syn $EXTPATH/pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
+		syn $EXTPATH/pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
 	else
 		echo "PCSX4all backup folder doesn't exist, creating folder."
 		mkdir -p $EXTPATH/pcsx4all/memcards $EXTPATH/pcsx4all/sstates
 		echo "Syncing PCSX4all data..."
-		rsync --update -rtvhW $INTPATH/.pcsx4all/memcards/ $EXTPATH/pcsx4all/memcards
-		rsync --update -rtvhW $INTPATH/.pcsx4all/sstates/ $EXTPATH/pcsx4all/sstates
+		syn $INTPATH/.pcsx4all/memcards/ $EXTPATH/pcsx4all/memcards
+		syn $INTPATH/.pcsx4all/sstates/ $EXTPATH/pcsx4all/sstates
 	fi
 else
 	if [ -d $EXTPATH/pcsx4all/ ]; then
 		echo "PCSX4all folder doesn't exist in home directory, creating folder."
 		mkdir -p $INTPATH/.pcsx4all/memcards $INTPATH/.pcsx4all/sstates
 		echo "Syncing PCSX4all data..."
-		rsync --update -rtvhW $EXTPATH/pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
-		rsync --update -rtvhW $EXTPATH/pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
+		syn $EXTPATH/pcsx4all/memcards/ $INTPATH/.pcsx4all/memcards
+		syn $EXTPATH/pcsx4all/sstates/ $INTPATH/.pcsx4all/sstates
 	fi
 fi
 
@@ -148,24 +151,24 @@ fi
 if [ -d $INTPATH/.picodrive/ ]; then
 	if [ -d $EXTPATH/picodrive/ ]; then
 		echo "Syncing PicoDrive data..."
-		rsync --update -rtvhW $INTPATH/.picodrive/mds/ $EXTPATH/picodrive/mds
-		rsync --update -rtvhW $INTPATH/.picodrive/srm/ $EXTPATH/picodrive/srm
-		rsync --update -rtvhW $EXTPATH/picodrive/mds/ $INTPATH/.picodrive/mds
-		rsync --update -rtvhW $EXTPATH/picodrive/srm/ $INTPATH/.picodrive/srm
+		syn $INTPATH/.picodrive/mds/ $EXTPATH/picodrive/mds
+		syn $INTPATH/.picodrive/srm/ $EXTPATH/picodrive/srm
+		syn $EXTPATH/picodrive/mds/ $INTPATH/.picodrive/mds
+		syn $EXTPATH/picodrive/srm/ $INTPATH/.picodrive/srm
 	else
 		echo "PicoDrive backup folder doesn't exist, creating folder."
 		mkdir -p $EXTPATH/picodrive/mds $EXTPATH/picodrive/srm
 		echo "Syncing PicoDrive data..."
-		rsync --update -rtvhW $INTPATH/.picodrive/mds/ $EXTPATH/picodrive/mds
-		rsync --update -rtvhW $INTPATH/.picodrive/srm/ $EXTPATH/picodrive/srm
+		syn $INTPATH/.picodrive/mds/ $EXTPATH/picodrive/mds
+		syn $INTPATH/.picodrive/srm/ $EXTPATH/picodrive/srm
 	fi
 else
 	if [ -d $EXTPATH/picodrive/ ]; then
 		echo "PicoDrive folder doesn't exist in home directory, creating folder."
 		mkdir -p $INTPATH/.picodrive/mds $INTPATH/.picodrive/srm
 		echo "Syncing PicoDrive data..."
-		rsync --update -rtvhW $EXTPATH/picodrive/mds/ $INTPATH/.picodrive/mds
-		rsync --update -rtvhW $EXTPATH/picodrive/srm/ $INTPATH/.picodrive/srm
+		syn $EXTPATH/picodrive/mds/ $INTPATH/.picodrive/mds
+		syn $EXTPATH/picodrive/srm/ $INTPATH/.picodrive/srm
 	fi
 fi
 
@@ -173,48 +176,48 @@ fi
 if [ -d $INTPATH/.smsplus/ ]; then
 	if [ -d $EXTPATH/smsplus/ ]; then
 		echo "Syncing SMS Plus data..."
-		rsync --update -rtvhW $INTPATH/.smsplus/sram/ $EXTPATH/smsplus/sram
-		rsync --update -rtvhW $INTPATH/.smsplus/state/ $EXTPATH/smsplus/state
-		rsync --update -rtvhW $EXTPATH/smsplus/sram/ $INTPATH/.smsplus/sram
-		rsync --update -rtvhW $EXTPATH/smsplus/state/ $INTPATH/.smsplus/state
+		syn $INTPATH/.smsplus/sram/ $EXTPATH/smsplus/sram
+		syn $INTPATH/.smsplus/state/ $EXTPATH/smsplus/state
+		syn $EXTPATH/smsplus/sram/ $INTPATH/.smsplus/sram
+		syn $EXTPATH/smsplus/state/ $INTPATH/.smsplus/state
 	else
 		echo "SMS Plus backup folder doesn't exist, creating folder."
 		mkdir -p $EXTPATH/smsplus/sram $EXTPATH/smsplus/state
 		echo "Syncing SMS Plus data..."
-		rsync --update -rtvhW $INTPATH/.smsplus/sram/ $EXTPATH/smsplus/sram
-		rsync --update -rtvhW $INTPATH/.smsplus/state/ $EXTPATH/smsplus/state
+		syn $INTPATH/.smsplus/sram/ $EXTPATH/smsplus/sram
+		syn $INTPATH/.smsplus/state/ $EXTPATH/smsplus/state
 	fi
 else
 	if [ -d $EXTPATH/smsplus/ ]; then
 		echo "SMS Plus folder doesn't exist in home directory, creating folder."
 		mkdir -p $INTPATH/.smsplus/sram $INTPATH/.smsplus/state
 		echo "Syncing SMS Plus data..."
-		rsync --update -rtvhW $EXTPATH/smsplus/sram/ $INTPATH/.smsplus/sram
-		rsync --update -rtvhW $EXTPATH/smsplus/state/ $INTPATH/.smsplus/state
+		syn $EXTPATH/smsplus/sram/ $INTPATH/.smsplus/sram
+		syn $EXTPATH/smsplus/state/ $INTPATH/.smsplus/state
 	fi
 fi
 
 if [ -d $INTPATH/.sms_sdl/ ]; then
 	if [ -d $EXTPATH/sms_sdl/ ]; then
 		echo "Syncing SMS SDL data..."
-		rsync --update -rtvhW $INTPATH/.sms_sdl/sram/ $EXTPATH/sms_sdl/sram
-		rsync --update -rtvhW $INTPATH/.sms_sdl/state/ $EXTPATH/sms_sdl/state
-		rsync --update -rtvhW $EXTPATH/sms_sdl/sram/ $INTPATH/.sms_sdl/sram
-		rsync --update -rtvhW $EXTPATH/sms_sdl/state/ $INTPATH/.sms_sdl/state
+		syn $INTPATH/.sms_sdl/sram/ $EXTPATH/sms_sdl/sram
+		syn $INTPATH/.sms_sdl/state/ $EXTPATH/sms_sdl/state
+		syn $EXTPATH/sms_sdl/sram/ $INTPATH/.sms_sdl/sram
+		syn $EXTPATH/sms_sdl/state/ $INTPATH/.sms_sdl/state
 	else
 		echo "SMS SDL backup folder doesn't exist, creating folder."
 		mkdir -p $EXTPATH/sms_sdl/sram $EXTPATH/sms_sdl/state
 		echo "Syncing SMS SDL data..."
-		rsync --update -rtvhW $INTPATH/.sms_sdl/sram/ $EXTPATH/sms_sdl/sram
-		rsync --update -rtvhW $INTPATH/.sms_sdl/state/ $EXTPATH/sms_sdl/state
+		syn $INTPATH/.sms_sdl/sram/ $EXTPATH/sms_sdl/sram
+		syn $INTPATH/.sms_sdl/state/ $EXTPATH/sms_sdl/state
 	fi
 else
 	if [ -d $EXTPATH/sms_sdl/ ]; then
 		echo "SMS SDL folder doesn't exist in home directory, creating folder."
 		mkdir -p $INTPATH/.sms_sdl/sram $INTPATH/.sms_sdl/state
 		echo "Syncing SMS SDL data..."
-		rsync --update -rtvhW $EXTPATH/sms_sdl/sram/ $INTPATH/.sms_sdl/sram
-		rsync --update -rtvhW $EXTPATH/sms_sdl/state/ $INTPATH/.sms_sdl/state
+		syn $EXTPATH/sms_sdl/sram/ $INTPATH/.sms_sdl/sram
+		syn $EXTPATH/sms_sdl/state/ $INTPATH/.sms_sdl/state
 	fi
 fi
 
@@ -222,20 +225,20 @@ fi
 if [ -d $INTPATH/.snes96_snapshots/ ]; then
 	if [ -d $EXTPATH/snes96_snapshots/ ]; then
 		echo "Syncing SNES96 data..."
-		rsync --update -rtvhW $INTPATH/.snes96_snapshots/ $EXTPATH/snes96_snapshots
-		rsync --update -rtvhW --exclude '*.opt' $EXTPATH/snes96_snapshots/ $INTPATH/.snes96_snapshots
+		syn $INTPATH/.snes96_snapshots/ $EXTPATH/snes96_snapshots
+		syn --exclude '*.opt' $EXTPATH/snes96_snapshots/ $INTPATH/.snes96_snapshots
 	else
 		echo "SNES96 backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/snes96_snapshots
 		echo "Syncing SNES96 data..."
-		rsync --update -rtvhW $INTPATH/.snes96_snapshots/ $EXTPATH/snes96_snapshots
+		syn $INTPATH/.snes96_snapshots/ $EXTPATH/snes96_snapshots
 	fi
 else
 	if [ -d $EXTPATH/snes96_snapshots/ ]; then
 		echo "SNES96 folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.snes96_snapshots
 		echo "Syncing SNES96 data..."
-		rsync --update -rtvhW --exclude '*.opt' $EXTPATH/snes96_snapshots/ $INTPATH/.snes96_snapshots
+		syn --exclude '*.opt' $EXTPATH/snes96_snapshots/ $INTPATH/.snes96_snapshots
 	fi
 fi
 
@@ -243,20 +246,20 @@ fi
 if [ -d $INTPATH/.pocketsnes/ ]; then
 	if [ -d $EXTPATH/pocketsnes/ ]; then
 		echo "Syncing PocketSNES data..."
-		rsync --update -rtvhW $INTPATH/.pocketsnes/ $EXTPATH/pocketsnes
-		rsync --update -rtvhW --exclude '*.opt' $EXTPATH/pocketsnes/ $INTPATH/.pocketsnes
+		syn $INTPATH/.pocketsnes/ $EXTPATH/pocketsnes
+		syn --exclude '*.opt' $EXTPATH/pocketsnes/ $INTPATH/.pocketsnes
 	else
 		echo "PocketSNES backup folder doesn't exist, creating folder."
 		mkdir $EXTPATH/pocketsnes
 		echo "Syncing PocketSNES data..."
-		rsync --update -rtvhW $INTPATH/.pocketsnes/ $EXTPATH/pocketsnes
+		syn $INTPATH/.pocketsnes/ $EXTPATH/pocketsnes
 	fi
 else
 	if [ -d $EXTPATH/pocketsnes/ ]; then
 		echo "PocketSNES folder doesn't exist in home directory, creating folder."
 		mkdir $INTPATH/.pocketsnes
 		echo "Syncing PocketSNES data..."
-		rsync --update -rtvhW --exclude '*.opt' $EXTPATH/pocketsnes/ $INTPATH/.pocketsnes
+		syn --exclude '*.opt' $EXTPATH/pocketsnes/ $INTPATH/.pocketsnes
 	fi
 fi
 
@@ -264,24 +267,24 @@ fi
 if [ -d $INTPATH/.snes9x/ ]; then
 	if [ -d $EXTPATH/snes9x/ ]; then
 		echo "Syncing Snes9x data..."
-		rsync --update -rtvhW $INTPATH/.snes9x/spc/ $EXTPATH/snes9x/spc
-		rsync --update -rtvhW $INTPATH/.snes9x/sram/ $EXTPATH/snes9x/sram
-		rsync --update -rtvhW $EXTPATH/snes9x/spc/ $INTPATH/.snes9x/spc
-		rsync --update -rtvhW $EXTPATH/snes9x/sram/ $INTPATH/.snes9x/sram
+		syn $INTPATH/.snes9x/spc/ $EXTPATH/snes9x/spc
+		syn $INTPATH/.snes9x/sram/ $EXTPATH/snes9x/sram
+		syn $EXTPATH/snes9x/spc/ $INTPATH/.snes9x/spc
+		syn $EXTPATH/snes9x/sram/ $INTPATH/.snes9x/sram
 	else
 		echo "Snes9x backup folder doesn't exist, creating folder."
 		mkdir -p $EXTPATH/snes9x/spc $EXTPATH/snes9x/sram
 		echo "Syncing Snes9x data..."
-		rsync --update -rtvhW $INTPATH/.snes9x/spc/ $EXTPATH/snes9x/spc
-		rsync --update -rtvhW $INTPATH/.snes9x/sram/ $EXTPATH/snes9x/sram
+		syn $INTPATH/.snes9x/spc/ $EXTPATH/snes9x/spc
+		syn $INTPATH/.snes9x/sram/ $EXTPATH/snes9x/sram
 	fi
 else
 	if [ -d $EXTPATH/snes9x/ ]; then
 		echo "Snes9x folder doesn't exist in home directory, creating folder."
 		mkdir -p $INTPATH/.snes9x/spc $INTPATH/.snes9x/sram
 		echo "Syncing Snes9x data..."
-		rsync --update -rtvhW $EXTPATH/snes9x/spc/ $INTPATH/.snes9x/spc
-		rsync --update -rtvhW $EXTPATH/snes9x/sram/ $INTPATH/.snes9x/sram
+		syn $EXTPATH/snes9x/spc/ $INTPATH/.snes9x/spc
+		syn $EXTPATH/snes9x/sram/ $INTPATH/.snes9x/sram
 	fi
 fi
 
@@ -289,24 +292,24 @@ fi
 if [ -d $INTPATH/.swanemu/ ]; then
 	if [ -d $EXTPATH/swanemu/ ]; then
 		echo "Syncing SwanEmu data..."
-		rsync --update -rtvhW $INTPATH/.swanemu/eeprom/ $EXTPATH/swanemu/eeprom
-		rsync --update -rtvhW $INTPATH/.swanemu/sstates/ $EXTPATH/swanemu/sstates
-		rsync --update -rtvhW $EXTPATH/swanemu/eeprom/ $INTPATH/.swanemu/eeprom
-		rsync --update -rtvhW $EXTPATH/swanemu/sstates/ $INTPATH/.swanemu/sstates
+		syn $INTPATH/.swanemu/eeprom/ $EXTPATH/swanemu/eeprom
+		syn $INTPATH/.swanemu/sstates/ $EXTPATH/swanemu/sstates
+		syn $EXTPATH/swanemu/eeprom/ $INTPATH/.swanemu/eeprom
+		syn $EXTPATH/swanemu/sstates/ $INTPATH/.swanemu/sstates
 	else
 		echo "SwanEmu backup folder doesn't exist, creating folder."
 		mkdir -p $EXTPATH/swanemu/eeprom $EXTPATH/swanemu/sstates
 		echo "Syncing SwanEmu data..."
-		rsync --update -rtvhW $INTPATH/.swanemu/eeprom/ $EXTPATH/swanemu/eeprom
-		rsync --update -rtvhW $INTPATH/.swanemu/sstates/ $EXTPATH/swanemu/sstates
+		syn $INTPATH/.swanemu/eeprom/ $EXTPATH/swanemu/eeprom
+		syn $INTPATH/.swanemu/sstates/ $EXTPATH/swanemu/sstates
 	fi
 else
 	if [ -d $EXTPATH/swanemu/ ]; then
 		echo "SwanEmu folder doesn't exist in home directory, creating folder."
 		mkdir -p $INTPATH/.swanemu/eeprom $INTPATH/.swanemu/sstates
 		echo "Syncing SwanEmu data..."
-		rsync --update -rtvhW $EXTPATH/swanemu/eeprom/ $INTPATH/.swanemu/eeprom
-		rsync --update -rtvhW $EXTPATH/swanemu/sstates/ $INTPATH/.swanemu/sstates
+		syn $EXTPATH/swanemu/eeprom/ $INTPATH/.swanemu/eeprom
+		syn $EXTPATH/swanemu/sstates/ $INTPATH/.swanemu/sstates
 	fi
 fi
 
@@ -314,24 +317,24 @@ fi
 if [ -d $INTPATH/.temper/ ]; then
 	if [ -d $EXTPATH/temper/ ]; then
 		echo "Syncing Temper data..."
-		rsync --update -rtvhW $INTPATH/.temper/bram/ $EXTPATH/temper/bram
-		rsync --update -rtvhW $INTPATH/.temper/save_states/ $EXTPATH/temper/save_states
-		rsync --update -rtvhW $EXTPATH/temper/bram/ $INTPATH/.temper/bram
-		rsync --update -rtvhW $EXTPATH/temper/save_states/ $INTPATH/.temper/save_states
+		syn $INTPATH/.temper/bram/ $EXTPATH/temper/bram
+		syn $INTPATH/.temper/save_states/ $EXTPATH/temper/save_states
+		syn $EXTPATH/temper/bram/ $INTPATH/.temper/bram
+		syn $EXTPATH/temper/save_states/ $INTPATH/.temper/save_states
 	else
 		echo "Temper backup folder doesn't exist, creating folder."
 		mkdir -p $EXTPATH/temper/bram $EXTPATH/temper/save_states
 		echo "Syncing SneTempers9x data..."
-		rsync --update -rtvhW $INTPATH/.temper/bram/ $EXTPATH/temper/bram
-		rsync --update -rtvhW $INTPATH/.temper/save_states/ $EXTPATH/temper/save_states
+		syn $INTPATH/.temper/bram/ $EXTPATH/temper/bram
+		syn $INTPATH/.temper/save_states/ $EXTPATH/temper/save_states
 	fi
 else
 	if [ -d $EXTPATH/temper/ ]; then
 		echo "Temper folder doesn't exist in home directory, creating folder."
 		mkdir -p $INTPATH/.temper/bram $INTPATH/.temper/save_states
 		echo "Syncing Temper data..."
-		rsync --update -rtvhW $EXTPATH/temper/bram/ $INTPATH/.temper/bram
-		rsync --update -rtvhW $EXTPATH/temper/save_states/ $INTPATH/.temper/save_states
+		syn $EXTPATH/temper/bram/ $INTPATH/.temper/bram
+		syn $EXTPATH/temper/save_states/ $INTPATH/.temper/save_states
 	fi
 fi
 
