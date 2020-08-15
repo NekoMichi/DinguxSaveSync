@@ -20,6 +20,9 @@ fi
 # Overrides permissions on backup folder
 chmod -R 777 $EXTPATH
 
+# Sets alias
+alias bac="rsync --inplace -rtvh"
+
 # Backs up screenshots
 if [ -d $INTPATH/screenshots/ ]; then
 	if [ ! -d $EXTPATH/screenshots/ ]; then
@@ -27,7 +30,7 @@ if [ -d $INTPATH/screenshots/ ]; then
 		mkdir $EXTPATH/screenshots
 	fi
 	echo "Backing up screenshots..."
-	rsync -rtvhW --ignore-existing $INTPATH/screenshots/ $EXTPATH/screenshots
+	bac --ignore-existing $INTPATH/screenshots/ $EXTPATH/screenshots
 fi
 
 # Backs up FCEUX data
@@ -37,8 +40,8 @@ if [ -d $INTPATH/.fceux/ ]; then
 		mkdir -p $EXTPATH/fceux/sav $EXTPATH/fceux/fcs
 	fi
 	echo "Backing up FCEUX data..."
-	rsync -rtvhW $INTPATH/.fceux/sav/ $EXTPATH/fceux/sav
-	rsync -rtvhW $INTPATH/.fceux/fcs/ $EXTPATH/fceux/fcs
+	bac $INTPATH/.fceux/sav/ $EXTPATH/fceux/sav
+	bac $INTPATH/.fceux/fcs/ $EXTPATH/fceux/fcs
 fi
 
 # Backs up Gambatte data
@@ -48,7 +51,7 @@ if [ -d $INTPATH/.gambatte/ ]; then
 		mkdir -p $EXTPATH/gambatte/saves
 	fi
 	echo "Backing up Gambatte data..."
-	rsync -rtvhW $INTPATH/.gambatte/saves/ $EXTPATH/gambatte/saves
+	bac $INTPATH/.gambatte/saves/ $EXTPATH/gambatte/saves
 fi
 
 # Backs up OhBoy data
@@ -58,7 +61,7 @@ if [ -d $INTPATH/.ohboy/ ]; then
 		mkdir -p $EXTPATH/ohboy/saves
 	fi
 	echo "Backing up OhBoy data..."
-	rsync -rtvhW $INTPATH/.ohboy/saves/ $EXTPATH/ohboy/saves
+	bac $INTPATH/.ohboy/saves/ $EXTPATH/ohboy/saves
 fi
 
 # Backs up ReGBA data
@@ -68,7 +71,7 @@ if [ -d $INTPATH/.gpsp/ ]; then
 		mkdir $EXTPATH/gpsp
 	fi
 	echo "Backing up ReGBA data..."
-	rsync -rtvhW $INTPATH/.gpsp/ $EXTPATH/gpsp
+	bac $INTPATH/.gpsp/ $EXTPATH/gpsp
 fi
 
 # Backs up PCSX4all data
@@ -78,8 +81,8 @@ if [ -d $INTPATH/.pcsx4all/ ]; then
 		mkdir -p $EXTPATH/pcsx4all/memcards/ $EXTPATH/pcsx4all/sstates/
 	fi
 	echo "Backing up PCSX4all data..."
-	rsync -rtvhW $INTPATH/.pcsx4all/memcards/ $EXTPATH/pcsx4all/memcards
-	rsync -rtvhW $INTPATH/.pcsx4all/sstates/ $EXTPATH/pcsx4all/sstates
+	bac $INTPATH/.pcsx4all/memcards/ $EXTPATH/pcsx4all/memcards
+	bac $INTPATH/.pcsx4all/sstates/ $EXTPATH/pcsx4all/sstates
 fi
 
 # Backs up Picodrive data
@@ -89,8 +92,8 @@ if [ -d $INTPATH/.picodrive/ ]; then
 		mkdir -p $EXTPATH/picodrive/mds $EXTPATH/picodrive/srm
 	fi
 	echo "Backing up PicoDrive data..."
-	rsync -rtvhW $INTPATH/.picodrive/mds/ $EXTPATH/picodrive/mds
-	rsync -rtvhW $INTPATH/.picodrive/srm/ $EXTPATH/picodrive/srm
+	bac $INTPATH/.picodrive/mds/ $EXTPATH/picodrive/mds
+	bac $INTPATH/.picodrive/srm/ $EXTPATH/picodrive/srm
 fi
 
 # Backs up SMS Plus data
@@ -100,8 +103,8 @@ if [ -d $INTPATH/.smsplus/ ]; then
 		mkdir -p $EXTPATH/smsplus/sram $EXTPATH/smsplus/state
 	fi
 	echo "Backing up SMS Plus data..."
-	rsync -rtvhW $INTPATH/.smsplus/sram/ $EXTPATH/smsplus/sram
-	rsync -rtvhW $INTPATH/.smsplus/state/ $EXTPATH/smsplus/state
+	bac $INTPATH/.smsplus/sram/ $EXTPATH/smsplus/sram
+	bac $INTPATH/.smsplus/state/ $EXTPATH/smsplus/state
 fi
 
 if [ -d $INTPATH/.sms_sdl/ ]; then
@@ -110,8 +113,8 @@ if [ -d $INTPATH/.sms_sdl/ ]; then
 		mkdir -p $EXTPATH/sms_sdl/sram $EXTPATH/sms_sdl/state
 	fi
 	echo "Backing up SMS SDL data..."
-	rsync -rtvhW $INTPATH/.sms_sdl/sram/ $EXTPATH/sms_sdl/sram
-	rsync -rtvhW $INTPATH/.sms_sdl/state/ $EXTPATH/sms_sdl/state
+	bac $INTPATH/.sms_sdl/sram/ $EXTPATH/sms_sdl/sram
+	bac $INTPATH/.sms_sdl/state/ $EXTPATH/sms_sdl/state
 fi
 
 # Backs up PocketSNES data
@@ -121,7 +124,7 @@ if [ -d $INTPATH/.snes96_snapshots/ ]; then
 		mkdir $EXTPATH/snes96_snapshots
 	fi
 	echo "Backing up SNES96 data..."
-	rsync -rtvhW $INTPATH/.snes96_snapshots/ $EXTPATH/snes96_snapshots
+	bac $INTPATH/.snes96_snapshots/ $EXTPATH/snes96_snapshots
 fi
 
 if [ -d $INTPATH/.pocketsnes/ ]; then
@@ -130,7 +133,7 @@ if [ -d $INTPATH/.pocketsnes/ ]; then
 		mkdir $EXTPATH/pocketsnes
 	fi
 	echo "Backing up PocketSNES data..."
-	rsync -rtvhW $INTPATH/.pocketsnes/ $EXTPATH/pocketsnes
+	bac $INTPATH/.pocketsnes/ $EXTPATH/pocketsnes
 fi
 
 # Backs up Snes9x data
@@ -140,8 +143,8 @@ if [ -d $INTPATH/.snes9x/ ]; then
 		mkdir -p $EXTPATH/snes9x/spc $EXTPATH/snes9x/sram
 	fi
 	echo "Backing up Snes9x data..."
-	rsync -rtvhW $INTPATH/.snes9x/spc/ $EXTPATH/snes9x/spc
-	rsync -rtvhW $INTPATH/.snes9x/sram/ $EXTPATH/snes9x/sram
+	bac $INTPATH/.snes9x/spc/ $EXTPATH/snes9x/spc
+	bac $INTPATH/.snes9x/sram/ $EXTPATH/snes9x/sram
 fi
 
 # Backs up SwanEmu data
@@ -151,8 +154,8 @@ if [ -d $INTPATH/.swanemu/ ]; then
 		mkdir -p $EXTPATH/swanemu/eeprom $EXTPATH/swanemu/sstates
 	fi
 	echo "Backing up SwanEmu data..."
-	rsync -rtvhW $INTPATH/.swanemu/eeprom/ $EXTPATH/swanemu/eeprom
-	rsync -rtvhW $INTPATH/.swanemu/sstates/ $EXTPATH/swanemu/sstates
+	bac $INTPATH/.swanemu/eeprom/ $EXTPATH/swanemu/eeprom
+	bac $INTPATH/.swanemu/sstates/ $EXTPATH/swanemu/sstates
 fi
 
 # Backs up Temper data
@@ -162,8 +165,8 @@ if [ -d $INTPATH/.temper/ ]; then
 		mkdir -p $EXTPATH/temper/bram $EXTPATH/temper/save_states
 	fi
 	echo "Backing up Temper data..."
-	rsync -rtvhW $INTPATH/.temper/bram/ $EXTPATH/temper/bram
-	rsync -rtvhW $INTPATH/.temper/save_states/ $EXTPATH/temper/save_states
+	bac $INTPATH/.temper/bram/ $EXTPATH/temper/bram
+	bac $INTPATH/.temper/save_states/ $EXTPATH/temper/save_states
 fi
 
 dialog --clear --backtitle "SaveSync $APPVERSION" --title "Backup Complete" --msgbox "Save backup complete.\nPress START to exit." 6 29
