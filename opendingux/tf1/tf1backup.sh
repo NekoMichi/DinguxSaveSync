@@ -46,7 +46,7 @@ echo "===Exporting Saves==="
 chmod -R 777 $EXTPATH
 
 # Sets alias
-alias exp="rsync --inplace -rtvh"
+alias exp="rsync --inplace -rtvhc"
 
 # Exports FCEUX data
 if [ -d $INTPATH/.fceux/ ]; then
