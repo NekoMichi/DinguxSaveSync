@@ -47,7 +47,7 @@ chmod -R 777 $EXTPATH
 chmod -R 777 $INTPATH
 
 # Sets alias
-alias syn="rsync --update --inplace -rtvh"
+alias syn="rsync --update --inplace -rtvhc"
 
 # Syncs FCEUX data
 if [ -d $INTPATH/.fceux/ ]; then
