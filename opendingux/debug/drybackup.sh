@@ -172,6 +172,80 @@ if [ -d $INTPATH/.temper/ ]; then
 	tbac $INTPATH/.temper/save_states/ $EXTPATH/temper/save_states
 fi
 
+
+# Backs up Devilution/Diablo data
+if [ -d $INTPATH/.local/share/diasurgical/devilution/ ]; then
+	if [ ! -d $EXTPATH/.local/share/diasurgical/devilution/ ]; then
+		echo "Devilution backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.local/share/diasurgical/devilution/
+	fi
+	echo "Backing up Devilution data..."
+	tbac $INTPATH/.local/share/diasurgical/devilution/*.sv $EXTPATH/.local/share/diasurgical/devilution/
+	tbac $INTPATH/.local/share/diasurgical/devilution/*.ini $EXTPATH/.local/share/diasurgical/devilution/
+fi
+
+# Backs up Scummvm data
+if [ -d $INTPATH/.local/share/scummvm/saves/ ]; then
+	if [! -d $EXTPATH/.local/share/scummvm/saves/ ]; then
+		echo "Scummvm backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.local/share/scummvm/saves/
+	fi
+	echo "Backing up Scummvm data..."
+	tbac $INTPATH/.local/share/scummvm/saves/ $EXTPATH/.local/share/scummvm/saves/
+	tbac $INTPATH/.scummvmrc $EXTPATH/
+fi
+
+# Backs up Ur-Quan Masters (Starcon2 port) data
+if [ -d $INTPATH/.uqm/ ]; then
+	if [ ! -d $EXTPATH/.uqm/ ]; then
+		echo "Ur-Quan Masters backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.uqm/
+	fi
+	echo "Backing up Ur-Quan Masters data..."
+	tbac $INTPATH/.uqm/* $EXTPATH/.uqm/
+fi
+
+# Backs up Atari800 data
+if [ -d $INTPATH/.atari/ ]; then
+	if [ ! -d $EXTPATH/.atari/ ]; then
+		echo "Atari800 backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.atari/
+	fi
+	echo "Backing up Atari800 data..."
+	tbac $INTPATH/.atari/* $EXTPATH/.atari/
+	tbac $INTPATH/.atari800.cfg $EXTPATH/
+fi
+
+# Backs up OpenDune data
+if [ -d $INTPATH/.opendune/save/ ]; then
+	if [ ! -d $EXTPATH/.opendune/save/ ]; then
+		echo "OpenDune backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.opendune/save/
+	fi
+	echo "Backing up OpenDune data..."
+	tbac $INTPATH/.opendune/save/* $EXTPATH/.opendune/save/
+fi
+
+# Backs up OpenLara data
+if [ -d $INTPATH/.openlara/ ]; then
+	if [ ! -d $EXTPATH/.openlara/ ]; then
+		echo "OpenLara backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.openlara/
+	fi
+	echo "Backing up OpenLara data..."
+	tbac $INTPATH/.openlara/savegame.dat $EXTPATH/.openlara/savegame.dat
+fi
+
+# Backs up GCW Connect data
+if [ -d $INTPATH/.local/share/gcwconnect/networks/ ]; then
+	if [ ! -d $EXTPATH/.local/share/gcwconnect/networks/ ]; then
+		echo "GCW Connect backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.local/share/gcwconnect/networks/
+	fi
+	echo "Backing up GCW Connect data..."
+	tbac $INTPATH/.local/share/gcwconnect/networks/* $EXTPATH/.local/share/gcwconnect/networks/
+fi
+
 echo ""
 echo "Debug backup complete."
 echo "Report saved to ~/log/$TIMESTAMP.txt"

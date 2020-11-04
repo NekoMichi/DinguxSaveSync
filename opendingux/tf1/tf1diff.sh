@@ -39,7 +39,7 @@ echo "===Comparing Saves==="
 # Overrides permissions on destination folder
 chmod -R 777 $EXTPATH
 
-# Exports FCEUX data
+# Diffs FCEUX data
 if [ -d $INTPATH/.fceux/ ]; then
 	if [ ! -d $EXTPATH/.fceux/ ]; then
 		echo "FCEUX folder doesn't exist, creating folder."
@@ -51,7 +51,7 @@ if [ -d $INTPATH/.fceux/ ]; then
 	sleep 1
 fi
 
-# Exports Gambatte data
+# Diffs Gambatte data
 if [ -d $INTPATH/.gambatte/ ]; then
 	if [ ! -d $EXTPATH/.gambatte/ ]; then
 		echo "Gambatte folder doesn't exist, creating folder."
@@ -62,7 +62,7 @@ if [ -d $INTPATH/.gambatte/ ]; then
 	sleep 1
 fi
 
-# Exports OhBoy data
+# Diffs OhBoy data
 if [ -d $INTPATH/.ohboy/ ]; then
 	if [ ! -d $EXTPATH/.ohboy/ ]; then
 		echo "OhBoy folder doesn't exist, creating folder."
@@ -73,7 +73,7 @@ if [ -d $INTPATH/.ohboy/ ]; then
 	sleep 1
 fi
 
-# Exports ReGBA data
+# Diffs ReGBA data
 if [ -d $INTPATH/.gpsp/ ]; then
 	if [ ! -d $EXTPATH/.gpsp/ ]; then
 		echo "ReGBA folder doesn't exist, creating folder."
@@ -84,7 +84,7 @@ if [ -d $INTPATH/.gpsp/ ]; then
 	sleep 1
 fi
 
-# Exports PCSX4all data
+# Diffs PCSX4all data
 if [ -d $INTPATH/.pcsx4all/ ]; then
 	if [ ! -d $EXTPATH/.pcsx4all/ ]; then
 		echo "PCSX4all folder doesn't exist, creating folder."
@@ -96,7 +96,7 @@ if [ -d $INTPATH/.pcsx4all/ ]; then
 	sleep 1
 fi
 
-# Exports Picodrive data
+# Diffs Picodrive data
 if [ -d $INTPATH/.picodrive/ ]; then
 	if [ ! -d $EXTPATH/.picodrive/ ]; then
 		echo "Picodrive folder doesn't exist, creating folder."
@@ -108,7 +108,7 @@ if [ -d $INTPATH/.picodrive/ ]; then
 	sleep 1
 fi
 
-# Exports SMS Plus data
+# Diffs SMS Plus data
 if [ -d $INTPATH/.smsplus/ ]; then
 	if [ ! -d $EXTPATH/.smsplus/ ]; then
 		echo "SMS Plus folder doesn't exist, creating folder."
@@ -131,7 +131,7 @@ if [ -d $INTPATH/.sms_sdl/ ]; then
 	sleep 1
 fi
 
-# Exports PocketSNES data
+# Diffs PocketSNES data
 if [ -d $INTPATH/.snes96_snapshots/ ]; then
 	if [ ! -d $EXTPATH/.snes96_snapshots/ ]; then
 		echo "SNES96 folder doesn't exist, creating folder."
@@ -152,7 +152,7 @@ if [ -d $INTPATH/.pocketsnes/ ]; then
 	sleep 1
 fi
 
-# Exports Snes9x data
+# Diffs Snes9x data
 if [ -d $INTPATH/.snes9x/ ]; then
 	if [ ! -d $EXTPATH/.snes9x/ ]; then
 		echo "Snes9x folder doesn't exist, creating folder."
@@ -164,7 +164,7 @@ if [ -d $INTPATH/.snes9x/ ]; then
 	sleep 1
 fi
 
-# Exports SwanEmu data
+# Diffs SwanEmu data
 if [ -d $INTPATH/.swanemu/ ]; then
 	if [ ! -d $EXTPATH/.swanemu/ ]; then
 		echo "SwanEmu folder doesn't exist, creating folder."
@@ -176,7 +176,7 @@ if [ -d $INTPATH/.swanemu/ ]; then
 	sleep 1
 fi
 
-# Exports Temper data
+# Diffs Temper data
 if [ -d $INTPATH/.temper/ ]; then
 	if [ ! -d $EXTPATH/.temper/ ]; then
 		echo "Temper folder doesn't exist, creating folder."
@@ -185,6 +185,86 @@ if [ -d $INTPATH/.temper/ ]; then
 	echo "Comparing Temper data..."
 	diff -rq $INTPATH/.temper/bram $EXTPATH/.temper/bram
 	diff -rq $INTPATH/.temper/save_states $EXTPATH/.temper/save_states
+	sleep 1
+fi
+
+# Diffs Devilution/Diablo data
+if [ -d $INTPATH/.local/share/diasurgical/devilution/ ]; then
+	if [ ! -d $EXTPATH/.local/share/diasurgical/devilution/ ]; then
+		echo "Devilution backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.local/share/diasurgical/devilution/
+	fi
+	echo "Comparing Devilution data..."
+	diff -rq $INTPATH/.local/share/diasurgical/devilution/*.sv $EXTPATH/.local/share/diasurgical/devilution/
+	diff -rq $INTPATH/.local/share/diasurgical/devilution/*.ini $EXTPATH/.local/share/diasurgical/devilution/
+	sleep 1
+fi
+
+# Diffs Scummvm data
+if [ -d $INTPATH/.local/share/scummvm/saves/ ]; then
+	if [! -d $EXTPATH/.local/share/scummvm/saves/ ]; then
+		echo "Scummvm backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.local/share/scummvm/saves/
+	fi
+	echo "Comparing Scummvm data..."
+	diff -rq $INTPATH/.local/share/scummvm/saves/ $EXTPATH/.local/share/scummvm/saves/
+	diff -rq $INTPATH/.scummvmrc $EXTPATH/
+	sleep 1
+fi
+
+# Diffs Ur-Quan Masters (Starcon2 port) data
+if [ -d $INTPATH/.uqm/ ]; then
+	if [ ! -d $EXTPATH/.uqm/ ]; then
+		echo "Ur-Quan Masters backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.uqm/
+	fi
+	echo "Comparing Ur-Quan Masters data..."
+	diff -rq $INTPATH/.uqm/* $EXTPATH/.uqm/
+	sleep 1
+fi
+
+# Diffs Atari800 data
+if [ -d $INTPATH/.atari/ ]; then
+	if [ ! -d $EXTPATH/.atari/ ]; then
+		echo "Atari800 backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.atari/
+	fi
+	echo "Comparing Atari800 data..."
+	diff -rq $INTPATH/.atari/* $EXTPATH/.atari/
+	diff -rq $INTPATH/.atari800.cfg $EXTPATH/
+	sleep 1
+fi
+
+# Diffs OpenDune data
+if [ -d $INTPATH/.opendune/save/ ]; then
+	if [ ! -d $EXTPATH/.opendune/save/ ]; then
+		echo "OpenDune backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.opendune/save/
+	fi
+	echo "Comparing OpenDune data..."
+	diff -rq $INTPATH/.opendune/save/* $EXTPATH/.opendune/save/
+	sleep 1
+fi
+
+# Diffs OpenLara data
+if [ -d $INTPATH/.openlara/ ]; then
+	if [ ! -d $EXTPATH/.openlara/ ]; then
+		echo "OpenLara backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.openlara/
+	fi
+	echo "Comparing OpenLara data..."
+	diff -rq $INTPATH/.openlara/savegame.dat $EXTPATH/.openlara/savegame.dat
+	sleep 1
+fi
+
+# Diffs GCW Connect data
+if [ -d $INTPATH/.local/share/gcwconnect/networks/ ]; then
+	if [ ! -d $EXTPATH/.local/share/gcwconnect/networks/ ]; then
+		echo "GCW Connect backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.local/share/gcwconnect/networks/
+	fi
+	echo "Comparing GCW Connect data..."
+	diff -rq $INTPATH/.local/share/gcwconnect/networks/* $EXTPATH/.local/share/gcwconnect/networks/
 	sleep 1
 fi
 

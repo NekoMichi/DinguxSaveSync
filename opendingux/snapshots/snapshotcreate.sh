@@ -128,5 +128,57 @@ if [ -d $INTPATH/.temper/ ]; then
 	bac $INTPATH/.temper/save_states/ "$EXPORTPATH/temper/save_states"
 fi
 
+# Backs up Devilution/Diablo data
+if [ -d $INTPATH/.local/share/diasurgical/devilution/ ]; then
+	mkdir -p $EXPORTPATH/.local/share/diasurgical/devilution/
+	echo "Backing up Devilution data..."
+	bac $INTPATH/.local/share/diasurgical/devilution/*.sv $EXPORTPATH/.local/share/diasurgical/devilution/
+	bac $INTPATH/.local/share/diasurgical/devilution/*.ini $EXPORTPATH/.local/share/diasurgical/devilution/
+fi
+
+# Backs up Scummvm data
+if [ -d $INTPATH/.local/share/scummvm/saves/ ]; then
+	mkdir -p $EXPORTPATH/.local/share/scummvm/saves/
+	echo "Backing up Scummvm data..."
+	bac $INTPATH/.local/share/scummvm/saves/ $EXPORTPATH/.local/share/scummvm/saves/
+	bac $INTPATH/.scummvmrc $EXPORTPATH/
+fi
+
+# Backs up Ur-Quan Masters (Starcon2 port) data
+if [ -d $INTPATH/.uqm/ ]; then
+	mkdir -p $EXPORTPATH/.uqm/
+	echo "Backing up Ur-Quan Masters data..."
+	bac $INTPATH/.uqm/* $EXPORTPATH/.uqm/
+fi
+
+# Backs up Atari800 data
+if [ -d $INTPATH/.atari/ ]; then
+	mkdir -p $EXPORTPATH/.atari/
+	echo "Backing up Atari800 data..."
+	bac $INTPATH/.atari/* $EXPORTPATH/.atari/
+	bac $INTPATH/.atari800.cfg $EXPORTPATH/
+fi
+
+# Backs up OpenDune data
+if [ -d $INTPATH/.opendune/save/ ]; then
+	mkdir -p $EXPORTPATH/.opendune/save/
+	echo "Backing up OpenDune data..."
+	bac $INTPATH/.opendune/save/* $EXPORTPATH/.opendune/save/
+fi
+
+# Backs up OpenLara data
+if [ -d $INTPATH/.openlara/ ]; then
+	mkdir -p $EXPORTPATH/.openlara/
+	echo "Backing up OpenLara data..."
+	bac $INTPATH/.openlara/savegame.dat $EXPORTPATH/.openlara/savegame.dat
+fi
+
+# Backs up GCW Connect data
+if [ -d $INTPATH/.local/share/gcwconnect/networks/ ]; then
+	mkdir -p $EXPORTPATH/.local/share/gcwconnect/networks/
+	echo "Backing up GCW Connect data..."
+	bac $INTPATH/.local/share/gcwconnect/networks/* $EXPORTPATH/.local/share/gcwconnect/networks/
+fi
+
 dialog --clear --backtitle "SaveSync $APPVERSION" --title "Snapshot Complete" --msgbox "Snapshot saved to \n\n$SNAPSHOTPATH/\n$TIMESTAMP\n\nPress START to exit." 10 43
 exit

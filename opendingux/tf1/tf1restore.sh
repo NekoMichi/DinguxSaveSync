@@ -185,5 +185,78 @@ if [ -d $EXTPATH/.temper/ ]; then
 	imp $EXTPATH/.temper/save_states/ $INTPATH/.temper/save_states
 fi
 
+# Restores Devilution/Diablo data
+if [ -d $EXTPATH/.local/share/diasurgical/devilution/ ]; then
+	if [ ! -d $INTPATH/.local/share/diasurgical/devilution/ ]; then
+		echo "Devilution folder doesn't exist in home directory, creating folder."
+		mkdir -p $INTPATH/.local/share/diasurgical/devilution/
+	fi
+	echo "Restoring Devilution data..."
+	imp $EXTPATH/.local/share/diasurgical/devilution/*.sv $INTPATH/.local/share/diasurgical/devilution/
+	imp $EXTPATH/.local/share/diasurgical/devilution/*.ini $INTPATH/.local/share/diasurgical/devilution/
+fi
+
+# Restores Scummvm data
+if [ -d $EXTPATH/.local/share/scummvm/saves/ ]; then
+	if [! -d $INTPATH/.local/share/scummvm/saves/ ]; then
+		echo "Scummvm backup folder doesn't exist in home directory, creating folder."
+		mkdir -p $INTPATH/.local/share/scummvm/saves/
+	fi
+	echo "Restoring Scummvm data..."
+	imp $EXTPATH/.local/share/scummvm/saves/ $INTPATH/.local/share/scummvm/saves/
+	imp $EXTPATH/.scummvmrc $INTPATH/
+fi
+
+# Restores Ur-Quan Masters (Starcon2 port) data
+if [ -d $EXTPATH/.uqm/ ]; then
+	if [ ! -d $INTPATH/.uqm/ ]; then
+		echo "Ur-Quan Masters backup folder doesn't exist in home directory, creating folder."
+		mkdir -p $INTPATH/.uqm/
+	fi
+	echo "Restoring Ur-Quan Masters data..."
+	imp $EXTPATH/.uqm/* $INTPATH/.uqm/
+fi
+
+# Restores Atari800 data
+if [ -d $EXTPATH/.atari/ ]; then
+	if [ ! -d $INTPATH/.atari/ ]; then
+		echo "Atari800 backup folder doesn't exist in home directory, creating folder."
+		mkdir -p $INTPATH/.atari/
+	fi
+	echo "Restoring Atari800 data..."
+	imp $EXTPATH/.atari/* $INTPATH/.atari/
+	imp $EXTPATH/.atari800.cfg $INTPATH/
+fi
+
+# Restores OpenDune data
+if [ -d $EXTPATH/.opendune/save/ ]; then
+	if [ ! -d $INTPATH/.opendune/save/ ]; then
+		echo "OpenDune folder doesn't exist in home directory, creating folder."
+		mkdir -p $INTPATH/.opendune/save/
+	fi
+	echo "Restoring OpenDune data..."
+	imp $EXTPATH/.opendune/save/* $INTPATH/.opendune/save/
+fi
+
+# Restores OpenLara data
+if [ -d $EXTPATH/.openlara/ ]; then
+	if [ ! -d $INTPATH/.openlara/ ]; then
+		echo "OpenLara backup folder doesn't exist in home directory, creating folder."
+		mkdir -p $INTPATH/.openlara/
+	fi
+	echo "Restoring OpenLara data..."
+	imp $EXTPATH/.openlara/savegame.dat $INTPATH/.openlara/savegame.dat
+fi
+
+# Restores GCW Connect data
+if [ -d $EXTPATH/.local/share/gcwconnect/networks/ ]; then
+	if [ ! -d $INTPATH/.local/share/gcwconnect/networks/ ]; then
+		echo "GCW Connect backup folder doesn't exist in home directory, creating folder."
+		mkdir -p $INTPATH/.local/share/gcwconnect/networks/
+	fi
+	echo "Restoring GCW Connect data..."
+	imp $EXTPATH/.local/share/gcwconnect/networks/* $INTPATH/.local/share/gcwconnect/networks/
+fi
+
 dialog --clear --backtitle "SaveSync $APPVERSION" --title "Import Complete" --msgbox "Save import complete.\nPress START to exit." 6 29
 exit
