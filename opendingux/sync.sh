@@ -338,5 +338,164 @@ else
 	fi
 fi
 
+# Syncs Devilution/Diablo data
+if [ -d $INTPATH/.local/share/diasurgical/devilution/ ]; then
+	if [ -d $EXTPATH/.local/share/diasurgical/devilution/ ]; then
+		echo "Syncing Devilution data..."
+		syn $INTPATH/.local/share/diasurgical/devilution/*.sv $EXTPATH/.local/share/diasurgical/devilution/
+		syn $INTPATH/.local/share/diasurgical/devilution/*.ini $EXTPATH/.local/share/diasurgical/devilution/
+		syn $EXTPATH/.local/share/diasurgical/devilution/*.sv $INTPATH/.local/share/diasurgical/devilution/
+		syn $EXTPATH/.local/share/diasurgical/devilution/*.ini $INTPATH/.local/share/diasurgical/devilution/
+	else
+		echo "Devilution backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.local/share/diasurgical/devilution/
+		echo "Syncing Devilution data..."
+		syn $INTPATH/.local/share/diasurgical/devilution/*.sv $EXTPATH/.local/share/diasurgical/devilution/
+		syn $INTPATH/.local/share/diasurgical/devilution/*.ini $EXTPATH/.local/share/diasurgical/devilution/
+	fi
+else
+	if [ -d $EXTPATH/.local/share/diasurgical/devilution/ ]; then
+		echo "Devilution folder doesn't exist in home directory, creating folder."
+		mkdir -p $INTPATH/.local/share/diasurgical/devilution/
+		echo "Syncing Devilution data..."
+		syn $EXTPATH/.local/share/diasurgical/devilution/*.sv $INTPATH/.local/share/diasurgical/devilution/
+		syn $EXTPATH/.local/share/diasurgical/devilution/*.ini $INTPATH/.local/share/diasurgical/devilution/
+	fi
+fi
+
+# Syncs Scummvm data
+if [ -d $INTPATH/.local/share/scummvm/saves/ ]; then
+	if [ -d $EXTPATH/.local/share/scummvm/saves/ ]; then
+		echo "Syncing Scummvm data..."
+		syn $INTPATH/.local/share/scummvm/saves/* $EXTPATH/.local/share/scummvm/saves/
+		syn $INTPATH/.scummvmrc $EXTPATH/
+		syn $EXTPATH/.local/share/scummvm/saves/* $INTPATH/.local/share/scummvm/saves/
+		syn $EXTPATH/.scummvmrc $INTPATH/
+	else
+		echo "Scummvm backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.local/share/scummvm/saves/
+		echo "Syncing Scummvm data..."
+		syn $INTPATH/.local/share/scummvm/saves/* $EXTPATH/.local/share/scummvm/saves/
+		syn $INTPATH/.scummvmrc $EXTPATH/
+	fi
+else
+	if [ -d $EXTPATH/.local/share/scummvm/saves/ ]; then
+		echo "Scummvm folder doesn't exist in home directory, creating folder."
+		mkdir -p $INTPATH/.local/share/scummvm/saves/
+		echo "Syncing Scummvm data..."
+		syn $EXTPATH/.local/share/scummvm/saves/* $INTPATH/.local/share/scummvm/saves/
+		syn $EXTPATH/.scummvmrc $INTPATH/
+	fi
+fi
+
+# Syncs Ur-Quan Masters (Starcon2 port) data
+if [ -d $INTPATH/.uqm/ ]; then
+	if [ -d $EXTPATH/.uqm/ ]; then
+		echo "Syncing Ur-Quan Masters data..."
+		syn $INTPATH/.uqm/* $EXTPATH/.uqm/
+		syn $EXTPATH/.uqm/* $INTPATH/.uqm/
+	else
+		echo "Ur-Quan Masters backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.uqm/
+		echo "Syncing Ur-Quan Masters data..."
+		syn $INTPATH/.uqm/* $EXTPATH/.uqm/
+	fi
+else
+	if [ -d $EXTPATH/.uqm/ ]; then
+		echo "Ur-Quan Masters folder doesn't exist in home directory, creating folder."
+		mkdir -p $INTPATH/.uqm/
+		echo "Syncing Ur-Quan Masters data..."
+		syn $EXTPATH/.uqm/* $INTPATH/.uqm/
+	fi
+fi
+
+# Syncs Atari800 data
+if [ -d $INTPATH/.atari/ ]; then
+	if [ -d $EXTPATH/.atari/ ]; then
+		echo "Syncing Atari800 data..."
+		syn $INTPATH/.atari/* $EXTPATH/.atari/
+		syn $INTPATH/.atari800.cfg $EXTPATH/
+		syn $EXTPATH/.atari/* $INTPATH/.atari/
+		syn $EXTPATH/.atari800.cfg $INTPATH/
+	else
+		echo "Atari800 backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.atari/
+		echo "Syncing Atari800 data..."
+		syn $INTPATH/.atari/* $EXTPATH/.atari/
+		syn $INTPATH/.atari800.cfg $EXTPATH/
+	fi
+else
+	if [ -d $EXTPATH/.atari/ ]; then
+		echo "Atari800 folder doesn't exist in home directory, creating folder."
+		mkdir -p $INTPATH/.atari/
+		echo "Syncing Atari800 data..."
+		syn $EXTPATH/.atari/* $INTPATH/.atari/
+		syn $EXTPATH/.atari800.cfg $INTPATH/
+	fi
+fi
+
+# Backs up OpenDune data
+if [ -d $INTPATH/.opendune/save/ ]; then
+	if [ -d $EXTPATH/.opendune/save/ ]; then
+		echo "Syncing OpenDune data..."
+		syn $INTPATH/.opendune/save/* $EXTPATH/.opendune/save/
+		syn $EXTPATH/.opendune/save/* $INTPATH/.opendune/save/
+	else
+		echo "OpenDune backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.opendune/save/
+		echo "Syncing OpenDune data..."
+		syn $INTPATH/.opendune/save/* $EXTPATH/.opendune/save/
+	fi
+else
+	if [ -d $EXTPATH/.opendune/save/ ]; then
+		echo "OpenDune folder doesn't exist in home directory, creating folder."
+		mkdir -p $INTPATH/.opendune/save/
+		echo "Syncing OpenDune data..."
+		syn $EXTPATH/.opendune/save/* $INTPATH/.opendune/save/
+	fi
+fi
+
+# Backs up OpenLara data
+if [ -d $INTPATH/.openlara/ ]; then
+	if [ -d $EXTPATH/.openlara/ ]; then
+		echo "Syncing OpenLara data..."
+		syn $INTPATH/.openlara/savegame.dat $EXTPATH/.openlara/
+		syn $EXTPATH/.openlara/savegame.dat $INTPATH/.openlara/
+	else
+		echo "OpenLara backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.openlara/
+		echo "Syncing OpenLara data..."
+		syn $INTPATH/.openlara/savegame.dat $EXTPATH/.openlara/
+	fi
+else
+	if [ -d $EXTPATH/.openlara/ ]; then
+		echo "OpenLara folder doesn't exist in home directory, creating folder."
+		mkdir -p $INTPATH/.openlara/
+		echo "Syncing OpenLara data..."
+		syn $EXTPATH/.openlara/savegame.dat $INTPATH/.openlara/
+	fi
+fi
+
+# Backs up GCW Connect data
+if [ -d $INTPATH/.local/share/gcwconnect/networks/ ]; then
+	if [ -d $EXTPATH/.local/share/gcwconnect/networks/ ]; then
+		echo "Syncing GCW Connect data..."
+		syn $INTPATH/.local/share/gcwconnect/networks/* $EXTPATH/.local/share/gcwconnect/networks/
+		syn $EXTPATH/.local/share/gcwconnect/networks/* $INTPATH/.local/share/gcwconnect/networks/
+	else
+		echo "GCW Connect backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.local/share/gcwconnect/networks/
+		echo "Syncing GCW Connect data..."
+		syn $INTPATH/.local/share/gcwconnect/networks/* $EXTPATH/.local/share/gcwconnect/networks/
+	fi
+else
+	if [ -d $EXTPATH/.local/share/gcwconnect/networks/ ]; then
+		echo "GCW Connect folder doesn't exist in home directory, creating folder."
+		mkdir -p $INTPATH/.local/share/gcwconnect/networks/
+		echo "Syncing GCW Connect data..."
+		syn $EXTPATH/.local/share/gcwconnect/networks/* $INTPATH/.local/share/gcwconnect/networks/
+	fi
+fi
+
 dialog --clear --backtitle "SaveSync $APPVERSION" --title "Sync Complete" --msgbox "Save sync complete.\nPress START to exit." 6 29
 exit
