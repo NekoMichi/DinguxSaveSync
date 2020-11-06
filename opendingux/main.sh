@@ -2,15 +2,16 @@
 # title=SaveSync Main
 # desc=Main menu of SaveSync
 # author=NekoMichi
-
+sleep 10
 export APPVERSION="v2.6"
 
 # Checks to see if there is a card inserted in slot 2
 if [ ! -b /dev/mmcblk1 ]; then
 	dialog --clear --backtitle "SaveSync $APPVERSION" --title "No SD Card Found" --msgbox "No SD card inserted in slot-2.\n\nPress START to exit." 8 29
+	sleep 1
 	exit
 fi
-
+sleep 1
 export SDPATH=$(findmnt -n --output=target /dev/mmcblk1p1 | head -1)
 export INTPATH="/media/data/local/home"
 export EXTPATH="$SDPATH/backup"

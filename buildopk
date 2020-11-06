@@ -1,7 +1,6 @@
 #!/bin/sh
 
-BASEDIR=$(dirname "$0")
+BASEDIR=`pwd`
 cd $BASEDIR/opendingux
-mksquashfs ./* savesync.opk
-mv $BASEDIR/opendingux/savesync.opk $BASEDIR/savesync.opk
+mksquashfs ./* $BASEDIR/savesync.opk
 exit

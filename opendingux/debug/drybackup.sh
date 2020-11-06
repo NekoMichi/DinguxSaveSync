@@ -247,6 +247,9 @@ if [ -d $INTPATH/.local/share/gcwconnect/networks/ ]; then
 fi
 
 # Backs up Super Mario 64 Port data
+echo "DEBUG: backup SM64"
+echo "INTpath: $INTPATH"
+echo "EXTpath: $EXTPATH"
 if [ -d $INTPATH/.sm64-port/ ]; then
 	if [ ! -d $EXTPATH/.sm64-port/ ]; then
 		echo "Super Mario 64 backup folder doesn't exist, creating folder."
