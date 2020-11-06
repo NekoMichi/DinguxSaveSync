@@ -180,5 +180,12 @@ if [ -d $INTPATH/.local/share/gcwconnect/networks/ ]; then
 	bac $INTPATH/.local/share/gcwconnect/networks/* $EXPORTPATH/.local/share/gcwconnect/networks/
 fi
 
+# Backs up Super Mario 64 Port data
+if [ -d $INTPATH/.sm64-port/ ]; then
+	mkdir -p $EXTPATH/.sm64-port/
+	echo "Backing up Super Mario 64 data..."
+	bac $INTPATH/.sm64-port/sm64_save_file.bin $EXPORTPATH/.sm64-port/
+fi
+
 dialog --clear --backtitle "SaveSync $APPVERSION" --title "Snapshot Complete" --msgbox "Snapshot saved to \n\n$SNAPSHOTPATH/\n$TIMESTAMP\n\nPress START to exit." 10 43
 exit

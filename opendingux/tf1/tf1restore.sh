@@ -258,5 +258,14 @@ if [ -d $EXTPATH/.local/share/gcwconnect/networks/ ]; then
 	imp $EXTPATH/.local/share/gcwconnect/networks/* $INTPATH/.local/share/gcwconnect/networks/
 fi
 
+# Restores Super Mario 64 Port data
+if [ -d $EXTPATH/.sm64-port/ ]; then
+	if [ ! -d $INTPATH/.sm64-port/ ]; then
+		echo "Super Mario 64 folder doesn't exist, creating folder."
+		mkdir -p $INTPATH/.sm64-port/
+	fi
+	echo "Restoring Super Mario 64 data..."
+	imp $EXTPATH/.sm64-port/sm64_save_file.bin $INTPATH/.sm64-port/
+fi
 dialog --clear --backtitle "SaveSync $APPVERSION" --title "Import Complete" --msgbox "Save import complete.\nPress START to exit." 6 29
 exit

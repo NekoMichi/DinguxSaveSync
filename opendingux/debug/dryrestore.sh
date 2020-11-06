@@ -236,6 +236,16 @@ if [ -d $EXTPATH/.local/share/gcwconnect/networks/ ]; then
 	tres $EXTPATH/.local/share/gcwconnect/networks/* $INTPATH/.local/share/gcwconnect/networks/
 fi
 
+# Restore Super Mario 64 Port data
+if [ -d $EXTPATH/.sm64-port/ ]; then
+	if [ ! -d $INTPATH/.sm64-port/ ]; then
+		echo "Super Mario 64 folder doesn't exist, creating folder."
+		mkdir -p $INTPATH/.sm64-port/
+	fi
+	echo "Restoring Super Mario 64 data..."
+	tres $EXTPATH/.sm64-port/sm64_save_file.bin $INTPATH/.sm64-port/
+fi
+
 echo ""
 echo "Debug restore complete."
 echo "Report saved to ~/log/$TIMESTAMP.txt"
