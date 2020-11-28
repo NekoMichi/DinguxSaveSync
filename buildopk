@@ -3,5 +3,5 @@
 BASEDIR=$(dirname "$0")
 cd $BASEDIR/opendingux
 mksquashfs ./* savesync.opk
-mv savesync.opk .. 
+mv $BASEDIR/opendingux/savesync.opk $BASEDIR/savesync.opk
 exit
