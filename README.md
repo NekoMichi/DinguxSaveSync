@@ -37,6 +37,14 @@ SaveSync will only access data from specific apps and emulators, they are:
 - Snes9x (Super NES emulator)
 - SwanEmu (Wonderswan emulator)
 - Temper (PC Engine emulator)
+- DevilutionX (Diablo 1 port)
+- Scummvm (Point and Click Adventure emulator)
+- Ur-Quan Masters (Starcon2 port)
+- Atari800 (Atari 800/800XL/130XE/etc emulator)
+- OpenDune (Dune 2 port)
+- OpenLara (Tomb Raider port)
+- GCW Connect (WiFi settings application)
+- Super Mario 64 (Super Mario N64 port)
 
 **Snapshots**
 

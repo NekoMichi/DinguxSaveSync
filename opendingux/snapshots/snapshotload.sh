@@ -208,7 +208,7 @@ fi
 # Restores Scummvm data
 if [ -d $RESTOREPATH/.local/share/scummvm/saves/ ]; then
 	if [! -d $INTPATH/.local/share/scummvm/saves/ ]; then
-		echo "Scummvm backup folder doesn't exist in home directory, creating folder."
+		echo "Scummvm folder doesn't exist in home directory, creating folder."
 		mkdir -p $INTPATH/.local/share/scummvm/saves/
 	fi
 	echo "Restoring Scummvm data..."
@@ -219,7 +219,7 @@ fi
 # Restores Ur-Quan Masters (Starcon2 port) data
 if [ -d $RESTOREPATH/.uqm/ ]; then
 	if [ ! -d $INTPATH/.uqm/ ]; then
-		echo "Ur-Quan Masters backup folder doesn't exist in home directory, creating folder."
+		echo "Ur-Quan Masters folder doesn't exist in home directory, creating folder."
 		mkdir -p $INTPATH/.uqm/
 	fi
 	echo "Restoring Ur-Quan Masters data..."
@@ -229,7 +229,7 @@ fi
 # Restores Atari800 data
 if [ -d $RESTOREPATH/.atari/ ]; then
 	if [ ! -d $INTPATH/.atari/ ]; then
-		echo "Atari800 backup folder doesn't exist in home directory, creating folder."
+		echo "Atari800 folder doesn't exist in home directory, creating folder."
 		mkdir -p $INTPATH/.atari/
 	fi
 	echo "Restoring Atari800 data..."
@@ -250,7 +250,7 @@ fi
 # Restores OpenLara data
 if [ -d $RESTOREPATH/.openlara/ ]; then
 	if [ ! -d $INTPATH/.openlara/ ]; then
-		echo "OpenLara backup folder doesn't exist in home directory, creating folder."
+		echo "OpenLara folder doesn't exist in home directory, creating folder."
 		mkdir -p $INTPATH/.openlara/
 	fi
 	echo "Restoring OpenLara data..."
@@ -260,12 +260,26 @@ fi
 # Restores GCW Connect data
 if [ -d $RESTOREPATH/.local/share/gcwconnect/networks/ ]; then
 	if [ ! -d $INTPATH/.local/share/gcwconnect/networks/ ]; then
-		echo "GCW Connect backup folder doesn't exist in home directory, creating folder."
+		echo "GCW Connect folder doesn't exist in home directory, creating folder."
 		mkdir -p $INTPATH/.local/share/gcwconnect/networks/
 	fi
 	echo "Restoring GCW Connect data..."
 	res $RESTOREPATH/.local/share/gcwconnect/networks/* $INTPATH/.local/share/gcwconnect/networks/
 fi
+
+# Restore Super Mario 64 Port data
+if [ -d $RESTOREPATH/.sm64-port/ ]; then
+	if [ ! -d $INTPATH/.sm64-port/ ]; then
+		echo "Super Mario 64 folder doesn't exist, creating folder."
+		mkdir -p $INTPATH/.sm64-port/
+	fi
+	echo "Restoring Super Mario 64 data..."
+	res $RESTOREPATH/.sm64-port/sm64_save_file.bin $INTPATH/.sm64-port/
+fi
+
+# Synchronize cached writes to persistent storage
+# This forces the filesystem to write to disk to avoid any data loss if you quickly turn off the device before the data is written to the sdcard.
+sync
 
 dialog --clear --backtitle "SaveSync $APPVERSION" --title "Restore Complete" --msgbox "Restored from snapshot:\n$SELECTEDSNAPSHOT\n\nPress START to exit." 8 43
 exit

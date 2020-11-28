@@ -1,8 +1,7 @@
 #!/bin/sh
 # title=SaveSync Main
-# desc=Main menu of SaveSync
+# desc=Main menu of SaveSync v2.6
 # author=NekoMichi
-
 export APPVERSION="v2.6"
 
 # Checks to see if there is a card inserted in slot 2

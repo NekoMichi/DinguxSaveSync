@@ -268,6 +268,17 @@ if [ -d $INTPATH/.local/share/gcwconnect/networks/ ]; then
 	sleep 1
 fi
 
+# Diffs Super Mario 64 Port data
+if [ -d $INTPATH/.sm64-port/ ]; then
+	if [ ! -d $EXTPATH/.sm64-port/ ]; then
+		echo "Super Mario 64 backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.sm64-port/
+	fi
+	echo "Comparing Super Mario 64 data..."
+	diff -rq $INTPATH/.sm64-port/sm64_save_file.bin $EXTPATH/.sm64-port/
+	sleep 1
+fi
+
 echo ""
 echo "Save comparison complete."
 echo "Report saved to ~/log/$TIMESTAMP.txt"

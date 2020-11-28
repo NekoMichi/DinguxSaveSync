@@ -434,7 +434,7 @@ else
 	fi
 fi
 
-# Backs up OpenDune data
+# Syncs OpenDune data
 if [ -d $INTPATH/.opendune/save/ ]; then
 	if [ -d $EXTPATH/.opendune/save/ ]; then
 		echo "Syncing OpenDune data..."
@@ -455,7 +455,7 @@ else
 	fi
 fi
 
-# Backs up OpenLara data
+# Syncs OpenLara data
 if [ -d $INTPATH/.openlara/ ]; then
 	if [ -d $EXTPATH/.openlara/ ]; then
 		echo "Syncing OpenLara data..."
@@ -476,7 +476,7 @@ else
 	fi
 fi
 
-# Backs up GCW Connect data
+# Syncs GCW Connect data
 if [ -d $INTPATH/.local/share/gcwconnect/networks/ ]; then
 	if [ -d $EXTPATH/.local/share/gcwconnect/networks/ ]; then
 		echo "Syncing GCW Connect data..."
@@ -496,6 +496,31 @@ else
 		syn $EXTPATH/.local/share/gcwconnect/networks/* $INTPATH/.local/share/gcwconnect/networks/
 	fi
 fi
+
+# Syncs Super Mario 64 Port data
+if [ -d $INTPATH/.sm64-port/ ]; then
+	if [ -d $EXTPATH/.sm64-port/ ]; then
+		echo "Syncing Super Mario 64 Port data..."
+		syn $INTPATH/.sm64-port/sm64_save_file.bin $EXTPATH/.sm64-port/
+		syn $EXTPATH/.sm64-port/sm64_save_file.bin $INTPATH/.sm64-port/
+	else
+		echo "Super Mario 64 Port backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.sm64-port/
+		echo "Syncing Super Mario 64 Port data..."
+		syn $INTPATH/.sm64-port/sm64_save_file.bin $EXTPATH/.sm64-port/
+	fi
+else
+	if [ -d $EXTPATH/.sm64-port/ ]; then
+		echo "Super Mario 64 Port folder doesn't exist in home directory, creating folder."
+		mkdir -p $INTPATH/.sm64-port/
+		echo "Syncing Super Mario 64 Port data..."
+		syn $EXTPATH/.sm64-port/sm64_save_file.bin $INTPATH/.sm64-port/
+	fi
+fi
+
+# Synchronize cached writes to persistent storage
+# This forces the filesystem to write to disk to avoid any data loss if you quickly turn off the device before the data is written to the sdcard.
+sync
 
 dialog --clear --backtitle "SaveSync $APPVERSION" --title "Sync Complete" --msgbox "Save sync complete.\nPress START to exit." 6 29
 exit
