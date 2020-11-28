@@ -277,5 +277,9 @@ if [ -d $RESTOREPATH/.sm64-port/ ]; then
 	res $RESTOREPATH/.sm64-port/sm64_save_file.bin $INTPATH/.sm64-port/
 fi
 
+# Synchronize cached writes to persistent storage
+# This forces the filesystem to write to disk to avoid any data loss if you quickly turn off the device before the data is written to the sdcard.
+sync
+
 dialog --clear --backtitle "SaveSync $APPVERSION" --title "Restore Complete" --msgbox "Restored from snapshot:\n$SELECTEDSNAPSHOT\n\nPress START to exit." 8 43
 exit

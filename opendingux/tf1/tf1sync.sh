@@ -533,5 +533,9 @@ else
 	fi
 fi
 
+# Synchronize cached writes to persistent storage
+# This forces the filesystem to write to disk to avoid any data loss if you quickly turn off the device before the data is written to the sdcard.
+sync
+
 dialog --clear --backtitle "SaveSync $APPVERSION" --title "Sync Complete" --msgbox "Save sync complete.\nPress START to exit." 6 29
 exit

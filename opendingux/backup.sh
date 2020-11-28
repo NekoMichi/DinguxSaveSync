@@ -243,7 +243,6 @@ if [ -d $INTPATH/.local/share/gcwconnect/networks/ ]; then
 fi
 
 # Backs up Super Mario 64 Port data
-echo "DEBUG: SM64"
 if [ -d $INTPATH/.sm64-port/ ]; then
 	if [ ! -d $EXTPATH/.sm64-port/ ]; then
 		echo "Super Mario 64 backup folder doesn't exist, creating folder."
@@ -252,6 +251,10 @@ if [ -d $INTPATH/.sm64-port/ ]; then
 	echo "Backing up Super Mario 64 data..."
 	bac $INTPATH/.sm64-port/sm64_save_file.bin $EXTPATH/.sm64-port/
 fi
+
+# Synchronize cached writes to persistent storage
+# This forces the filesystem to write to disk to avoid any data loss if you quickly turn off the device before the data is written to the sdcard.
+sync
 
 dialog --clear --backtitle "SaveSync $APPVERSION" --title "Backup Complete" --msgbox "Save backup complete.\nPress START to exit." 6 29
 exit

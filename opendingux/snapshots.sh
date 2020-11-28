@@ -21,4 +21,8 @@ if [ $MODE = "3" ]; then
 	./snapshots/snapshotdelete.sh
 fi
 
+# Synchronize cached writes to persistent storage
+# This forces the filesystem to write to disk to avoid any data loss if you quickly turn off the device before the data is written to the sdcard.
+sync
+
 exit

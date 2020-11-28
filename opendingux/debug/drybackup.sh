@@ -236,16 +236,6 @@ if [ -d $INTPATH/.openlara/ ]; then
 	tbac $INTPATH/.openlara/savegame.dat $EXTPATH/.openlara/savegame.dat
 fi
 
-# Backs up GCW Connect data
-if [ -d $INTPATH/.local/share/gcwconnect/networks/ ]; then
-	if [ ! -d $EXTPATH/.local/share/gcwconnect/networks/ ]; then
-		echo "GCW Connect backup folder doesn't exist, creating folder."
-		mkdir -p $EXTPATH/.local/share/gcwconnect/networks/
-	fi
-	echo "Backing up GCW Connect data..."
-	tbac $INTPATH/.local/share/gcwconnect/networks/* $EXTPATH/.local/share/gcwconnect/networks/
-fi
-
 # Backs up Super Mario 64 Port data
 echo "DEBUG: backup SM64"
 echo "INTpath: $INTPATH"
@@ -258,6 +248,17 @@ if [ -d $INTPATH/.sm64-port/ ]; then
 	echo "Backing up Super Mario 64 data..."
 	tbac $INTPATH/.sm64-port/sm64_save_file.bin $EXTPATH/.sm64-port/
 fi
+
+# Backs up GCW Connect data
+if [ -d $INTPATH/.local/share/gcwconnect/networks/ ]; then
+	if [ ! -d $EXTPATH/.local/share/gcwconnect/networks/ ]; then
+		echo "GCW Connect backup folder doesn't exist, creating folder."
+		mkdir -p $EXTPATH/.local/share/gcwconnect/networks/
+	fi
+	echo "Backing up GCW Connect data..."
+	tbac $INTPATH/.local/share/gcwconnect/networks/* $EXTPATH/.local/share/gcwconnect/networks/
+fi
+
 
 echo ""
 echo "Debug backup complete."

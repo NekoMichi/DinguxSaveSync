@@ -51,5 +51,9 @@ DELETEPATH=$SNAPSHOTPATH"/"$SELECTEDSNAPSHOT" SNAP"
 chmod -R 777 "$DELETEPATH"
 rm -r "$DELETEPATH"
 
+# Synchronize cached writes to persistent storage
+# This forces the filesystem to write to disk to avoid any data loss if you quickly turn off the device before the data is written to the sdcard.
+sync
+
 dialog --clear --backtitle "SaveSync $APPVERSION" --title "Snapshot Deleted" --msgbox "Deleted snapshot:\n$SELECTEDSNAPSHOT\n\nPress START to exit." 8 43
 exit

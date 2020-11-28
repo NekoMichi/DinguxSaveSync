@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=SaveSync
-Comment=Save data sync utility
+Comment=Save data sync utility - v2.6
 Exec=main.sh
 Icon=icon
 Terminal=true
